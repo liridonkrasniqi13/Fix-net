@@ -2,6 +2,8 @@
 
     <div id="wrapper">
 
+    <?php if($connection) echo "HEllo"; ?>
+
         <!-- Navigation -->
         <?php include "includes/navigation.php" ?>
         
