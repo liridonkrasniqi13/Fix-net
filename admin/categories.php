@@ -62,13 +62,38 @@
 
                             <div class="form-group">
                                 <label for="cat_title">Edit Category</label>
-                                <input type="text" class="form-control" id="" name="cat_title" placeholder="Input field">
+
+                            <?php
+
+                            if (isset($_GET['edit'])) {
+
+                                $cat_id = $_GET['edit'];
+
+                                $query = "SELECT * FROM categories WHERE  cat_id = $cat_id ";
+                                $select_categries_id = mysqli_query($connection, $query);
+                                while ($row = mysqli_fetch_assoc($select_categries_id)) {
+                                    $cat_id = $row['cat_id'];
+                                    $cat_title = $row['cat_title'];
+                                }
+
+                                ?>
+                                
+                                <input value="<?php if(isset($cat_title)) {echo $cat_title;} ?>" type="text" class="form-control" id="" name="cat_title" placeholder="Input field">
+
+                          <?php  } ?>
+
+
+
+                            
+
+                            
+                                
                             </div>
 
 
 
                             <button type="submit" name="submit" class="btn btn-primary">Edit</button>
-                        </form>     
+                        </form>
 
                     </div>
 
@@ -95,24 +120,24 @@
                                     echo "<td>{$cat_id}</td>";
                                     echo "<td>{$cat_title}</td>";
                                     echo "<td><a href='categories.php?delete={$cat_id}'>Delete</a></td>";
+                                    echo "<td><a href='categories.php?edit={$cat_id}'>Edit</a></td>";
                                     echo "</tr>";
                                 } ?>
 
 
                                 <?php
-                                
-                                    if(isset($_GET['delete'])) {
 
-                                        $the_cat_id = $_GET['delete'];
+                                if (isset($_GET['delete'])) {
 
-                                        $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
+                                    $the_cat_id = $_GET['delete'];
 
-                                        $delete_query = mysqli_query($connection, $query);
+                                    $query = "DELETE FROM categories WHERE cat_id = {$the_cat_id} ";
 
-                                        header("Location: categories.php");
+                                    $delete_query = mysqli_query($connection, $query);
 
-                                    }
-                                
+                                    header("Location: categories.php");
+                                }
+
                                 ?>
 
 
