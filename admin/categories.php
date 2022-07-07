@@ -57,43 +57,16 @@
                             <button type="submit" name="submit" class="btn btn-primary">Submit</button>
                         </form>
 
-                        <form action="" method="post" role="form">
-                            <legend>Form title</legend>
-
-                            <div class="form-group">
-                                <label for="cat_title">Edit Category</label>
-
-                            <?php
-
-                            if (isset($_GET['edit'])) {
-
+                        <?php
+                        
+                            if(isset($_GET['edit'])) {
                                 $cat_id = $_GET['edit'];
 
-                                $query = "SELECT * FROM categories WHERE  cat_id = $cat_id ";
-                                $select_categries_id = mysqli_query($connection, $query);
-                                while ($row = mysqli_fetch_assoc($select_categries_id)) {
-                                    $cat_id = $row['cat_id'];
-                                    $cat_title = $row['cat_title'];
-                                }
+                                include "includes/update_category.php";
+                            }
+                        
+                        ?> 
 
-                                ?>
-                                
-                                <input value="<?php if(isset($cat_title)) {echo $cat_title;} ?>" type="text" class="form-control" id="" name="cat_title" placeholder="Input field">
-
-                          <?php  } ?>
-
-
-
-                            
-
-                            
-                                
-                            </div>
-
-
-
-                            <button type="submit" name="submit" class="btn btn-primary">Edit</button>
-                        </form>
 
                     </div>
 
