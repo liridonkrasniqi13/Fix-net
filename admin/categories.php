@@ -21,28 +21,7 @@
 
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
 
-                        <?php
-
-                        if (isset($_POST['submit'])) {
-                            $cat_title = $_POST['cat_title'];
-
-                            if ($cat_title == "" || empty($cat_title)) {
-
-                                echo "this field should not be empty";
-                            } else {
-
-                                $query = "INSERT INTO categories(cat_title)";
-                                $query .= "VALUE('{$cat_title}') ";
-
-                                $create_category_query = mysqli_query($connection, $query);
-
-                                if (!$create_category_query) {
-                                    die('Save faild' . mysqli_errno($connection));
-                                }
-                            }
-                        }
-
-                        ?>
+                        <?php insert_categoris(); ?>
 
                         <form action="" method="post" role="form">
                             <legend>Form title</legend>
