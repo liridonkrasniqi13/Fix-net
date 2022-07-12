@@ -33,8 +33,29 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     </div>
 
     <div class="form-group">
-        <label for="post_category_id">Post Categori Id</label>
-        <input value="<?php echo $post_category_id; ?>" type="text" class="form-control" name="post_category_id" id="" placeholder="Post Categori Id">
+        
+        <select name="post_category_id" id="post_category_id" class="form-control" required="required">
+
+            <?php
+            
+            $query = "SELECT * FROM categories ";
+            $select_categries = mysqli_query($connection, $query);
+
+            // confirmQuery($select_categries);
+
+            while ($row = mysqli_fetch_assoc($select_categries)) {
+                $cat_id = $row['cat_id'];
+                $cat_title = $row['cat_title'];
+
+                echo "<option value='{$cat_id}'>{$cat_title}</option>";
+
+            }
+            
+            ?>
+
+            
+        </select>
+        
     </div>
 
     <div class="form-group">
@@ -48,8 +69,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     </div>
 
     <div class="form-group">
-        <label for="image">Post Image</label>
-        <input type="file" class="form-control" name="image" id="">
+        <img width="100" src="../img/<?php echo $post_image; ?>" alt="">
     </div>
 
     <div class="form-group">
