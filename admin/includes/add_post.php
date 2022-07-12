@@ -1,11 +1,10 @@
+<?php
 
-<?php 
-
- if(isset($_POST['create_post'])) {
+if (isset($_POST['create_post'])) {
 
     $post_title = $_POST['title'];
     $post_author = $_POST['author'];
-    $post_categori_id = $_POST['post_categori_id'];
+    $post_category_id = $_POST['post_category_id'];
     $post_status = $_POST['post_status'];
 
     $post_image = $_FILES['image']['name'];
@@ -19,7 +18,15 @@
 
     move_uploaded_file($post_image_temp, "../img/$post_image");
 
- }
+    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count,post_status) ";
+
+    $query .= "VALUE('{$post_category_id}','{$post_title}','{$post_author}',now() ,'{'$post_image'}','{$post_content}','$post_tags','{$post_cmoment_count}','{$post_status}')";
+
+    $create_post_query = mysqli_query($connection, $query);
+
+    confirmQuery($create_post_query);
+
+}
 
 ?>
 
@@ -33,8 +40,8 @@
     </div>
 
     <div class="form-group">
-        <label for="post_categori_id">Post Categori Id</label>
-        <input type="text" class="form-control" name="post_categori_id" id="" placeholder="Post Categori Id">
+        <label for="post_category_id">Post Categori Id</label>
+        <input type="text" class="form-control" name="post_category_id" id="" placeholder="Post Categori Id">
     </div>
 
     <div class="form-group">
@@ -59,10 +66,10 @@
 
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea type="text" class="form-control" name="post_content" id="" placeholder="Post Content" ></textarea>
+        <textarea type="text" class="form-control" name="post_content" id="" placeholder="Post Content"></textarea>
     </div>
 
-    
+
 
     <button type="submit" name="create_post" class="btn btn-primary">Submit</button>
 </form>
