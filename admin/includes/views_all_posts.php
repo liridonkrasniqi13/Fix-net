@@ -35,7 +35,15 @@
                 echo "<td>$post_id</td>";
                 echo "<td>$post_author</td>";
                 echo "<td>$post_title</td>";
-                echo "<td>$post_category_id</td>";
+
+                $query = "SELECT * FROM categories WHERE  cat_id = $post_category_id ";
+                $select_categries_id = mysqli_query($connection, $query);
+                while ($row = mysqli_fetch_assoc($select_categries_id)) {
+                    $cat_id = $row['cat_id'];
+                    $cat_title = $row['cat_title'];
+                }
+
+                echo "<td>$cat_title</td>";
                 echo "<td>$post_status</td>";
                 echo "<td><img width='100' src='../img/$post_image'></td>";
                 echo "<td>$post_tags</td>";
@@ -53,21 +61,20 @@
         </tbody>
     </table>
 
-<?php 
+    <?php
 
-if(isset($_GET['delete'])) {
+    if (isset($_GET['delete'])) {
 
-    $the_post_id = $_GET['delete'];
+        $the_post_id = $_GET['delete'];
 
-    $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
-    $delete_query = mysqli_query($connection, $query);
+        $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
+        $delete_query = mysqli_query($connection, $query);
 
-    header("Location: posts.php");
+        header("Location: posts.php");
+    }
 
-}
 
-
-?>
+    ?>
 
 
 </div>
