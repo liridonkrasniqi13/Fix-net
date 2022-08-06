@@ -36,13 +36,29 @@ if (isset($_POST['edit_user'])) {
 
     // move_uploaded_file($post_image_temp, "../img/$post_image");
 
-    $query = "INSERT INTO users(user_lastname, user_firstname,  user_email, username, user_role) ";
+    // $query = "INSERT INTO users(user_lastname, user_firstname,  user_email, username, user_role) ";
 
-    $query .= "VALUE('{$user_lastname}','{$user_firstname}','{$user_email}','$username','{$user_role}')";
+    // $query .= "VALUE('{$user_lastname}','{$user_firstname}','{$user_email}','$username','{$user_role}')";
 
-    $create_user_query = mysqli_query($connection, $query);
+    // $create_user_query = mysqli_query($connection, $query);
 
-    confirmQuery($create_user_query);
+    // confirmQuery($create_user_query);
+
+
+    $query = "UPDATE users SET 
+    user_firstname = '{$user_firstname}', 
+    user_lastname = '{$user_lastname}',
+    user_role = '{$user_role}',
+    username = '{$username}',
+    user_email = '{$user_email}',
+    user_password = '{$user_password}'
+    WHERE user_id = {$the_user_id}";
+    // $query .="post_author = '{$post_author}', ";
+    // $query .="WHERE post_id = {$the_post_id}";
+
+    $edit_user_query = mysqli_query($connection, $query);
+
+    confirmQuery($edit_user_query);
 }
 
 ?>
