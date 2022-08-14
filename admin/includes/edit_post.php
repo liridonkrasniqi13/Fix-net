@@ -44,6 +44,8 @@ if (isset($_POST['update_post'])) {
     $update_post = mysqli_query($connection, $query);
 
     confirmQuery($update_post);
+
+    echo "<div class='alert alert-success' role='alert'>Post Updated. <a href='posts.php'>View Post</a> or <a href='../post.php?p_id={$the_post_id}'>View the Post</a></div>";
 }
 
 ?>
@@ -88,9 +90,25 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status" id="" placeholder="Post Status">
+        <select name="post_status" id="post_status" class="form-control" required="required">
+            <option value="<?php echo $post_status; ?>"><?php echo $post_status; ?></option>
+            <?php 
+            
+            if($post_status == 'published') {
+
+                echo "<option value='draft'>Draft</option>";
+
+            } else {
+                echo "<option value='published'>Published</option>";
+            }
+
+            
+
+            ?>
+
+        </select>
     </div>
+
 
     <div class="form-group">
         <img width="100" src="../img/<?php echo $post_image; ?>" alt="">
