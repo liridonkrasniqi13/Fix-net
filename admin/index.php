@@ -165,9 +165,18 @@
 
             <?php
 
-            $query = "SELECT * FROM categories WHERE cat_title = 'Instalim' ";
-            $select_categories_status = mysqli_query($connection, $query);
-            $categories_status_count = mysqli_num_rows($select_categories_status);
+            $query = "SELECT * FROM posts WHERE post_category_id = '16' ";
+            $select_categories_instalime = mysqli_query($connection, $query);
+            $categories_status_count = mysqli_num_rows($select_categories_instalime);
+
+
+            ?>
+
+            <?php
+
+            $query = "SELECT * FROM posts WHERE post_category_id = '15' ";
+            $select_categories_ticked = mysqli_query($connection, $query);
+            $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
 
 
             ?>
@@ -186,10 +195,10 @@
 
                             <?php
 
-                            $element_text = ['Active Post', 'Comments', 'Users', 'Category', 'Category status'];
-                            $element_count = [$post_count, $comments_count, $users_count, $categories_count, $categories_status_count];
+                            $element_text = ['Active Post', 'Comments', 'Users', 'Category', 'Instalime', 'Ticked'];
+                            $element_count = [$post_count, $comments_count, $users_count, $categories_count, $categories_status_count, $categories_status_coun_ticked];
 
-                            for ($i = 0; $i < 5; $i++) {
+                            for ($i = 0; $i < 6; $i++) {
                                 echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
                             }
 

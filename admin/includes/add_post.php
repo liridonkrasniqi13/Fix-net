@@ -3,7 +3,7 @@
 if (isset($_POST['create_post'])) {
 
     $post_title = $_POST['title'];
-    $post_author = $_POST['author'];
+    $post_author = $_SESSION['username'];
     $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
 
@@ -68,8 +68,12 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="author">Post Author</label>
-        <input type="text" class="form-control" name="author" id="" placeholder="Post Author">
+        <label for="author">Post Author <?php 
+                        if(isset($_SESSION['username'])) {
+                            echo  $_SESSION['username'];
+                        };
+                    ?></label>
+        <!-- <input type="text" class="form-control" name="author" id="" placeholder="Post Author"> -->
     </div>
 
     <div class="form-group">
