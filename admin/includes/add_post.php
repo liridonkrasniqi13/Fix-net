@@ -11,15 +11,16 @@ if (isset($_POST['create_post'])) {
     $post_image_temp = $_FILES['image']['tmp_name'];
 
     $post_tags = $_POST['post_tags'];
+    $post_resiver = $_POST['post_resiver'];
     $post_content = $_POST['post_content'];
     $post_date = date('d-m-y');
 
 
     move_uploaded_file($post_image_temp, "../img/$post_image");
 
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_resiver, post_status) ";
 
-    $query .= "VALUE('{$post_category_id}','{$post_title}','{$post_author}',now() ,'{'$post_image'}','{$post_content}','$post_tags','{$post_status}')";
+    $query .= "VALUE('{$post_category_id}','{$post_title}','{$post_author}',now() ,'{'$post_image'}','{$post_content}','$post_tags','$post_resiver','{$post_status}')";
 
     $create_post_query = mysqli_query($connection, $query);
 
@@ -93,6 +94,10 @@ if (isset($_POST['create_post'])) {
     <div class="form-group">
         <label for="post_tags">Post Tags</label>
         <input type="text" class="form-control" name="post_tags" id="" placeholder="Post Tags">
+    </div>
+    <div class="form-group">
+        <label for="post_resiver">Resever </label>
+        <input type="number" class="form-control" name="post_resiver" id="" placeholder="Resever" value="0">
     </div>
 
     <div class="form-group">

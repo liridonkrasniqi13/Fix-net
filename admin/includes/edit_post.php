@@ -10,23 +10,25 @@ $select_posts_by_id = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $post_id = $row['post_id'];
     $post_title = $row['post_title'];
-    $post_author = $row['post_author'];
+    $post_author = $_SESSION['username'];
     $post_date = $row['post_date'];
     $post_image = $row['post_image'];
     $post_content = $row['post_content'];
     $post_comment_count = $row['post_comment_count'];
     $post_status = $row['post_status'];
     $post_tags = $row['post_tags'];
+    $post_resiver = $row['post_resiver'];
     $post_category_id = $row['post_category_id'];
 }
 
 if (isset($_POST['update_post'])) {
-    $post_author = $_POST['post_author'];
+    $post_author = $_SESSION['username'];
     $post_title = $_POST['post_title'];
     $post_category_id = $_POST['post_category'];
     $post_status = $_POST['post_status'];
     $post_content = $_POST['post_content'];
     $post_tags = $_POST['post_tags'];
+    $post_resiver = $_POST['post_resiver'];
 
 
     $query = "UPDATE posts SET 
@@ -36,6 +38,7 @@ if (isset($_POST['update_post'])) {
     post_category_id = '{$post_category_id}',
     post_status = '{$post_status}',
     post_tags = '{$post_tags}',
+    post_resiver = '{$post_resiver}',
     post_date = now()
     WHERE post_id = {$the_post_id}";
     // $query .="post_author = '{$post_author}', ";
@@ -84,10 +87,7 @@ if (isset($_POST['update_post'])) {
 
     </div>
 
-    <div class="form-group">
-        <label for="post_author">Post Author</label>
-        <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="post_author" id="" placeholder="Post Author">
-    </div>
+    
 
     <div class="form-group">
         <select name="post_status" id="post_status" class="form-control" required="required">
@@ -117,6 +117,11 @@ if (isset($_POST['update_post'])) {
     <div class="form-group">
         <label for="post_tags">Post Tags</label>
         <input value="<?php echo $post_tags; ?>" type="text" class="form-control" name="post_tags" id="" placeholder="Post Tags">
+    </div>
+    
+    <div class="form-group">
+        <label for="post_resiver">Resever</label>
+        <input value="<?php echo $post_resiver; ?>" type="number" class="form-control" name="post_resiver" id="" >
     </div>
 
     <div class="form-group">
