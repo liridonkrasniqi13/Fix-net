@@ -77,18 +77,33 @@
 
     </div>
 
-        <table class="table table-hover">
+        <table class="table table-bordered table-hover">
             <thead>
                 <tr>
                     <th><input type="checkbox" name="" id="selectAllBoxes"></th>
                     <th>Id</th>
                     <th>Author</th>
-                    <th>Title</th>
-                    <th>Categories</th>
-                    <th>Status</th>
-                    <th>Images</th>
-                    <th>Tags</th>
-                    <th>Comments</th>
+                    <th>Klienti</th>
+                    <th>Tiket</th>
+                    <th>Resiver</th>
+                    <th>Modem</th>
+                    <th>RG6</th>
+                    <th>Konektor RG6</th>
+                    <th>Spliter</th>
+                    <th>Konektor Tv</th>
+                    <th>RG11</th>
+                    <th>T32</th>
+                    <th>Kupler 7402</th>
+                    <th>AMP</th>
+                    <th>Tap 26</th>
+                    <th>Tap 23</th>
+                    <th>Tap 20</th>
+                    <th>Tap 17</th>
+                    <th>Tap 14</th>
+                    <th>Tap 11</th>
+                    <th>Tap 10</th>
+                    <th>Tap 8</th>
+                    <th>Tap 4</th>
                     <th>Date</th>
                     <th>View Post</th>
                     <th>Edit</th>
@@ -106,12 +121,29 @@
                     $post_title = $row['post_title'];
                     $post_author = $row['post_author'];
                     $post_date = $row['post_date'];
-                    $post_image = $row['post_image'];
                     $post_content = $row['post_content'];
-                    $post_comment_count = $row['post_comment_count'];
-                    $post_status = $row['post_status'];
-                    $post_tags = $row['post_tags'];
+                    $post_resiver = $row['post_resiver'];
                     $post_category_id = $row['post_category_id'];
+
+                    $post_modem = $row['post_modem'];
+                    $post_rg6 = $row['post_rg6'];
+                    $post_konektor_rg6 = $row['post_konektor_rg6'];
+                    $post_spliter = $row['post_spliter'];
+                    $post_konektor_tv = $row['post_konektor_tv'];
+                    $post_rg11 = $row['post_rg11'];
+                    $post_t32 = $row['post_t32'];
+                    $post_kupler_7402 = $row['post_kupler_7402'];
+                    $post_amp = $row['post_amp'];
+
+                    $tap_26 = $row['tap_26'];
+                    $tap_23 = $row['tap_23'];
+                    $tap_20 = $row['tap_20'];
+                    $tap_17 = $row['tap_17'];
+                    $tap_14 = $row['tap_14'];
+                    $tap_11 = $row['tap_11'];
+                    $tap_10 = $row['tap_10'];
+                    $tap_8 = $row['tap_8'];
+                    $tap_4 = $row['tap_4'];
 
                     echo "<tr>"; 
                     ?>
@@ -131,10 +163,25 @@
                     }
 
                     echo "<td>$cat_title</td>";
-                    echo "<td>$post_status</td>";
-                    echo "<td><img width='100' src='../img/$post_image'></td>";
-                    echo "<td>$post_tags</td>";
-                    echo "<td>$post_comment_count</td>";
+                    echo "<td>$post_resiver</td>";
+                    echo "<td>$post_modem</td>";
+                    echo "<td>$post_rg6</td>";
+                    echo "<td>$post_konektor_rg6</td>";
+                    echo "<td>$post_spliter</td>";
+                    echo "<td>$post_konektor_tv</td>";
+                    echo "<td>$post_rg11</td>";
+                    echo "<td>$post_t32</td>";
+                    echo "<td>$post_kupler_7402</td>";
+                    echo "<td>$post_amp</td>";
+                    echo "<td>$tap_26</td>";
+                    echo "<td>$tap_23</td>";
+                    echo "<td>$tap_20</td>";
+                    echo "<td>$tap_17</td>";
+                    echo "<td>$tap_14</td>";
+                    echo "<td>$tap_11</td>";
+                    echo "<td>$tap_10</td>";
+                    echo "<td>$tap_8</td>";
+                    echo "<td>$tap_4</td>";
                     echo "<td>$post_date</td>";
                     echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
                     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";

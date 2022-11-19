@@ -14,18 +14,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-                <?php
 
-                $query = "SELECT * FROM categories";
-                $select_all_categries_query = mysqli_query($connection, $query);
-
-                while ($row = mysqli_fetch_assoc($select_all_categries_query)) {
-                    $cat_title = $row['cat_title'];
-
-                    echo "<li><a href='#'>{$cat_title}</a> </li>";
-                }
-
-                ?>
+                <li>
+                    <a href="admin/posts.php?source=add_post">Add Post</a>
+                </li>  
 
                 <li>
                     <a href="admin">Admin</a>
@@ -47,11 +39,15 @@
                     }
                 }
 
+
+                    if ($_SESSION['user_role'] == "admin") {
+                        echo "<li>
+                        <a href='registration.php'>Register</a>
+                        </li>";
+                    }
                 ?>
 
-                <li>
-                    <a href="registration.php">Register</a>
-                </li>
+                
             </ul>
         </div>
         <!-- /.navbar-collapse -->
