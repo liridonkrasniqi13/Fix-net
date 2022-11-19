@@ -36,13 +36,16 @@ if (isset($_POST['edit_user'])) {
 
     // move_uploaded_file($post_image_temp, "../img/$post_image");
 
-    // $query = "INSERT INTO users(user_lastname, user_firstname,  user_email, username, user_role) ";
+    $query = "SELECT rentSalt FROM users";
+        $select_rentSalt_query = mysqli_query($connection, $query);
 
-    // $query .= "VALUE('{$user_lastname}','{$user_firstname}','{$user_email}','$username','{$user_role}')";
+        if (!$select_rentSalt_query) {
+            die("Query failde" . mysqli_error($connection));
+        }
 
-    // $create_user_query = mysqli_query($connection, $query);
-
-    // confirmQuery($create_user_query);
+        $row = mysqli_fetch_array($select_rentSalt_query);
+        $salt = $row['rentSalt']; 
+        $hashed_password = crypt($user_password, $salt);
 
 
     $query = "UPDATE users SET 
@@ -51,7 +54,7 @@ if (isset($_POST['edit_user'])) {
     user_role = '{$user_role}',
     username = '{$username}',
     user_email = '{$user_email}',
-    user_password = '{$user_password}'
+    user_password = '{$hashed_password}'
     WHERE user_id = {$the_user_id}";
     // $query .="post_author = '{$post_author}', ";
     // $query .="WHERE post_id = {$the_post_id}";

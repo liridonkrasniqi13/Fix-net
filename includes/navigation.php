@@ -32,30 +32,25 @@
                 </li>
 
                 <?php
-                
-                 
 
-                    if(isset($_SESSION['username'])) {
 
-                        $test = $_SESSION['username'];
-                            echo "{$test}";
 
-                        if(isset($_GET['p_id'])) {
+                if (isset($_SESSION['username'])) {
 
-                            $the_post_id = $_GET['p_id'];
+                    if (isset($_GET['p_id'])) {
 
-                            echo "<li>
-                                    <a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit[ post</a>
-                                </li>Test";
-                        }
+                        $the_post_id = $_GET['p_id'];
+
+                        echo "<li>
+                                    <a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit post</a>
+                                </li>";
                     }
-
-
+                }
 
                 ?>
 
                 <li>
-                    <a href="admin">Admin</a>
+                    <a href="registration.php">Register</a>
                 </li>
             </ul>
         </div>
