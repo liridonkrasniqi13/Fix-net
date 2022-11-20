@@ -1,5 +1,67 @@
 <?php include "includes/header.php" ?>
+<?php 
 
+$post_author_post = $_SESSION['username'];
+if ($_SESSION['user_role'] == "admin") {
+    $query = "SELECT * FROM posts";
+    $select_all_post = mysqli_query($connection, $query);
+    $post_count = mysqli_num_rows($select_all_post);
+
+    echo "<div class='huge'>{$post_count}</div>";
+    } else {
+    $query = "SELECT * FROM posts WHERE post_author = '$post_author_post'";
+    $select_all_post = mysqli_query($connection, $query);
+    $post_count = mysqli_num_rows($select_all_post);
+
+        echo "<div class='huge'>{$post_count}</div>";
+    }
+
+    $query = "SELECT * FROM comments ";
+    $select_all_comments = mysqli_query($connection, $query);
+    $comments_count = mysqli_num_rows($select_all_comments);
+
+    $query = "SELECT * FROM users ";
+    $select_all_users = mysqli_query($connection, $query);
+    $users_count = mysqli_num_rows($select_all_users);
+
+    $query = "SELECT * FROM categories ";
+    $select_all_categories = mysqli_query($connection, $query);
+    $categories_count = mysqli_num_rows($select_all_categories);
+
+
+    if ($_SESSION['user_role'] == "admin") { 
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '15' ";
+        $select_categories_instalime = mysqli_query($connection, $query);
+        $categories_status_count = mysqli_num_rows($select_categories_instalime);
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '16' ";
+        $select_categories_ticked = mysqli_query($connection, $query);
+        $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '17'";
+        $select_categories_general = mysqli_query($connection, $query);
+        $categories_status_coun_general = mysqli_num_rows($select_categories_general);
+
+    } else {
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '16' &&  post_author = '$post_author_post' ";
+        $select_categories_instalime = mysqli_query($connection, $query);
+        $categories_status_count = mysqli_num_rows($select_categories_instalime);
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '15' &&  post_author = '$post_author_post' ";
+        $select_categories_ticked = mysqli_query($connection, $query);
+        $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
+
+
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '17' &&  post_author = '$post_author_post' ";
+        $select_categories_general = mysqli_query($connection, $query);
+        $categories_status_coun_general = mysqli_num_rows($select_categories_general);
+
+    }
+
+?>
 <div id="wrapper">
 
     <!-- <?php if ($connection) echo "HEllo"; ?> -->
@@ -16,8 +78,6 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        Blank Page
-
 
                         <small><?php echo $_SESSION['username'] ?></small>
                     </h1>
@@ -25,162 +85,19 @@
                         <li>
                             <i class="fa fa-dashboard"></i> <a href="index.html">Dashboard</a>
                         </li>
-                        <li class="active">
-                            <i class="fa fa-file"></i> Blank Page
-                        </li>
                     </ol>
                 </div>
             </div>
             <!-- /.row -->
 
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-file-text fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
 
-                                    <?php
+            <?php 
 
-                                    $query = "SELECT * FROM posts";
-                                    $select_all_post = mysqli_query($connection, $query);
-                                    $post_count = mysqli_num_rows($select_all_post);
-
-                                    echo "<div class='huge'>{$post_count}</div>"
-
-                                    ?>
-
-
-                                    <div>Posts</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="./posts.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-
-                                    <?php
-
-                                    $query = "SELECT * FROM comments ";
-                                    $select_all_comments = mysqli_query($connection, $query);
-                                    $comments_count = mysqli_num_rows($select_all_comments);
-
-                                    echo "<div class='huge'>{$comments_count}</div>"
-
-                                    ?>
-                                    <div>Comments</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="./comments.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-user fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-
-                                    <?php
-
-                                    $query = "SELECT * FROM users ";
-                                    $select_all_users = mysqli_query($connection, $query);
-                                    $users_count = mysqli_num_rows($select_all_users);
-
-                                    echo "<div class='huge'>{$users_count}</div>"
-
-                                    ?>
-                                    <div> Users</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="./users.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-list fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <?php
-
-                                    $query = "SELECT * FROM categories ";
-                                    $select_all_categories = mysqli_query($connection, $query);
-                                    $categories_count = mysqli_num_rows($select_all_categories);
-
-                                    echo "<div class='huge'>{$categories_count}</div>"
-
-                                    ?>
-                                    <div>Categories</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="categories.php">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-
-
-            <?php
-
-            $query = "SELECT * FROM posts WHERE post_category_id = '16' ";
-            $select_categories_instalime = mysqli_query($connection, $query);
-            $categories_status_count = mysqli_num_rows($select_categories_instalime);
-
-
+            if ($_SESSION['user_role'] == "admin") { 
+                include "icone.php" ;
+            }
+            
             ?>
-
-            <?php
-
-            $query = "SELECT * FROM posts WHERE post_category_id = '15' ";
-            $select_categories_ticked = mysqli_query($connection, $query);
-            $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
-
-
-            ?>
-
 
             <div class="row">
                 <script type="text/javascript">
@@ -193,14 +110,28 @@
                         var data = google.visualization.arrayToDataTable([
                             ['Data', 'Count'],
 
-                            <?php
+                            <?php 
 
-                            $element_text = ['Active Post', 'Comments', 'Users', 'Category', 'Instalime', 'Ticked'];
-                            $element_count = [$post_count, $comments_count, $users_count, $categories_count, $categories_status_count, $categories_status_coun_ticked];
+                            if ($_SESSION['user_role'] == "admin") {
+                                $element_text = ['Active Post', 'Instalime', 'Ticked', 'Generale', 'Comments', 'Users', 'Category'];
+                                $element_count = [$post_count, $categories_status_count, $categories_status_coun_ticked, $categories_status_coun_general , $comments_count, $users_count, $categories_count];
 
-                            for ($i = 0; $i < 6; $i++) {
+                                for ($i = 0; $i < 7; $i++) {
+                                    echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
+                            }
+                                
+                            } else {
+
+                                $element_text = ['Active Post', 'Instalime', 'Ticked', 'Generale'];
+                            $element_count = [$post_count, $categories_status_count, $categories_status_coun_ticked, $categories_status_coun_general];
+
+                            for ($i = 0; $i < 4; $i++) {
                                 echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
                             }
+
+                            }
+
+                            
 
                             ?>
                             // ['2022', 1000]

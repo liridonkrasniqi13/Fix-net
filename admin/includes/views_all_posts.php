@@ -56,7 +56,7 @@
     <div id="bulkOptionsContainer">
 
         
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <select name="bulk_options" id="bulk_options"  class="form-control" >
                 <option value="">Select Option</option>
                 <option value="published">Published</option>
@@ -65,15 +65,38 @@
             </select>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <input type="submit" name="submit" class="btn btn-success" value="Apply">
             
             <a href="posts.php?source=add_post" class="btn btn-primary" >Add new Post</a>            
 
         </div>
         
-        
-        
+  
+
+
+<!-- <div class="col-md-4">
+    <div class="form-group">
+        <label for="from">From</label>
+        <input type="text" class="date form-control" name="from"/>
+    </div>
+</div>
+
+<div class="col-md-4">
+    <div class="form-group">
+        <label for="end">End</label>
+        <input type="text" class="date form-control" name="end" value="<?php echo $post_date ?>"/>
+    </div>
+</div>
+
+<script type="text/javascript">
+      $(".date").datepicker({
+        format: "yyyy-mm",
+      });
+    </script> -->
+    
+ 
+    
 
     </div>
 
@@ -105,17 +128,29 @@
                     <th>Tap 8</th>
                     <th>Tap 4</th>
                     <th>Date</th>
-                    <th>View Post</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
+                    <?php 
+                    if ($_SESSION['user_role'] == "admin") { 
+                        echo "<th>View Post</th>";
+                        echo "<th>Edit</th>";
+                        echo "<th>Delete</th>";
+                     }
+                    ?>
+                    
                 </tr>
             </thead>
             <tbody>
 
                 <?php
 
-                $query = "SELECT * FROM posts ";
-                $select_posts = mysqli_query($connection, $query);
+                $post_author_post = $_SESSION['username'];
+                if ($_SESSION['user_role'] == "admin") { 
+                    $query = "SELECT * FROM posts ORDER BY post_id DESC";
+                    $select_posts = mysqli_query($connection, $query);
+                } else {
+                    $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC ";
+                    $select_posts = mysqli_query($connection, $query);
+                }
+                
                 while ($row = mysqli_fetch_assoc($select_posts)) {
                     $post_id = $row['post_id'];
                     $post_title = $row['post_title'];
@@ -183,9 +218,11 @@
                     echo "<td>$tap_8</td>";
                     echo "<td>$tap_4</td>";
                     echo "<td>$post_date</td>";
+                    if ($_SESSION['user_role'] == "admin") { 
                     echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
                     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
                     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
+                    }
                     echo "</tr>";
                 }
 

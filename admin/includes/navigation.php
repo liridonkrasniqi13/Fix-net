@@ -41,40 +41,42 @@
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#posts"><i class="fa fa-fw fa-arrows-v"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="posts" class="collapse">
-                    <?php 
-
-                        if ($_SESSION['user_role'] == "admin") {
-                            echo "<li>
-                            <a href='posts.php'>View all Post</a>
-                        </li>";
-                        }
-
-                    ?>
-                            
+                            <li>
+                                <a href='posts.php'>View all Post</a>
+                            </li>
                             <li>
                                 <a href="posts.php?source=add_post">Add Post</a>
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="categories.php"><i class="fa fa-fw fa-wrench"></i> Category</a>
-                    </li>
-                    
-                    <li>
-                        <a href="comments.php"><i class="fa fa-fw fa-file"></i> Comment</a>
-                    </li>
-                    <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Users <i class="fa fa-fw fa-caret-down"></i></a>
-                        <ul id="demo" class="collapse">
+                    <?php 
+
+                        if ($_SESSION['user_role'] == "admin") {
+                            echo "<li>
+                                <a href='categories.php'><i class='fa fa-fw fa-wrench'></i> Category</a>
+                            </li>
+
                             <li>
-                                <a href="users.php">View all users</a>
+                        <a href='comments.php'><i class='fa fa-fw fa-file'></i> Comment</a>
+                    </li>
+                    <li>
+                        <a href='javascript:' data-toggle='collapse' data-target='#demo'><i class='fa fa-fw fa-arrows-v'></i> Users <i class='fa fa-fw fa-caret-down'></i></a>
+                        <ul id='demo' class='collapse'>
+                            <li>
+                                <a href='users.php'>View all users</a>
                             </li>
                             <li>
-                                <a href="users.php?source=add_user">Add User</a>
+                                <a href='users.php?source=add_user'>Add User</a>
                             </li>
                         </ul>
-                    </li>
+                    </li>";
 
+                        }
+
+
+                    ?>
+                    
+                    
                     <li>
                         <a href="profile.php"><i class="fa fa-fw fa-wrench"></i> Profile</a>
                     </li>

@@ -7,17 +7,11 @@
 
 if(!isset($_SESSION['user_role'])) {
 
-        header("Location: ../index.php");
+    header("Location: ../index.php");
 
 }
 
-
-
 ?>
-
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +43,20 @@ if(!isset($_SESSION['user_role'])) {
     <![endif]-->
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
+    rel="stylesheet"
+/>
+<script src=
+"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js">
+</script>
+
+<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js">
+</script>
+
+    
 
 </head>
 

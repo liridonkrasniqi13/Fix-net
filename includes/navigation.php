@@ -14,17 +14,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
 
-
-                <li>
-                    <a href="admin/posts.php?source=add_post">Add Post</a>
-                </li>  
-
-                <li>
-                    <a href="admin">Admin</a>
-                </li>
-
                 <?php
-
 
 
                 if (isset($_SESSION['username'])) {
