@@ -3,23 +3,41 @@
 if (isset($_POST['create_post'])) {
 
     $post_title = $_POST['title'];
-    $post_author = $_POST['author'];
+    $post_author = $_SESSION['username'];
     $post_category_id = $_POST['post_category'];
-    $post_status = $_POST['post_status'];
 
-    $post_image = $_FILES['image']['name'];
-    $post_image_temp = $_FILES['image']['tmp_name'];
 
-    $post_tags = $_POST['post_tags'];
+    $post_resiver = $_POST['post_resiver'];
+    $post_modem = $_POST['post_modem'];
     $post_content = $_POST['post_content'];
+    $post_rg6 = $_POST['post_rg6'];
+    $post_konektor_rg6 = $_POST['post_konektor_rg6'];
+    $post_spliter = $_POST['post_spliter'];
+    $post_konektor_tv = $_POST['post_konektor_tv'];
+    $post_rg11 = $_POST['post_rg11'];
+    $post_t32 = $_POST['post_t32'];
+    $post_kupler_7402 = $_POST['post_kupler_7402'];
+    $post_amp = $_POST['post_amp'];
+    $tap_26 = $_POST['tap_26'];
+    $tap_23 = $_POST['tap_23'];
+    $tap_20 = $_POST['tap_20'];
+    $tap_17 = $_POST['tap_17'];
+    $tap_14 = $_POST['tap_14'];
+    $tap_11 = $_POST['tap_11'];
+    $tap_10 = $_POST['tap_10'];
+    $tap_8 = $_POST['tap_8'];
+    $tap_4 = $_POST['tap_4'];
     $post_date = date('d-m-y');
 
 
-    move_uploaded_file($post_image_temp, "../img/$post_image");
 
-    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_status) ";
+    $query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_content, post_resiver, post_modem, post_rg6,
+    post_konektor_rg6, post_spliter, post_konektor_tv, post_rg11, post_t32, post_kupler_7402, post_amp,
+    tap_26, tap_23, tap_20, tap_17, tap_14, tap_11, tap_10, tap_8, tap_4) ";
 
-    $query .= "VALUE('{$post_category_id}','{$post_title}','{$post_author}',now() ,'{'$post_image'}','{$post_content}','$post_tags','{$post_status}')";
+    $query .= "VALUE('{$post_category_id}','{$post_title}','{$post_author}',now() ,'{$post_content}','$post_resiver', $post_modem, $post_rg6,
+    $post_konektor_rg6, $post_spliter, $post_konektor_tv, $post_rg11, $post_t32, $post_kupler_7402, $post_amp,
+    $tap_26, $tap_23, $tap_20, $tap_17, $tap_14, $tap_11, $tap_10, $tap_8, $tap_4)";
 
     $create_post_query = mysqli_query($connection, $query);
 
@@ -38,12 +56,12 @@ if (isset($_POST['create_post'])) {
     <legend>Add Post</legend>
 
     <div class="form-group">
-        <label for="title">Post Title</label>
-        <input type="text" class="form-control" name="title" id="" placeholder="Post Title">
+        <label for="title">Emri Klientit</label>
+        <input type="text" class="form-control" name="title" id="" placeholder="Emri Klientit">
     </div>
 
     <div class="form-group">
-
+    <label for="title">Tiket</label>
         <select name="post_category" id="post_category" class="form-control" required="required">
 
             <?php
@@ -68,34 +86,119 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="author">Post Author</label>
-        <input type="text" class="form-control" name="author" id="" placeholder="Post Author">
+        <label for="author">Post Author <?php 
+                        if(isset($_SESSION['username'])) {
+                            echo  $_SESSION['username'];
+                        };
+                    ?></label>
+
+                    <?php if ($_SESSION['user_role'] == "admin") {
+                      echo $_SESSION['user_role'];
+                    } ?>
+        <!-- <input type="text" class="form-control" name="author" id="" placeholder="Post Author"> -->
     </div>
 
     <div class="form-group">
-        <label for="post_status">Post Status</label>
-        <select name="post_status" id="input" class="form-control" required="required">
-            <option value="draft">Select Options</option>
-            <option value="published">Published</option>
-            <option value="draft">Draft</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="image">Post Image</label>
-        <input type="file" class="form-control" name="image" id="">
-    </div>
-
-    <div class="form-group">
-        <label for="post_tags">Post Tags</label>
-        <input type="text" class="form-control" name="post_tags" id="" placeholder="Post Tags">
-    </div>
-
-    <div class="form-group">
-        <label for="post_content">Post Content</label>
+        <label for="post_content">Komet</label>
         <textarea type="text" class="form-control" name="post_content" id="" placeholder="Post Content"></textarea>
     </div>
 
+
+    <div class="form-group">
+        <label for="post_modem">Modem </label>
+        <input type="number" class="form-control" name="post_modem" id="" placeholder="Modem" value="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="post_resiver">Resever </label>
+        <input type="number" class="form-control" name="post_resiver" id="" placeholder="Resever" value="0">
+    </div>
+
+    <div class="form-group">
+        <label for="post_rg6">RG6 </label>
+        <input type="number" class="form-control" name="post_rg6" id=""  value="0">
+    </div>
+
+    <div class="form-group">
+        <label for="post_konektor_rg6">Konektor RG6 </label>
+        <input type="number" class="form-control" name="post_konektor_rg6" id=""  value="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="post_spliter">Spliter </label>
+        <input type="number" class="form-control" name="post_spliter" id=""  value="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="post_konektor_tv">Konektor Tv </label>
+        <input type="number" class="form-control" name="post_konektor_tv" id=""  value="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="post_rg11">RG11 </label>
+        <input type="number" class="form-control" name="post_rg11" id=""  value="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="post_t32">T32 </label>
+        <input type="number" class="form-control" name="post_t32" id=""  value="0"> 
+    </div>
+    
+    <div class="form-group">
+        <label for="post_kupler_7402">Kupler 7402</label>
+        <input type="number" class="form-control" name="post_kupler_7402" id=""  value="0"> 
+    </div>
+    
+    <div class="form-group">
+        <label for="post_amp">AMP</label>
+        <input type="number" class="form-control" name="post_amp" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_26">Tap 26 db</label>
+        <input type="number" class="form-control" name="tap_26" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_23">Tap 23 db</label>
+        <input type="number" class="form-control" name="tap_23" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_20">Tap 20 db</label>
+        <input type="number" class="form-control" name="tap_20" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_17">Tap 17 db</label>
+        <input type="number" class="form-control" name="tap_17" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_14">Tap 14 db</label>
+        <input type="number" class="form-control" name="tap_14" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_11">Tap 11 db</label>
+        <input type="number" class="form-control" name="tap_11" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_10">Tap 10 db</label>
+        <input type="number" class="form-control" name="tap_10" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_8">Tap 8 db</label>
+        <input type="number" class="form-control" name="tap_8" id=""  value="0"> 
+    </div>
+
+    <div class="form-group">
+        <label for="tap_4">Tap 4 db</label>
+        <input type="number" class="form-control" name="tap_4" id=""  value="0"> 
+    </div>
+    
 
 
     <button type="submit" name="create_post" class="btn btn-primary">Submit</button>

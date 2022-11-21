@@ -16,25 +16,7 @@
         <!-- /.input-group -->
     </div>
 
-    <!-- Blog Search Well -->
-    <div class="well">
-        <h4>Login</h4>
-        <form action="includes/login.php" method="post">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" class="form-control" name="username" id="username" value="" placeholder="Username">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" name="password" id="password" value="" placeholder="Password">
-            </div>
-            
-            <button type="submit" name="login" class="btn btn-primary">Login</button>
-            
-
-        </form>
-        <!-- /.input-group -->
-    </div>
+   
 
     <!-- Blog Categories Well -->
     <div class="well">
