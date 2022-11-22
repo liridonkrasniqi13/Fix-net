@@ -37,8 +37,8 @@
                             include "includes/edit_post.php";
                             break;
 
-                            case '36';
-                            echo "nice 36";
+                            case 'filter_post';
+                            include "includes/views_all_posts_filter.php";
                             break;
 
 

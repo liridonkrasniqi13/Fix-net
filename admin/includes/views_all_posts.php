@@ -48,14 +48,28 @@
 
     };
 
+
+    if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
+        $from_date = $_GET['from_date'];
+        $to_date = $_GET['to_date']; 
+        if ($_SESSION['user_role'] == "admin") {
+        $username = $_GET['post_author']; }
+        
+    } else {
+            $from_date = "";
+            $to_date = ""; 
+            if ($_SESSION['user_role'] == "admin") {
+            $username = ""; }
+        }
+
 ?>
 
-<form action="" method='post'>
+<form action="" method='GET'>
     <div class="table-responsive">
 
     <div id="bulkOptionsContainer">
 
-        
+    <?php  if ($_SESSION['user_role'] == "admin") { ?> 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
             <select name="bulk_options" id="bulk_options"  class="form-control" >
                 <option value="">Select Option</option>
@@ -66,44 +80,108 @@
         </div>
 
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-            <input type="submit" name="submit" class="btn btn-success" value="Apply">
+            <input type="submit" name="submit" class="btn btn-success" value="Apply" >
             
-            <a href="posts.php?source=add_post" class="btn btn-primary" >Add new Post</a>            
+            <a href="posts.php?source=add_post" class="btn btn-primary" >Add new Post</a>
+            
+            <a href="posts.php" class="btn  btn-default">Cancel</a>
+                        
 
         </div>
+
+        <?php } ?>
+    </form>
         
   
+        <form action="" method="get">
+            
 
 
-<!-- <div class="col-md-4">
-    <div class="form-group">
-        <label for="from">From</label>
-        <input type="text" class="date form-control" name="from"/>
-    </div>
-</div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="from">From</label>
+                    <input type="text" class="date form-control" name="from_date" value="<?php echo $from_date; ?>" required="required"/>
+                </div>
+            </div>
 
-<div class="col-md-4">
-    <div class="form-group">
-        <label for="end">End</label>
-        <input type="text" class="date form-control" name="end" value="<?php echo $post_date ?>"/>
-    </div>
-</div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="end">End</label>
+                    <input type="text" class="date form-control" name="to_date" value="<?php echo $to_date; ?>" required="required"/>
+                </div>
+            </div> 
+            <?php  if ($_SESSION['user_role'] == "admin") { ?> 
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label for="title">User</label>
+                    <select name="post_author" id="post_author" class="form-control" >
 
-<script type="text/javascript">
-      $(".date").datepicker({
-        format: "yyyy-mm",
-      });
-    </script> -->
+                    
+                        
+                        <?php
+
+                        $query = "SELECT * FROM users ";
+                        $select_categries = mysqli_query($connection, $query);
+                        echo "<option value='{$username}'>{$username}</option>";
+                        // confirmQuery($select_categries);
+
+                        while ($row = mysqli_fetch_assoc($select_categries)) {
+                            $username = $row['username'];
+                            echo "<option value='{$username}'>{$username}</option>";
+                            
+                        }
+
+                        ?>
+
+
+                    </select>
+
+                </div>
+            </div>
+            <?php } ?>
+            <div class="col-md-2">
+                <div class="form-group">
+                <label for="end" style="color:white;">End</label>
+                    <input type="submit" name="submit" class="btn btn-success btn-block" value="Apply" >
+                    
+                </div>
+            </div>
+
+            <div class="col-md-2">
+            <label for="end" style="color:white;">End</label>
+            <a href="posts.php" class="btn  btn-default btn-block">Cancel</a>    
+                
+                            
+
+            </div>
+        
+
+        </form>
+
+        
+
+        <script type="text/javascript">
+            $(".date").datepicker({
+                format: "yyyy-mm-dd",
+            });
+        </script>
     
  
     
 
     </div>
 
+        
+
+
+
+
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
+                <?php  if ($_SESSION['user_role'] == "admin") { ?> 
                     <th><input type="checkbox" name="" id="selectAllBoxes"></th>
+                    <?php } ?>
                     <th>Id</th>
                     <th>Author</th>
                     <th>Klienti</th>
@@ -142,7 +220,108 @@
 
                 <?php
 
-                $post_author_post = $_SESSION['username'];
+
+        if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
+            $from_date = $_GET['from_date'];
+            $to_date = $_GET['to_date'];
+            
+
+            if ($_SESSION['user_role'] == "admin") {
+                $username = $_GET['post_author'];
+                 if ($username == "liridonkrasniqi") {
+                    $query = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC" ;
+                    $date_query = mysqli_query($connection, $query);
+                 } else {
+                    $query = "SELECT * FROM posts WHERE post_author = '$username' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC" ;
+                    $date_query = mysqli_query($connection, $query);
+                }
+                
+                
+             } else { 
+                $post_author = $_SESSION['username'];
+                $query = "SELECT * FROM posts WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC" ;
+                $date_query = mysqli_query($connection, $query);
+             }
+
+            
+
+            if(mysqli_num_rows($date_query) > 0) {
+
+                foreach($date_query as $row) {
+                    ?>
+                <tr>
+                <?php  if ($_SESSION['user_role'] == "admin") { ?> 
+                    <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
+                    <?php } ?>
+                    <th><?php echo $row['post_id']; ?></th>
+                    <th><?php echo $row['post_author']; ?></th>
+                    <th><?php echo $row['post_title']; ?></th>
+                    <th><?php if($row['post_category_id'] == "15" ) {
+                        echo "Ticked";
+                    } if ($row['post_category_id'] == "16" ) {
+                        echo "Instalim";
+                    } if ($row['post_category_id'] == "17" ) {
+                        echo "Generale";
+                    } ?></th>
+                    <th><?php echo $row['post_resiver']; ?></th>
+                    <th><?php echo $row['post_modem']; ?></th>
+                    <th><?php echo $row['post_rg6']; ?></th>
+                    <th><?php echo $row['post_konektor_rg6']; ?></th>
+                    <th><?php echo $row['post_spliter']; ?></th>
+                    <th><?php echo $row['post_konektor_tv']; ?></th>
+                    <th><?php echo $row['post_rg11']; ?></th>
+                    <th><?php echo $row['post_t32']; ?></th>
+                    <th><?php echo $row['post_kupler_7402']; ?></th>
+                    <th><?php echo $row['post_amp']; ?></th>
+                    <th><?php echo $row['tap_26']; ?></th>
+                    <th><?php echo $row['tap_23']; ?></th>
+                    <th><?php echo $row['tap_20']; ?></th>
+                    <th><?php echo $row['tap_17']; ?></th>
+                    <th><?php echo $row['tap_14']; ?></th>
+                    <th><?php echo $row['tap_11']; ?></th>
+                    <th><?php echo $row['tap_10']; ?></th>
+                    <th><?php echo $row['tap_8']; ?></th>
+                    <th><?php echo $row['tap_4']; ?></th>
+                    <th><?php echo $row['post_date']; ?></th>
+                    <?php  if ($_SESSION['user_role'] == "admin") { ?>
+                        <th>
+                            <a href='../post.php?p_id=<?php echo $row['post_id']; ?>'>View Post</a>
+                        </th>
+                        <th>
+                            <a href='posts.php?source=edit_post&p_id=<?php echo $row['post_id']; ?>'>Edit</a>
+                        </th>
+                        <th>
+                            <a onClick="javascript: return confirm('Are you sure you want to delete'); " href='posts.php?delete=<?php echo $row['post_id']; ?>'>Delete</a>
+                        </th>
+                    <?php
+                        } 
+                    ?>
+
+                
+
+                </tr>
+                
+            <?php   }
+            } else { ?>
+
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <strong>Nuk ka poste me kete date</strong> 
+            </div>
+            
+         <?php   }
+            
+            
+        }
+            if (isset($_GET['from_date']) == "") {
+                    
+
+                    $post_author_post = $_SESSION['username'];
                 if ($_SESSION['user_role'] == "admin") { 
                     $query = "SELECT * FROM posts ORDER BY post_id DESC";
                     $select_posts = mysqli_query($connection, $query);
@@ -225,6 +404,9 @@
                     }
                     echo "</tr>";
                 }
+                }
+
+                
 
 
                 ?>
@@ -232,9 +414,10 @@
 
             </tbody>
         </table>
-</form>
 
 <?php
+
+
 
 if (isset($_GET['delete'])) {
 
