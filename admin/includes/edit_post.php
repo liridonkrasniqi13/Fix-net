@@ -10,7 +10,7 @@ $select_posts_by_id = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $post_id = $row['post_id'];
     $post_title = $row['post_title'];
-    $post_author = $_SESSION['username'];
+    $post_author = $row['post_author'];
     $post_date = $row['post_date'];
     $post_content = $row['post_content'];
     $post_comment_count = $row['post_comment_count'];
@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
 }
 
 if (isset($_POST['update_post'])) {
-    $post_author = $_SESSION['username'];
+    $post_author = $row['post_author'];
     $post_title = $_POST['post_title'];
     $post_category_id = $_POST['post_category'];
     $post_content = $_POST['post_content'];
@@ -130,6 +130,32 @@ if (isset($_POST['update_post'])) {
                 $cat_title = $row['cat_title'];
 
                 echo "<option value='{$cat_id}'>{$cat_title}</option>";
+            }
+
+            ?>
+
+
+        </select>
+
+    </div>
+
+    <div class="form-group">
+    <label for="title">Tiket</label>
+        <select name="post_author" id="post_author" class="form-control" required="required">
+        
+            <option value="<?php echo $post_author; ?>"><?php echo $post_author; ?></option>
+
+            <?php
+
+            $query = "SELECT * FROM users ";
+            $select_categries = mysqli_query($connection, $query);
+
+            // confirmQuery($select_categries);
+
+            while ($row = mysqli_fetch_assoc($select_categries)) {
+                $username = $row['username'];
+
+                echo "<option value='{$username}'>{$username}</option>";
             }
 
             ?>
