@@ -27,14 +27,16 @@
                                     <a href='admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit post</a>
                                 </li>";
                     }
-                }
-
 
                     if ($_SESSION['user_role'] == "admin") {
                         echo "<li>
                         <a href='registration.php'>Register</a>
                         </li>";
                     }
+                }
+
+
+                    
                 ?>
 
                 
