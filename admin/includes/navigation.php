@@ -63,15 +63,20 @@
                             <li>
                                 <a href='users.php'>View all users</a>
                             </li>
+
                             <li>
-                                <a href='users.php?source=add_user'>Add User</a>
+                                <a href='../registration.php'>Register</a>
                             </li>
+
+                            
                         </ul>
                     </li>";
 
                         }
 
-
+                        // <li>
+                            //     <a href='users.php?source=add_user'>Add User</a>
+                        // </li>
                     ?>
                     
                     
