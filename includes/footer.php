@@ -1,23 +1,24 @@
-   <!-- Footer -->
-   <footer>
-       <div class="row">
-           <div class="col-lg-12">
-               <p>Copyright &copy; Your Website 2014</p>
-           </div>
-           <!-- /.col-lg-12 -->
-       </div>
-       <!-- /.row -->
-   </footer>
+<div class="u-outer-spaces-helper"></div>
+  
+  
+  <!-- JS Global Compulsory -->
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+  <script src="assets/vendor/popper.js/popper.min.js"></script>
+  <script src="assets/vendor/bootstrap/bootstrap.min.js"></script>
 
-   </div>
-   <!-- /.container -->
 
-   <!-- jQuery -->
-   <script src="js/jquery.js"></script>
+  <!-- JS Unify -->
+  <script src="assets/js/hs.core.js"></script>
 
-   <!-- Bootstrap Core JavaScript -->
-   <script src="js/bootstrap.min.js"></script>
+  <!-- JS Customization -->
+  <script src="assets/js/custom.js"></script>
 
-   </body>
 
-   </html>
+
+
+
+
+
+</body>
+</html>
