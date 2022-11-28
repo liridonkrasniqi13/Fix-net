@@ -119,6 +119,48 @@
         </li>
         <!-- End Layouts Settings -->
 
+        <!-- Layouts Settings -->
+        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="#" data-hssm-target="#subMenu3">
+                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                    <i class="hs-admin-package"></i>
+                </span>
+                <span class="media-body align-self-center">Depo</span>
+                <span class="d-flex align-self-center u-side-nav--control-icon">
+                    <i class="hs-admin-angle-right"></i>
+                </span>
+                <span class="u-side-nav--has-sub-menu__indicator"></span>
+            </a>
+
+            <!-- Layouts Settings: Submenu-1 -->
+            <ul id="subMenu3" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                <!-- Fixed Header & Sidebar -->
+                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='depo.php'>
+                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                            <i class="hs-admin-layout-media-center-alt"></i>
+                        </span>
+                        <span class="media-body align-self-center">View all</span>
+                    </a>
+                </li>
+                <!-- End Fixed Header & Sidebar -->
+
+                <!-- Fixed Header & Static Sidebar -->
+                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='depo.php?source=add_depo'>
+                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                            <i class="hs-admin-layout-media-center-alt"></i>
+                        </span>
+                        <span class="media-body align-self-center">Add new</span>
+                    </a>
+                </li>
+                <!-- End Fixed Header & Static Sidebar -->
+
+            </ul>
+            <!-- End Layouts Settings: Submenu-1 -->
+        </li>
+        <!-- End Layouts Settings -->
+
         <?php } ?>
 
         <!-- Metrics -->
