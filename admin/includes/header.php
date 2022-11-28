@@ -56,7 +56,7 @@ if(!isset($_SESSION['user_role'])) {
   <link rel="stylesheet" href="../assets/css/unify-admin.css">
 
   <!-- CSS Customization -->
-  <link rel="stylesheet" href="../assets/css/custom.css">
+  <link rel="stylesheet" href="../css/custom.css">
 
 
 

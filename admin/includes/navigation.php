@@ -58,7 +58,7 @@
                   </a>
                 </li>
                 <li class="mb-0">
-                  <a class="media g-color-primary--hover g-py-5 g-px-20" href="#">
+                  <a class="media g-color-primary--hover g-py-5 g-px-20" href="../includes/logout.php">
                     <span class="d-flex align-self-center g-mr-12">
           <i class="hs-admin-shift-right"></i>
         </span>

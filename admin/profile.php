@@ -1,5 +1,6 @@
 <?php include "includes/header.php" ?>
-
+<!-- Navigation -->
+<?php include "includes/navigation.php" ?>
 <?php
 
 if (isset($_SESSION['username'])) {
@@ -28,7 +29,7 @@ if (isset($_SESSION['username'])) {
 if (isset($_POST['edit_user'])) {
 
     // $user_id = $_POST['user_id'];
-    echo $user_firstname = $_POST['user_firstname'];
+    $user_firstname = $_POST['user_firstname'];
     $user_lastname = $_POST['user_lastname'];
     // $user_role = $_POST['user_role'];
 
@@ -55,8 +56,6 @@ if (isset($_POST['edit_user'])) {
     $query = "UPDATE users SET 
     user_firstname = '{$user_firstname}', 
     user_lastname = '{$user_lastname}',
-    -- user_role = '{$user_role}',
-    -- username = '{$username}',
     user_email = '{$user_email}',
     user_password = '{$user_password}'
     WHERE username = '{$username}'";
@@ -70,71 +69,58 @@ if (isset($_POST['edit_user'])) {
 ?>
 
 
-<div id="wrapper">
 
-    <!-- Navigation -->
-    <?php include "includes/navigation.php" ?>
+<main class="container-fluid px-0 g-pt-65">
+    <div class="row no-gutters g-pos-rel g-overflow-x-hidden">
 
 
-    <div id="page-wrapper">
+        <?php include "menu.php" ?>
 
-        <div class="container-fluid">
+        <div class="col g-ml-45 g-ml-0--lg g-pb-65--md">
 
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Add User
-                        <small>Subheading</small>
-                    </h1>
+            <div class="g-pa-20">
 
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <legend>Add User</legend>
+                <form action="" method="post" enctype="multipart/form-data">
+                    <legend>Add User</legend>
 
-                        <div class="form-group">
-                            <label for="user_firstname">FirstName</label>
-                            <input type="text" class="form-control" name="user_firstname" id="user_firstname" value="<?php echo $user_firstname; ?>" placeholder="FirstName">
-                        </div>
+                    <div class="form-group">
+                        <label for="user_firstname">FirstName</label>
+                        <input type="text" class="form-control" name="user_firstname" id="user_firstname" value="<?php echo $user_firstname; ?>" placeholder="FirstName">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="user_lastname">Lastname</label>
-                            <input type="text" class="form-control" name="user_lastname" value="<?php echo $user_lastname; ?>" placeholder="Lastname">
-                        </div>
+                    <div class="form-group">
+                        <label for="user_lastname">Lastname</label>
+                        <input type="text" class="form-control" name="user_lastname" value="<?php echo $user_lastname; ?>" placeholder="Lastname">
+                    </div>
 
 
 
-                        <!-- <div class="form-group">
-        <label for="image">Post Image</label>
-        <input type="file" class="form-control" name="image" id="">
-    </div> -->
+                    <!-- <div class="form-group">
+                            <label for="image">Post Image</label>
+                            <input type="file" class="form-control" name="image" id="">
+                        </div> -->
 
 
-                        <div class="form-group">
-                            <label for="user_email">Email</label>
-                            <input type="email" class="form-control" name="user_email" id="" value="<?php echo $user_email; ?>" placeholder="Email">
-                        </div>
+                    <div class="form-group">
+                        <label for="user_email">Email</label>
+                        <input type="email" class="form-control" name="user_email" id="" value="<?php echo $user_email; ?>" placeholder="Email">
+                    </div>
 
-                        <div class="form-group">
-                            <label for="user_password">Password</label>
-                            <input type="password" class="form-control" name="user_password" id="" value="<?php echo $user_password; ?>" placeholder="Password">
-                        </div>
+                    <div class="form-group">
+                        <label for="user_password">Password</label>
+                        <input type="password" class="form-control" name="user_password" id="" value="<?php echo $user_password; ?>" placeholder="Password">
+                    </div>
 
 
 
-                        <button type="submit" name="edit_user" class="btn btn-primary">Upate Profile</button>
-                    </form>
+                    <button type="submit" name="edit_user" class="btn btn-primary">Upate Profile</button>
+                </form>
 
-                </div>
             </div>
-            <!-- /.row -->
 
         </div>
-        <!-- /.container-fluid -->
-
     </div>
-    <!-- /#page-wrapper -->
+</main>
 
-</div>
-<!-- /#wrapper -->
 
 <?php include "includes/footer.php" ?>

@@ -57,7 +57,7 @@ if (isset($_POST['create_post'])) {
 
     <div class="form-group">
         <label for="title">Emri Klientit</label>
-        <input type="text" class="form-control" name="title" id="" placeholder="Emri Klientit">
+        <input type="text" class="form-control" name="title" id="" placeholder="Emri Klientit" required="required">
     </div>
 
     <div class="form-group">

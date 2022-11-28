@@ -1,70 +1,55 @@
 <?php include "includes/header.php" ?>
-
-<div id="wrapper">
-
-    <!-- Navigation -->
-    <?php include "includes/navigation.php" ?>
-
-
-    <div id="page-wrapper">
-
-        <div class="container-fluid">
-
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                       Add User
-                        <small>Subheading</small>
-                    </h1>
-
-                    <?php
-                    
-                        if(isset($_GET['source'])) {
-
-                            $source = $_GET['source'];
-
-                        } else {
-                            $source = '';
-                        }
-
-                        switch($source) {
-                            case 'add_user';
-                            include "includes/add_user.php";
-                            break;
-
-                            case 'edit_user';
-                            include "includes/edit_user.php";
-                            break;
-
-                            case '36';
-                            echo "nice 36";
-                            break;
-
-
-                            default:
-                            include "includes/views_all_users.php";
-                            break;
-                        }
-                    
-                    ?>
-                    
+<!-- Navigation -->
+<?php include "includes/navigation.php" ?>
 
 
 
+<main class="container-fluid px-0 g-pt-65">
+    <div class="row no-gutters g-pos-rel g-overflow-x-hidden">
 
 
-                </div>
+        <?php include "menu.php" ?>
+
+        <div class="col g-ml-45 g-ml-0--lg g-pb-65--md">
+
+            <div class="g-pa-20">
+
+                <?php
+
+                if (isset($_GET['source'])) {
+
+                    $source = $_GET['source'];
+                } else {
+                    $source = '';
+                }
+
+                switch ($source) {
+                    case 'add_user';
+                        include "includes/add_user.php";
+                        break;
+
+                    case 'edit_user';
+                        include "includes/edit_user.php";
+                        break;
+
+                    case '36';
+                        echo "nice 36";
+                        break;
+
+
+                    default:
+                        include "includes/views_all_users.php";
+                        break;
+                }
+
+                ?>
+
+
             </div>
-            <!-- /.row -->
 
         </div>
-        <!-- /.container-fluid -->
-
     </div>
-    <!-- /#page-wrapper -->
+</main>
 
-</div>
-<!-- /#wrapper -->
 
 <?php include "includes/footer.php" ?>
