@@ -179,7 +179,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['post_id']; ?></th>
                         <th><?php echo $row['post_author']; ?></th>
                         <th><?php echo $row['post_title']; ?></th>
-                        <th><?php if ($row['post_category_id'] == "15") {
+                        <th><?php if ($row['post_category_id'] == "Tiket") {
                                 echo "Ticked";
                             }
                             if ($row['post_category_id'] == "16") {
