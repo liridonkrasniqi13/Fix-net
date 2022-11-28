@@ -66,7 +66,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
         <div id="bulkOptionsContainer">
 
             <?php if ($_SESSION['user_role'] == "admin") { ?>
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <select name="bulk_options" id="bulk_options" class="form-control">
                         <option value="">Select Option</option>
                         <option value="published">Published</option>
@@ -83,12 +83,12 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                     <a href="posts.php" class="btn  btn-default">Cancel</a>
 
 
-                </div>
+                </div> -->
 
             <?php } ?>
 
 
-        </form>
+</form>
 
 
 <?php include "filter.php"; ?>
@@ -285,9 +285,9 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<tr>";
             ?>
 
-<?php if ($_SESSION['user_role'] == "admin") { ?>
-                            <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
-                        <?php } ?>
+                <?php if ($_SESSION['user_role'] == "admin") { ?>
+                    <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
+                <?php } ?>
 
         <?php
                 echo "<td>$post_id</td>";

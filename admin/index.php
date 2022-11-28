@@ -232,7 +232,7 @@ $categories_count = mysqli_num_rows($select_all_categories);
                             $categories_status_coun_general, $categories_status_coun_rikyqje, $categories_status_coun_catv, 
                             $categories_status_coun_transfer];
 
-                            for ($i = 0; $i < 6; $i++) {
+                            for ($i = 0; $i < 7; $i++) {
                                 echo "['{$element_text[$i]}'" . "," . "{$element_count[$i]}],";
                             }
 

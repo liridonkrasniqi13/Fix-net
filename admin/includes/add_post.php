@@ -35,9 +35,9 @@ if (isset($_POST['create_post'])) {
     post_konektor_rg6, post_spliter, post_konektor_tv, post_rg11, post_t32, post_kupler_7402, post_amp,
     tap_26, tap_23, tap_20, tap_17, tap_14, tap_11, tap_10, tap_8, tap_4) ";
 
-    $query .= "VALUE('{$post_category_id}','{$post_title}','{$post_author}',now() ,'{$post_content}','$post_resiver', $post_modem, $post_rg6,
-    $post_konektor_rg6, $post_spliter, $post_konektor_tv, $post_rg11, $post_t32, $post_kupler_7402, $post_amp,
-    $tap_26, $tap_23, $tap_20, $tap_17, $tap_14, $tap_11, $tap_10, $tap_8, $tap_4)";
+    $query .= "VALUE('{$post_category_id}','{$post_title}','{$post_author}',now() ,'{$post_content}','{$post_resiver}', '{$post_modem}', '{$post_rg6}',
+    '{$post_konektor_rg6}', '{$post_spliter}', '{$post_konektor_tv}', '{$post_rg11}', '{$post_t32}', '{$post_kupler_7402}', '{$post_amp}',
+    '{$tap_26}', '{$tap_23}', '{$tap_20}', '{$tap_17}', '{$tap_14}', '{$tap_11}', '{$tap_10}', '{$tap_8}', '{$tap_4}')";
 
     $create_post_query = mysqli_query($connection, $query);
 
@@ -46,7 +46,6 @@ if (isset($_POST['create_post'])) {
     $the_post_id = mysqli_insert_id($connection);
 
     echo "<div class='alert alert-success' role='alert'>Post Created. <a href='posts.php'>View Post</a> or <a href='../post.php?p_id={$the_post_id}'>Edit the Post</a></div>";
-
 }
 
 ?>
@@ -61,7 +60,7 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-    <label for="title">Tiket</label>
+        <label for="title">Tiket</label>
         <select name="post_category" id="post_category" class="form-control" required="required">
 
             <?php
@@ -86,15 +85,16 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="author">Post Author <?php 
-                        if(isset($_SESSION['username'])) {
-                            echo  $_SESSION['username'];
-                        };
-                    ?></label>
+        <label for="author">Post Author
+            <?php
+            if (isset($_SESSION['username'])) {
+                echo  $_SESSION['username'];
+            };
+            ?></label>
 
-                    <?php if ($_SESSION['user_role'] == "admin") {
-                      echo $_SESSION['user_role'];
-                    } ?>
+        <?php if ($_SESSION['user_role'] == "admin") {
+            echo $_SESSION['user_role'];
+        } ?>
         <!-- <input type="text" class="form-control" name="author" id="" placeholder="Post Author"> -->
     </div>
 
@@ -106,99 +106,99 @@ if (isset($_POST['create_post'])) {
 
     <div class="form-group">
         <label for="post_modem">Modem </label>
-        <input type="number" class="form-control" name="post_modem" id="" placeholder="Modem" value="0">
+        <input type="number" class="form-control" name="post_modem" id="" placeholder="Modem" >
     </div>
-    
+
     <div class="form-group">
         <label for="post_resiver">Resever </label>
-        <input type="number" class="form-control" name="post_resiver" id="" placeholder="Resever" value="0">
+        <input type="number" class="form-control" name="post_resiver" id="" placeholder="Resever" >
     </div>
 
     <div class="form-group">
         <label for="post_rg6">RG6 </label>
-        <input type="number" class="form-control" name="post_rg6" id=""  value="0">
+        <input type="number" class="form-control" name="post_rg6" id="" >
     </div>
 
     <div class="form-group">
         <label for="post_konektor_rg6">Konektor RG6 </label>
-        <input type="number" class="form-control" name="post_konektor_rg6" id=""  value="0">
+        <input type="number" class="form-control" name="post_konektor_rg6" id="" >
     </div>
-    
+
     <div class="form-group">
         <label for="post_spliter">Spliter </label>
-        <input type="number" class="form-control" name="post_spliter" id=""  value="0">
+        <input type="number" class="form-control" name="post_spliter" id="" >
     </div>
-    
+
     <div class="form-group">
         <label for="post_konektor_tv">Konektor Tv </label>
-        <input type="number" class="form-control" name="post_konektor_tv" id=""  value="0">
+        <input type="number" class="form-control" name="post_konektor_tv" id="" >
     </div>
-    
+
     <div class="form-group">
         <label for="post_rg11">RG11 </label>
-        <input type="number" class="form-control" name="post_rg11" id=""  value="0">
+        <input type="number" class="form-control" name="post_rg11" id="" >
     </div>
-    
+
     <div class="form-group">
         <label for="post_t32">T32 </label>
-        <input type="number" class="form-control" name="post_t32" id=""  value="0"> 
+        <input type="number" class="form-control" name="post_t32" id="" >
     </div>
-    
+
     <div class="form-group">
         <label for="post_kupler_7402">Kupler 7402</label>
-        <input type="number" class="form-control" name="post_kupler_7402" id=""  value="0"> 
+        <input type="number" class="form-control" name="post_kupler_7402" id="" >
     </div>
-    
+
     <div class="form-group">
         <label for="post_amp">AMP</label>
-        <input type="number" class="form-control" name="post_amp" id=""  value="0"> 
+        <input type="number" class="form-control" name="post_amp" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_26">Tap 26 db</label>
-        <input type="number" class="form-control" name="tap_26" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_26" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_23">Tap 23 db</label>
-        <input type="number" class="form-control" name="tap_23" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_23" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_20">Tap 20 db</label>
-        <input type="number" class="form-control" name="tap_20" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_20" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_17">Tap 17 db</label>
-        <input type="number" class="form-control" name="tap_17" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_17" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_14">Tap 14 db</label>
-        <input type="number" class="form-control" name="tap_14" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_14" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_11">Tap 11 db</label>
-        <input type="number" class="form-control" name="tap_11" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_11" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_10">Tap 10 db</label>
-        <input type="number" class="form-control" name="tap_10" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_10" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_8">Tap 8 db</label>
-        <input type="number" class="form-control" name="tap_8" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_8" id="" >
     </div>
 
     <div class="form-group">
         <label for="tap_4">Tap 4 db</label>
-        <input type="number" class="form-control" name="tap_4" id=""  value="0"> 
+        <input type="number" class="form-control" name="tap_4" id="" >
     </div>
-    
+
 
 
     <button type="submit" name="create_post" class="btn btn-primary">Submit</button>
