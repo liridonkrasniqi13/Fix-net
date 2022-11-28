@@ -140,8 +140,8 @@ if (isset($_POST['update_post'])) {
 
     
     <div class="form-group">
-        <label for="content">Komet</label>
-        <textarea value="<?php echo $content; ?>" type="text" class="form-control" name="content" id="" placeholder="Post Content"></textarea>
+        <label for="content">Comment</label>
+        <textarea value="<?php echo $content; ?>" type="text" class="form-control" name="content" id="" placeholder="Comment"></textarea>
     </div>
 
 

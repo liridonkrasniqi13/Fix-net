@@ -18,12 +18,13 @@ if ($_SESSION['user_role'] == "admin") {
             $post_count = mysqli_num_rows($select_all_post);
 
             $query = "SELECT * FROM posts WHERE post_category_id = '1' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+            $select_categories_ticked = mysqli_query($connection, $query);
+            $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
+
+            $query = "SELECT * FROM posts WHERE post_category_id = '2' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
             $select_categories_instalime = mysqli_query($connection, $query);
             $categories_status_count = mysqli_num_rows($select_categories_instalime);
 
-            $query = "SELECT * FROM posts WHERE post_category_id = '2' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
-            $select_categories_ticked = mysqli_query($connection, $query);
-            $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
 
             $query = "SELECT * FROM posts WHERE post_category_id = '3' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
             $select_categories_general = mysqli_query($connection, $query);
@@ -48,12 +49,13 @@ if ($_SESSION['user_role'] == "admin") {
             $post_count = mysqli_num_rows($select_all_post);
 
             $query = "SELECT * FROM posts WHERE post_category_id = '1' AND  post_author = '$username' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+            $select_categories_ticked = mysqli_query($connection, $query);
+            $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
+
+            $query = "SELECT * FROM posts WHERE post_category_id = '2' AND  post_author = '$username' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
             $select_categories_instalime = mysqli_query($connection, $query);
             $categories_status_count = mysqli_num_rows($select_categories_instalime);
 
-            $query = "SELECT * FROM posts WHERE post_category_id = '2' AND  post_author = '$username' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
-            $select_categories_ticked = mysqli_query($connection, $query);
-            $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
 
             $query = "SELECT * FROM posts WHERE post_category_id = '3' AND  post_author = '$username' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
             $select_categories_general = mysqli_query($connection, $query);
@@ -83,12 +85,13 @@ if ($_SESSION['user_role'] == "admin") {
         $post_count = mysqli_num_rows($select_all_post);
 
         $query = "SELECT * FROM posts WHERE post_category_id = '1' AND  post_author = '$post_author_post'";
+        $select_categories_ticked = mysqli_query($connection, $query);
+        $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '2' AND  post_author = '$post_author_post'";
         $select_categories_instalime = mysqli_query($connection, $query);
         $categories_status_count = mysqli_num_rows($select_categories_instalime);
 
-        $query = "SELECT * FROM posts WHERE post_category_id = '2' AND  post_author = '$post_author_post'";
-        $select_categories_ticked = mysqli_query($connection, $query);
-        $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
 
         $query = "SELECT * FROM posts WHERE post_category_id = '3' AND  post_author = '$post_author_post'";
         $select_categories_general = mysqli_query($connection, $query);
@@ -118,13 +121,14 @@ if ($_SESSION['user_role'] == "admin") {
         $select_all_post = mysqli_query($connection, $query);
         $post_count = mysqli_num_rows($select_all_post);
 
-        $query = "SELECT * FROM posts WHERE post_category_id = '1' &&  post_author = '$post_author_post' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC  ";
+        $query = "SELECT * FROM posts WHERE post_category_id = '1' &&  post_author = '$post_author_post' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC ";
+        $select_categories_ticked = mysqli_query($connection, $query);
+        $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '2' &&  post_author = '$post_author_post' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC  ";
         $select_categories_instalime = mysqli_query($connection, $query);
         $categories_status_count = mysqli_num_rows($select_categories_instalime);
 
-        $query = "SELECT * FROM posts WHERE post_category_id = '2' &&  post_author = '$post_author_post' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC ";
-        $select_categories_ticked = mysqli_query($connection, $query);
-        $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
 
         $query = "SELECT * FROM posts WHERE post_category_id = '3' &&  post_author = '$post_author_post' AND post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC ";
         $select_categories_general = mysqli_query($connection, $query);
@@ -153,12 +157,12 @@ if ($_SESSION['user_role'] == "admin") {
         $post_count = mysqli_num_rows($select_all_post);
 
         $query = "SELECT * FROM posts WHERE post_category_id = '1' &&  post_author = '$post_author_post' ";
-        $select_categories_instalime = mysqli_query($connection, $query);
-        $categories_status_count = mysqli_num_rows($select_categories_instalime);
-
-        $query = "SELECT * FROM posts WHERE post_category_id = '2' &&  post_author = '$post_author_post' ";
         $select_categories_ticked = mysqli_query($connection, $query);
         $categories_status_coun_ticked = mysqli_num_rows($select_categories_ticked);
+
+        $query = "SELECT * FROM posts WHERE post_category_id = '2' &&  post_author = '$post_author_post' ";
+        $select_categories_instalime = mysqli_query($connection, $query);
+        $categories_status_count = mysqli_num_rows($select_categories_instalime);
 
         $query = "SELECT * FROM posts WHERE post_category_id = '3' &&  post_author = '$post_author_post' ";
         $select_categories_general = mysqli_query($connection, $query);
@@ -227,8 +231,8 @@ $categories_count = mysqli_num_rows($select_all_categories);
 
                             <?php
 
-                            $element_text = ['All', 'Instalime', 'Ticked', 'Generale' , 'Rikyqje' , 'Catv2' , 'Transfer'];
-                            $element_count = [$post_count, $categories_status_count, $categories_status_coun_ticked, 
+                            $element_text = ['All', 'Ticked', 'Instalime', 'Generale' , 'Rikyqje' , 'Catv2' , 'Transfer'];
+                            $element_count = [$post_count, $categories_status_coun_ticked, $categories_status_count, 
                             $categories_status_coun_general, $categories_status_coun_rikyqje, $categories_status_coun_catv, 
                             $categories_status_coun_transfer];
 

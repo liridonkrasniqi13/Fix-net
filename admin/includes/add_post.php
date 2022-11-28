@@ -99,8 +99,8 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="post_content">Komet</label>
-        <textarea type="text" class="form-control" name="post_content" id="" placeholder="Post Content"></textarea>
+        <label for="post_content">Comment</label>
+        <textarea type="text" class="form-control" name="post_content" id="" placeholder="Comment"></textarea>
     </div>
 
 
