@@ -1,0 +1,13 @@
+/* Add here all your css styles (customizations) */
+
+@media (min-width: 992px) {
+    .table-responsive {
+        overflow: visible;
+        overflow-x: auto !important;
+    }
+}
+
+.table-responsive {
+    overflow: hidden;
+    overflow-x: auto !important;
+}

@@ -24,17 +24,17 @@
                 }
 
                 switch ($source) {
-                    case 'add_user';
-                        include "includes/add_user.php";
+                    case 'add_vetura';
+                        include "includes/add_vetura.php";
                         break;
 
-                    case 'edit_user';
-                        include "includes/edit_user.php";
+                    case 'edit_vetura';
+                        include "includes/edit_vetura.php";
                         break;
 
 
                     default:
-                        include "includes/views_all_users.php";
+                        include "includes/views_all_vetura.php";
                         break;
                 }
 

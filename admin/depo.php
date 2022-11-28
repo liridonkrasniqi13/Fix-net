@@ -24,17 +24,17 @@
                 }
 
                 switch ($source) {
-                    case 'add_user';
-                        include "includes/add_user.php";
+                    case 'add_depo';
+                        include "includes/add_depo.php";
                         break;
 
-                    case 'edit_user';
-                        include "includes/edit_user.php";
+                    case 'edit_depo';
+                        include "includes/edit_depo.php";
                         break;
 
 
                     default:
-                        include "includes/views_all_users.php";
+                        include "includes/views_all_depo.php";
                         break;
                 }
 

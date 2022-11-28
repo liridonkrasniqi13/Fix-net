@@ -37,7 +37,7 @@ function findeAllCategoris() {
     global $connection;
 
     // Finde all categories
-    $query = "SELECT * FROM categories LIMIT 3";
+    $query = "SELECT * FROM categories";
     $select_categries = mysqli_query($connection, $query);
     while ($row = mysqli_fetch_assoc($select_categries)) {
         $cat_id = $row['cat_id'];

@@ -12,7 +12,7 @@ if (isset($_POST['checkBoxArray'])) {
 
             case 'published':
 
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$postValueID}  ";
+                $query = "UPDATE vetura SET status = '{$bulk_options}' WHERE id = {$postValueID}  ";
 
                 $update_to_published = mysqli_query($connection,  $query);
 
@@ -22,7 +22,7 @@ if (isset($_POST['checkBoxArray'])) {
 
             case 'draft':
 
-                $query = "UPDATE posts SET post_status = '{$bulk_options}' WHERE post_id = {$postValueID}  ";
+                $query = "UPDATE vetura SET status = '{$bulk_options}' WHERE id = {$postValueID}  ";
 
                 $update_to_draft = mysqli_query($connection,  $query);
 
@@ -32,7 +32,7 @@ if (isset($_POST['checkBoxArray'])) {
 
             case 'delete':
 
-                $query = "DELETE FROM posts WHERE post_id = {$postValueID}  ";
+                $query = "DELETE FROM vetura WHERE id = {$postValueID}  ";
 
                 $update_to_delete = mysqli_query($connection,  $query);
 
@@ -48,7 +48,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
     if ($_SESSION['user_role'] == "admin") {
-        $username = $_GET['post_author'];
+        $username = $_GET['username'];
     }
 } else {
     $from_date = "";
@@ -61,6 +61,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 ?>
 
 <form action="" method='GET'>
+    <legend>Veturat Material</legend>
     <div class="table-responsive">
 
         <div id="bulkOptionsContainer">
@@ -108,9 +109,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 <th><input type="checkbox" name="" id="selectAllBoxes"></th>
             <?php } ?>
             <th>Id</th>
-            <th>Author</th>
-            <th>Klienti</th>
-            <th>Tiket</th>
+            <th>Spoc</th>
+            <th>Veturat</th>
             <th>Resiver</th>
             <th>Modem</th>
             <th>RG6</th>
@@ -152,17 +152,17 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 
             if ($_SESSION['user_role'] == "admin") {
-                $username = $_GET['post_author'];
+                $username = $_GET['username'];
                 if ($username == "liridonkrasniqi") {
-                    $query = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+                    $query = "SELECT * FROM vetura WHERE date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                     $date_query = mysqli_query($connection, $query);
                 } else {
-                    $query = "SELECT * FROM posts WHERE post_author = '$username' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+                    $query = "SELECT * FROM vetura WHERE username = '$username' AND  date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                     $date_query = mysqli_query($connection, $query);
                 }
             } else {
-                $post_author = $_SESSION['username'];
-                $query = "SELECT * FROM posts WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+                $username = $_SESSION['username'];
+                $query = "SELECT * FROM vetura WHERE username = '$username' AND  date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                 $date_query = mysqli_query($connection, $query);
             }
 
@@ -174,30 +174,30 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
         ?>
                     <tr>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
-                            <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
+                            <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $id; ?>'></td>
                         <?php } ?>
-                        <th><?php echo $row['post_id']; ?></th>
-                        <th><?php echo $row['post_author']; ?></th>
-                        <th><?php echo $row['post_title']; ?></th>
-                        <th><?php if ($row['post_category_id'] == "Tiket") {
+                        <th><?php echo $row['id']; ?></th>
+                        <th><?php echo $row['username']; ?></th>
+                        <th><?php echo $row['title']; ?></th>
+                        <th><?php if ($row['category_id'] == "Tiket") {
                                 echo "Ticked";
                             }
-                            if ($row['post_category_id'] == "16") {
+                            if ($row['category_id'] == "16") {
                                 echo "Instalim";
                             }
-                            if ($row['post_category_id'] == "17") {
+                            if ($row['category_id'] == "17") {
                                 echo "Generale";
                             } ?></th>
-                        <th><?php echo $row['post_resiver']; ?></th>
-                        <th><?php echo $row['post_modem']; ?></th>
-                        <th><?php echo $row['post_rg6']; ?></th>
-                        <th><?php echo $row['post_konektor_rg6']; ?></th>
-                        <th><?php echo $row['post_spliter']; ?></th>
-                        <th><?php echo $row['post_konektor_tv']; ?></th>
-                        <th><?php echo $row['post_rg11']; ?></th>
-                        <th><?php echo $row['post_t32']; ?></th>
-                        <th><?php echo $row['post_kupler_7402']; ?></th>
-                        <th><?php echo $row['post_amp']; ?></th>
+                        <th><?php echo $row['resiver']; ?></th>
+                        <th><?php echo $row['modem']; ?></th>
+                        <th><?php echo $row['rg6']; ?></th>
+                        <th><?php echo $row['konektor_rg6']; ?></th>
+                        <th><?php echo $row['spliter']; ?></th>
+                        <th><?php echo $row['konektor_tv']; ?></th>
+                        <th><?php echo $row['rg11']; ?></th>
+                        <th><?php echo $row['t32']; ?></th>
+                        <th><?php echo $row['kupler_7402']; ?></th>
+                        <th><?php echo $row['amp']; ?></th>
                         <th><?php echo $row['tap_26']; ?></th>
                         <th><?php echo $row['tap_23']; ?></th>
                         <th><?php echo $row['tap_20']; ?></th>
@@ -207,16 +207,16 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_10']; ?></th>
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
-                        <th><?php echo $row['post_date']; ?></th>
+                        <th><?php echo $row['date']; ?></th>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
                             <th>
-                                <a href='../post.php?p_id=<?php echo $row['post_id']; ?>'>View Post</a>
+                                <a href='../vetura.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
                             </th>
                             <th>
-                                <a href='posts.php?source=edit_post&p_id=<?php echo $row['post_id']; ?>'>Edit</a>
+                                <a href='vetura.php?source=edit_vetura&p_id=<?php echo $row['id']; ?>'>Edit</a>
                             </th>
                             <th>
-                                <a onClick="javascript: return confirm('Are you sure you want to delete'); " href='posts.php?delete=<?php echo $row['post_id']; ?>'>Delete</a>
+                                <a onClick="javascript: return confirm('Are you sure you want to delete'); " href='vetura.php?delete=<?php echo $row['id']; ?>'>Delete</a>
                             </th>
                         <?php
                         }
@@ -244,33 +244,32 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
         if (isset($_GET['from_date']) == "") {
 
 
-            $post_author_post = $_SESSION['username'];
+            $username_post = $_SESSION['username'];
             if ($_SESSION['user_role'] == "admin") {
-                $query = "SELECT * FROM posts ORDER BY post_id DESC";
-                $select_posts = mysqli_query($connection, $query);
+                $query = "SELECT * FROM vetura ORDER BY id DESC";
+                $select_vetura = mysqli_query($connection, $query);
             } else {
-                $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC ";
-                $select_posts = mysqli_query($connection, $query);
+                $query = "SELECT * FROM vetura WHERE username = '$username_post' ORDER BY id DESC ";
+                $select_vetura = mysqli_query($connection, $query);
             }
 
-            while ($row = mysqli_fetch_assoc($select_posts)) {
-                $post_id = $row['post_id'];
-                $post_title = $row['post_title'];
-                $post_author = $row['post_author'];
-                $post_date = $row['post_date'];
-                $post_content = $row['post_content'];
-                $post_resiver = $row['post_resiver'];
-                $post_category_id = $row['post_category_id'];
+            while ($row = mysqli_fetch_assoc($select_vetura)) {
+                $id = $row['id'];
+                $title = $row['title'];
+                $username = $row['username'];
+                $date = $row['date'];
+                $content = $row['content'];
+                $resiver = $row['resiver'];
 
-                $post_modem = $row['post_modem'];
-                $post_rg6 = $row['post_rg6'];
-                $post_konektor_rg6 = $row['post_konektor_rg6'];
-                $post_spliter = $row['post_spliter'];
-                $post_konektor_tv = $row['post_konektor_tv'];
-                $post_rg11 = $row['post_rg11'];
-                $post_t32 = $row['post_t32'];
-                $post_kupler_7402 = $row['post_kupler_7402'];
-                $post_amp = $row['post_amp'];
+                $modem = $row['modem'];
+                $rg6 = $row['rg6'];
+                $konektor_rg6 = $row['konektor_rg6'];
+                $spliter = $row['spliter'];
+                $konektor_tv = $row['konektor_tv'];
+                $rg11 = $row['rg11'];
+                $t32 = $row['t32'];
+                $kupler_7402 = $row['kupler_7402'];
+                $amp = $row['amp'];
 
                 $tap_26 = $row['tap_26'];
                 $tap_23 = $row['tap_23'];
@@ -286,32 +285,25 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             ?>
 
                 <?php if ($_SESSION['user_role'] == "admin") { ?>
-                    <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
+                    <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $id; ?>'></td>
                 <?php } ?>
 
         <?php
-                echo "<td>$post_id</td>";
-                echo "<td>$post_author</td>";
-                echo "<td>$post_title</td>";
+                echo "<td>$id</td>";
+                echo "<td>$title</td>";
+                echo "<td>$username</td>";
 
-                $query = "SELECT * FROM categories WHERE  cat_id = $post_category_id ";
-                $select_categries_id = mysqli_query($connection, $query);
-                while ($row = mysqli_fetch_assoc($select_categries_id)) {
-                    $cat_id = $row['cat_id'];
-                    $cat_title = $row['cat_title'];
-                }
 
-                echo "<td>$cat_title</td>";
-                echo "<td>$post_resiver</td>";
-                echo "<td>$post_modem</td>";
-                echo "<td>$post_rg6</td>";
-                echo "<td>$post_konektor_rg6</td>";
-                echo "<td>$post_spliter</td>";
-                echo "<td>$post_konektor_tv</td>";
-                echo "<td>$post_rg11</td>";
-                echo "<td>$post_t32</td>";
-                echo "<td>$post_kupler_7402</td>";
-                echo "<td>$post_amp</td>";
+                echo "<td>$resiver</td>";
+                echo "<td>$modem</td>";
+                echo "<td>$rg6</td>";
+                echo "<td>$konektor_rg6</td>";
+                echo "<td>$spliter</td>";
+                echo "<td>$konektor_tv</td>";
+                echo "<td>$rg11</td>";
+                echo "<td>$t32</td>";
+                echo "<td>$kupler_7402</td>";
+                echo "<td>$amp</td>";
                 echo "<td>$tap_26</td>";
                 echo "<td>$tap_23</td>";
                 echo "<td>$tap_20</td>";
@@ -321,11 +313,11 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_10</td>";
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
-                echo "<td>$post_date</td>";
+                echo "<td>$date</td>";
                 if ($_SESSION['user_role'] == "admin") {
-                    echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
-                    echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
-                    echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
+                    echo "<td><a href='../vetura.php?p_id={$id}'>View Post</a></td>";
+                    echo "<td><a href='vetura.php?source=edit_vetura&p_id={$id}'>Edit</a></td>";
+                    echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='vetura.php?delete={$id}'>Delete</a></td>";
                 }
                 echo "</tr>";
             }
@@ -346,12 +338,12 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 if (isset($_GET['delete'])) {
 
-    $the_post_id = $_GET['delete'];
+    $the_id = $_GET['delete'];
 
-    $query = "DELETE FROM posts WHERE post_id = {$the_post_id}";
+    $query = "DELETE FROM vetura WHERE id = {$the_id}";
     $delete_query = mysqli_query($connection, $query);
 
-    header("Location: posts.php");
+    header("Location: vetura.php");
 }
 
 

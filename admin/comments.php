@@ -1,70 +1,54 @@
 <?php include "includes/header.php" ?>
-
-<div id="wrapper">
-
-    <!-- Navigation -->
-    <?php include "includes/navigation.php" ?>
+<!-- Navigation -->
+<?php include "includes/navigation.php" ?>
 
 
-    <div id="page-wrapper">
+<main class="container-fluid px-0 g-pt-65">
+    <div class="row no-gutters g-pos-rel g-overflow-x-hidden">
 
-        <div class="container-fluid">
 
-            <!-- Page Heading -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        Blank Page
-                        <small>Subheading</small>
-                    </h1>
+        <?php include "menu.php" ?>
 
-                    <?php
-                    
-                        if(isset($_GET['source'])) {
+        <div class="col g-ml-45 g-ml-0--lg g-pb-65--md">
 
-                            $source = $_GET['source'];
+            <div class="g-pa-20">
 
-                        } else {
-                            $source = '';
-                        }
+            <?php
 
-                        switch($source) {
-                            case 'add_post';
+                    if (isset($_GET['source'])) {
+
+                        $source = $_GET['source'];
+                    } else {
+                        $source = '';
+                    }
+
+                    switch ($source) {
+                        case 'add_post';
                             include "includes/add_post.php";
                             break;
 
-                            case 'edit_post';
+                        case 'edit_post';
                             include "includes/edit_post.php";
                             break;
 
-                            case '36';
+                        case '36';
                             echo "nice 36";
                             break;
 
 
-                            default:
+                        default:
                             include "includes/views_all_comments.php";
                             break;
-                        }
-                    
+                    }
+
                     ?>
-                    
 
 
-
-
-
-                </div>
             </div>
-            <!-- /.row -->
 
         </div>
-        <!-- /.container-fluid -->
-
     </div>
-    <!-- /#page-wrapper -->
+</main>
 
-</div>
-<!-- /#wrapper -->
 
 <?php include "includes/footer.php" ?>
