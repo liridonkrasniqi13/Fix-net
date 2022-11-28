@@ -13,51 +13,60 @@ if(!isset($_SESSION['user_role'])) {
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+  <!-- Title -->
+  <title>WeFix Admin</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+  <!-- CSS Global Compulsory -->
+  <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
+  <!-- CSS Global Icons -->
+  <link rel="stylesheet" href="../assets/vendor/icon-awesome/css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="../assets/vendor/icon-line/css/simple-line-icons.css">
+  <link rel="stylesheet" href="../assets/vendor/icon-etlinefont/style.css">
+  <link rel="stylesheet" href="../assets/vendor/icon-line-pro/style.css">
+  <link rel="stylesheet" href="../assets/vendor/icon-hs/style.css"> -->
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/vendor/hs-admin-icons/hs-admin-icons.css">
 
-    <!-- Custom CSS -->
-    <link href="css/sb-admin.css" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/vendor/animate.css">
+  <link rel="stylesheet" href="../assets/vendor/malihu-scrollbar/jquery.mCustomScrollbar.min.css">
 
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="../assets/vendor/flatpickr/dist/css/flatpickr.min.css">
+  <link rel="stylesheet" href="../assets/vendor/bootstrap-select/css/bootstrap-select.min.css">
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <!-- <link rel="stylesheet" href="../assets/vendor/chartist-js/chartist.min.css"> -->
+  <link rel="stylesheet" href="../assets/vendor/fancybox/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="../assets/vendor/hamburgers/hamburgers.min.css">
+
+  <!-- CSS Unify -->
+  <link rel="stylesheet" href="../assets/css/unify-admin.css">
+
+  <!-- CSS Customization -->
+  <link rel="stylesheet" href="../assets/css/custom.css">
+
+
+
+
+
+
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <link
-    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css"
-    rel="stylesheet"
-/>
-<script src=
-"https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js">
-</script>
-
-<script src=
-"https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js">
-</script>
-
-    
-
+  
 </head>
 
 <body>
