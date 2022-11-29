@@ -126,7 +126,7 @@
                     <th>Tap 11</th>
                     <th>Tap 10</th>
                     <th>Tap 8</th>
-                    <th>Tap 4</th>
+                    <th>Kartela</th>
                     <th>Date</th>
                     <?php 
                     if ($_SESSION['user_role'] == "admin") { 

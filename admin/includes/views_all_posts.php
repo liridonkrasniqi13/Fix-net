@@ -129,7 +129,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             <th>Tap 11</th>
             <th>Tap 10</th>
             <th>Tap 8</th>
-            <th>Tap 4</th>
+            <th>Kartela</th>
             <th>Date</th>
             <?php
             if ($_SESSION['user_role'] == "admin") {
@@ -145,6 +145,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
         <?php
 
+                
+
 
         if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             $from_date = $_GET['from_date'];
@@ -154,13 +156,22 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             if ($_SESSION['user_role'] == "admin") {
                 $username = $_GET['post_author'];
                 if ($username == "liridonkrasniqi") {
+
+
+
                     $query = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
                     $date_query = mysqli_query($connection, $query);
                 } else {
+
+                    
+
                     $query = "SELECT * FROM posts WHERE post_author = '$username' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
                     $date_query = mysqli_query($connection, $query);
                 }
             } else {
+
+                
+
                 $post_author = $_SESSION['username'];
                 $query = "SELECT * FROM posts WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
                 $date_query = mysqli_query($connection, $query);
@@ -171,7 +182,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             if (mysqli_num_rows($date_query) > 0) {
 
                 foreach ($date_query as $row) {
-        ?>
+                ?>
                     <tr>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
                             <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
@@ -246,11 +257,39 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
             $post_author_post = $_SESSION['username'];
             if ($_SESSION['user_role'] == "admin") {
-                $query = "SELECT * FROM posts ORDER BY post_id DESC";
+
+                // if(isset($_GET['page'])) {
+
+                //     $page = $_GET['page'];
+
+                // } else {
+                //     $page = "";
+                // }
+
+                // if($page == "" || $page == 1 ) {
+                //     $page_1 = 0 ;
+                // } else {
+                //     $page_1 = ($page * 5) - 5;
+                // }
+
+                $post_query_count = "SELECT * FROM posts";
+                $find_conut = mysqli_query($connection, $post_query_count);
+                $cont = mysqli_num_rows($find_conut);
+
+                $cont = ceil($cont / 5);
+
+                $query = "SELECT * FROM posts ORDER BY post_id DESC "; //  LIMIT $page_1 , 5
                 $select_posts = mysqli_query($connection, $query);
             } else {
-                $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC ";
+
+                $post_query_count = "SELECT * FROM posts";
+                $find_conut = mysqli_query($connection, $post_query_count);
+                $cont = mysqli_num_rows($find_conut);
+
+
+                $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC  "; // LIMIT $page_1 , 5
                 $select_posts = mysqli_query($connection, $query);
+
             }
 
             while ($row = mysqli_fetch_assoc($select_posts)) {
@@ -339,6 +378,20 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
     </tbody>
 </table>
+
+
+<!-- <ul class="pagination pagination-lg">
+    <?php
+
+    // for ($i = 1; $i <= $cont; $i++) {
+
+    //     echo "<li><a href='posts.php?page={$i}'>{$i}</a></li>";
+    // }
+
+    ?>
+
+</ul> -->
+
 
 <?php
 
