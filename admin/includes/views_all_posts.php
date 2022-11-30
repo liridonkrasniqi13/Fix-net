@@ -1,5 +1,6 @@
 <?php
-
+$per_page = 5;
+$cont = "";
 if (isset($_POST['checkBoxArray'])) {
 
     foreach ($_POST['checkBoxArray'] as $postValueID) {
@@ -256,38 +257,56 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 
             $post_author_post = $_SESSION['username'];
+            // $per_page = 50;
             if ($_SESSION['user_role'] == "admin") {
 
-                // if(isset($_GET['page'])) {
+                
 
-                //     $page = $_GET['page'];
+                if(isset($_GET['page'])) {
 
-                // } else {
-                //     $page = "";
-                // }
+                    $page = $_GET['page'];
 
-                // if($page == "" || $page == 1 ) {
-                //     $page_1 = 0 ;
-                // } else {
-                //     $page_1 = ($page * 5) - 5;
-                // }
+                } else {
+                    $page = "";
+                }
+
+                if($page == "" || $page == 1 ) {
+                    $page_1 = 0 ;
+                } else {
+                    $page_1 = ($page * $per_page) - $per_page;
+                }
 
                 $post_query_count = "SELECT * FROM posts";
                 $find_conut = mysqli_query($connection, $post_query_count);
                 $cont = mysqli_num_rows($find_conut);
 
-                $cont = ceil($cont / 5);
+                $cont = ceil($cont / $per_page);
 
-                $query = "SELECT * FROM posts ORDER BY post_id DESC "; //  LIMIT $page_1 , 5
+                $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT $page_1 , $per_page"; //  LIMIT $page_1 , 5
                 $select_posts = mysqli_query($connection, $query);
             } else {
 
-                $post_query_count = "SELECT * FROM posts";
+                if(isset($_GET['page'])) {
+
+                    $page = $_GET['page'];
+
+                } else {
+                    $page = "";
+                }
+
+                if($page == "" || $page == 1 ) {
+                    $page_1 = 0 ;
+                } else {
+                    $page_1 = ($page * $per_page) - $per_page;
+                }
+
+                $post_query_count = "SELECT * FROM posts WHERE post_author = '$post_author_post'";
                 $find_conut = mysqli_query($connection, $post_query_count);
                 $cont = mysqli_num_rows($find_conut);
 
+                $cont = ceil($cont / $per_page);
 
-                $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC  "; // LIMIT $page_1 , 5
+                $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC LIMIT $page_1 , $per_page "; // LIMIT $page_1 , 5
                 $select_posts = mysqli_query($connection, $query);
 
             }
@@ -380,18 +399,41 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 </table>
 
 
-<!-- <ul class="pagination pagination-lg">
+<!-- Pagination States -->
+<nav aria-label="...">
+  <ul class="pagination">
+
+
     <?php
 
-    // for ($i = 1; $i <= $cont; $i++) {
+    for ($i = 1; $i <= $cont; $i++) {
 
-    //     echo "<li><a href='posts.php?page={$i}'>{$i}</a></li>";
-    // }
+        if ($i == $page) {
+
+            echo "
+        <li class='page-item active'>
+        <a class='u-pagination-v1__item u-pagination-v1-2 g-bg-secondary--active g-color-white--active g-brd-gray-light-v7 g-brd-secondary--hover g-brd-secondary--active g-rounded-4 g-py-8 g-px-15 active' href='posts.php?page={$i}'>{$i}
+        </a>
+      </li>";
+
+        } else {
+
+            echo "
+        <li class='page-item active'>
+        <a class='u-pagination-v1__item u-pagination-v1-2 g-bg-secondary--active g-color-white--active g-brd-gray-light-v7 g-brd-secondary--hover g-brd-secondary--active g-rounded-4 g-py-8 g-px-15' href='posts.php?page={$i}'>{$i}
+        </a>
+      </li>";
+
+        }
+
+        
+    }
 
     ?>
 
-</ul> -->
-
+  </ul>
+</nav>
+<!-- End Pagination States -->
 
 <?php
 
