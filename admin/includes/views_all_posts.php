@@ -1,5 +1,5 @@
 <?php
-$per_page = 5;
+$per_page = 100;
 $cont = "";
 if (isset($_POST['checkBoxArray'])) {
 
