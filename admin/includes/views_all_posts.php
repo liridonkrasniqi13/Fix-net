@@ -132,9 +132,9 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             <th>Tap 8</th>
             <th>Kartela</th>
             <th>Date</th>
+            <th>View Post</th>
             <?php
             if ($_SESSION['user_role'] == "admin") {
-                echo "<th>View Post</th>";
                 echo "<th>Edit</th>";
                 echo "<th>Delete</th>";
             }
@@ -220,10 +220,10 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
                         <th><?php echo $row['post_date']; ?></th>
+                        <th>
+                            <a href='post.php?p_id=<?php echo $row['post_id']; ?>'>View Post</a>
+                        </th>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
-                            <th>
-                                <a href='../post.php?p_id=<?php echo $row['post_id']; ?>'>View Post</a>
-                            </th>
                             <th>
                                 <a href='posts.php?source=edit_post&p_id=<?php echo $row['post_id']; ?>'>Edit</a>
                             </th>
@@ -380,8 +380,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
                 echo "<td>$post_date</td>";
+                echo "<td><a href='post.php?p_id={$post_id}'>View Post</a></td>";
                 if ($_SESSION['user_role'] == "admin") {
-                    echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
                     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
                     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
                 }
