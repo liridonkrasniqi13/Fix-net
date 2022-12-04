@@ -399,6 +399,9 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 </table>
 
 
+
+
+
 <!-- Pagination States -->
 <nav aria-label="...">
   <ul class="pagination">
@@ -454,3 +457,12 @@ if (isset($_GET['delete'])) {
 
 
 </div>
+<br>
+
+<?php if ($_SESSION['user_role'] == "admin") { ?>
+
+<form action="../admin/export2.php" method="post">
+    <input class="btn btn-success" type="submit" name="expor_excel" value="Export test" />
+</form>
+
+<?php } ?>
