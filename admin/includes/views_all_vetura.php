@@ -152,7 +152,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 
             if ($_SESSION['user_role'] == "admin") {
-                $username = $_GET['username'];
+                $username = $_GET['post_author'];
                 if ($username == "liridonkrasniqi") {
                     $query = "SELECT * FROM vetura WHERE date_v BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                     $date_query = mysqli_query($connection, $query);
