@@ -154,15 +154,15 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             if ($_SESSION['user_role'] == "admin") {
                 $username = $_GET['username'];
                 if ($username == "liridonkrasniqi") {
-                    $query = "SELECT * FROM vetura WHERE date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
+                    $query = "SELECT * FROM vetura WHERE date_v BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                     $date_query = mysqli_query($connection, $query);
                 } else {
-                    $query = "SELECT * FROM vetura WHERE username = '$username' AND  date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
+                    $query = "SELECT * FROM vetura WHERE username = '$username' AND  date_v BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                     $date_query = mysqli_query($connection, $query);
                 }
             } else {
                 $username = $_SESSION['username'];
-                $query = "SELECT * FROM vetura WHERE username = '$username' AND  date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
+                $query = "SELECT * FROM vetura WHERE username = '$username' AND  date_v BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                 $date_query = mysqli_query($connection, $query);
             }
 
