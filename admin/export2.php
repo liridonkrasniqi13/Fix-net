@@ -24,7 +24,14 @@ if($connection) {
 $output = '';
 
 if(isset($_POST["expor_excel"])) {  
-    $sql = "SELECT * FROM posts " ;
+    $from_date = $_POST['from_date'];
+    $to_date = $_POST['to_date'];
+    $post_author = $_POST['post_author'];
+    if ($post_author == "liridonkrasniqi") { 
+        $sql = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC" ;
+    } else {
+        $sql = "SELECT * FROM posts WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC" ;
+    }
     $result = mysqli_query($connection, $sql);
     if(mysqli_num_rows($result) > 0) {
         $output .= '

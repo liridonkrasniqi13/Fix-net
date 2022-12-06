@@ -48,7 +48,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
     if ($_SESSION['user_role'] == "admin") {
-        $username = $_GET['username'];
+        $username = $_GET['post_author'];
     }
 } else {
     $from_date = "";
@@ -177,17 +177,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                             <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $id; ?>'></td>
                         <?php } ?>
                         <th><?php echo $row['id']; ?></th>
-                        <th><?php echo $row['username']; ?></th>
                         <th><?php echo $row['title']; ?></th>
-                        <th><?php if ($row['category_id'] == "Tiket") {
-                                echo "Ticked";
-                            }
-                            if ($row['category_id'] == "16") {
-                                echo "Instalim";
-                            }
-                            if ($row['category_id'] == "17") {
-                                echo "Generale";
-                            } ?></th>
+                        <th><?php echo $row['username']; ?></th>
                         <th><?php echo $row['resiver']; ?></th>
                         <th><?php echo $row['modem']; ?></th>
                         <th><?php echo $row['rg6']; ?></th>
@@ -207,7 +198,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_10']; ?></th>
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
-                        <th><?php echo $row['date']; ?></th>
+                        <th><?php echo $row['date_v']; ?></th>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
                             <th>
                                 <a href='../vetura.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
@@ -257,7 +248,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 $id = $row['id'];
                 $title = $row['title'];
                 $username = $row['username'];
-                $date = $row['date'];
+                $date_v = $row['date_v'];
                 $content = $row['content'];
                 $resiver = $row['resiver'];
 
@@ -313,7 +304,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_10</td>";
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
-                echo "<td>$date</td>";
+                echo "<td>$date_v</td>";
                 if ($_SESSION['user_role'] == "admin") {
                     echo "<td><a href='../vetura.php?p_id={$id}'>View Post</a></td>";
                     echo "<td><a href='vetura.php?source=edit_vetura&p_id={$id}'>Edit</a></td>";
