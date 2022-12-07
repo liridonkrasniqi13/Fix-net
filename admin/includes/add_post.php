@@ -44,6 +44,8 @@ if (isset($_POST['create_post'])) {
     confirmQuery($create_post_query);
 
     $the_post_id = mysqli_insert_id($connection);
+    
+    header("Location: ../admin ");
 
     echo "<div class='alert alert-success' role='alert'>Post Created. <a href='posts.php'>View Post</a> or <a href='../post.php?p_id={$the_post_id}'>Edit the Post</a></div>";
 }
@@ -71,10 +73,10 @@ if (isset($_POST['create_post'])) {
             // confirmQuery($select_categries);
 
             while ($row = mysqli_fetch_assoc($select_categries)) {
-                $cat_id = $row['cat_id'];
+                // $cat_id = $row['cat_id'];
                 $cat_title = $row['cat_title'];
 
-                echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                echo "<option value='{$cat_title}'>{$cat_title}</option>";
             }
 
             ?>
@@ -195,7 +197,7 @@ if (isset($_POST['create_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="tap_4">Tap 4 db</label>
+        <label for="tap_4">Kartela db</label>
         <input type="number" class="form-control" name="tap_4" id="" >
     </div>
 

@@ -1,5 +1,6 @@
 <?php
-
+$per_page = 100;
+$cont = "";
 if (isset($_POST['checkBoxArray'])) {
 
     foreach ($_POST['checkBoxArray'] as $postValueID) {
@@ -129,11 +130,11 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             <th>Tap 11</th>
             <th>Tap 10</th>
             <th>Tap 8</th>
-            <th>Tap 4</th>
+            <th>Kartela</th>
             <th>Date</th>
+            <th>View Post</th>
             <?php
             if ($_SESSION['user_role'] == "admin") {
-                echo "<th>View Post</th>";
                 echo "<th>Edit</th>";
                 echo "<th>Delete</th>";
             }
@@ -145,6 +146,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
         <?php
 
+                
+
 
         if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             $from_date = $_GET['from_date'];
@@ -154,15 +157,24 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             if ($_SESSION['user_role'] == "admin") {
                 $username = $_GET['post_author'];
                 if ($username == "liridonkrasniqi") {
-                    $query = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+
+
+
+                    $query = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date' ";
                     $date_query = mysqli_query($connection, $query);
                 } else {
-                    $query = "SELECT * FROM posts WHERE post_author = '$username' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+
+                    
+
+                    $query = "SELECT * FROM posts WHERE post_author = '$username' AND  post_date BETWEEN '$from_date' AND '$to_date' ";
                     $date_query = mysqli_query($connection, $query);
                 }
             } else {
+
+                
+
                 $post_author = $_SESSION['username'];
-                $query = "SELECT * FROM posts WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY post_id DESC";
+                $query = "SELECT * FROM posts WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ";
                 $date_query = mysqli_query($connection, $query);
             }
 
@@ -171,7 +183,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             if (mysqli_num_rows($date_query) > 0) {
 
                 foreach ($date_query as $row) {
-        ?>
+                ?>
                     <tr>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
                             <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
@@ -179,15 +191,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['post_id']; ?></th>
                         <th><?php echo $row['post_author']; ?></th>
                         <th><?php echo $row['post_title']; ?></th>
-                        <th><?php if ($row['post_category_id'] == "Tiket") {
-                                echo "Ticked";
-                            }
-                            if ($row['post_category_id'] == "16") {
-                                echo "Instalim";
-                            }
-                            if ($row['post_category_id'] == "17") {
-                                echo "Generale";
-                            } ?></th>
+                        <th><?php echo $row['post_category_id']; ?></th>
                         <th><?php echo $row['post_resiver']; ?></th>
                         <th><?php echo $row['post_modem']; ?></th>
                         <th><?php echo $row['post_rg6']; ?></th>
@@ -208,10 +212,10 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
                         <th><?php echo $row['post_date']; ?></th>
+                        <th>
+                            <a href='post.php?p_id=<?php echo $row['post_id']; ?>'>View Post</a>
+                        </th>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
-                            <th>
-                                <a href='../post.php?p_id=<?php echo $row['post_id']; ?>'>View Post</a>
-                            </th>
                             <th>
                                 <a href='posts.php?source=edit_post&p_id=<?php echo $row['post_id']; ?>'>Edit</a>
                             </th>
@@ -245,12 +249,58 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 
             $post_author_post = $_SESSION['username'];
+            // $per_page = 50;
             if ($_SESSION['user_role'] == "admin") {
-                $query = "SELECT * FROM posts ORDER BY post_id DESC";
+
+                
+
+                if(isset($_GET['page'])) {
+
+                    $page = $_GET['page'];
+
+                } else {
+                    $page = "";
+                }
+
+                if($page == "" || $page == 1 ) {
+                    $page_1 = 0 ;
+                } else {
+                    $page_1 = ($page * $per_page) - $per_page;
+                }
+
+                $post_query_count = "SELECT * FROM posts";
+                $find_conut = mysqli_query($connection, $post_query_count);
+                $cont = mysqli_num_rows($find_conut);
+
+                $cont = ceil($cont / $per_page);
+
+                $query = "SELECT * FROM posts ORDER BY post_id DESC LIMIT $page_1 , $per_page"; //  LIMIT $page_1 , 5
                 $select_posts = mysqli_query($connection, $query);
             } else {
-                $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC ";
+
+                if(isset($_GET['page'])) {
+
+                    $page = $_GET['page'];
+
+                } else {
+                    $page = "";
+                }
+
+                if($page == "" || $page == 1 ) {
+                    $page_1 = 0 ;
+                } else {
+                    $page_1 = ($page * $per_page) - $per_page;
+                }
+
+                $post_query_count = "SELECT * FROM posts WHERE post_author = '$post_author_post'";
+                $find_conut = mysqli_query($connection, $post_query_count);
+                $cont = mysqli_num_rows($find_conut);
+
+                $cont = ceil($cont / $per_page);
+
+                $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC LIMIT $page_1 , $per_page "; // LIMIT $page_1 , 5
                 $select_posts = mysqli_query($connection, $query);
+
             }
 
             while ($row = mysqli_fetch_assoc($select_posts)) {
@@ -294,14 +344,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$post_author</td>";
                 echo "<td>$post_title</td>";
 
-                $query = "SELECT * FROM categories WHERE  cat_id = $post_category_id ";
-                $select_categries_id = mysqli_query($connection, $query);
-                while ($row = mysqli_fetch_assoc($select_categries_id)) {
-                    $cat_id = $row['cat_id'];
-                    $cat_title = $row['cat_title'];
-                }
-
-                echo "<td>$cat_title</td>";
+                echo "<td>$post_category_id</td>";
                 echo "<td>$post_resiver</td>";
                 echo "<td>$post_modem</td>";
                 echo "<td>$post_rg6</td>";
@@ -322,8 +365,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
                 echo "<td>$post_date</td>";
+                echo "<td><a href='post.php?p_id={$post_id}'>View Post</a></td>";
                 if ($_SESSION['user_role'] == "admin") {
-                    echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
                     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
                     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";
                 }
@@ -339,6 +382,46 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
     </tbody>
 </table>
+
+
+
+
+
+<!-- Pagination States -->
+<nav aria-label="...">
+  <ul class="pagination">
+
+
+    <?php
+
+    for ($i = 1; $i <= $cont; $i++) {
+
+        if ($i == $page) {
+
+            echo "
+        <li class='page-item active'>
+        <a class='u-pagination-v1__item u-pagination-v1-2 g-bg-secondary--active g-color-white--active g-brd-gray-light-v7 g-brd-secondary--hover g-brd-secondary--active g-rounded-4 g-py-8 g-px-15 active' href='posts.php?page={$i}'>{$i}
+        </a>
+      </li>";
+
+        } else {
+
+            echo "
+        <li class='page-item active'>
+        <a class='u-pagination-v1__item u-pagination-v1-2 g-bg-secondary--active g-color-white--active g-brd-gray-light-v7 g-brd-secondary--hover g-brd-secondary--active g-rounded-4 g-py-8 g-px-15' href='posts.php?page={$i}'>{$i}
+        </a>
+      </li>";
+
+        }
+
+        
+    }
+
+    ?>
+
+  </ul>
+</nav>
+<!-- End Pagination States -->
 
 <?php
 
@@ -359,3 +442,83 @@ if (isset($_GET['delete'])) {
 
 
 </div>
+<br>
+
+<?php if ($_SESSION['user_role'] == "admin") { ?>
+
+<form action="../admin/export2.php" method="post">
+<div class="g-pa-20">
+        <div class="row">
+            <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
+                <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
+                    <div class="form-group mb-0 g-max-width-400">
+                        <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
+                            <input  name="from_date" value="<?php echo $from_date; ?>" required="required"
+                            class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" 
+                            type="text" placeholder="From Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
+                            <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
+                                <i class="hs-admin-angle-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
+                <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
+                    <div class="form-group mb-0 g-max-width-400">
+                        <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
+                            <input name="to_date" value="<?php echo $to_date; ?>" required="required"
+                            class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" 
+                            type="text" placeholder="To Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
+                            <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
+                                <i class="hs-admin-angle-down"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php if ($_SESSION['user_role'] == "admin") { ?>
+                <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
+                    <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
+                        <div class="form-group mb-0 g-max-width-400">
+                            <div class="form-group u-select--v3 g-pos-rel g-brd-gray-light-v7 rounded-0 mb-0">
+                                <div class="dropdown bootstrap-select js-select u-select--v3-select u-sibling w-100">
+                                    <select name="post_author" id="post_author" class="js-select u-select--v3-select u-sibling w-100" required="required"  tabindex="-98">
+                                        
+                                        <?php
+
+                                        
+
+                                        $query = "SELECT * FROM users ";
+                                        $select_categries = mysqli_query($connection, $query);
+                                        echo "<option value='{$username}'>{$username}</option>";
+                                        // confirmQuery($select_categries);
+
+                                        while ($row = mysqli_fetch_assoc($select_categries)) {
+                                            $username = $row['username'];
+                                            echo "<option value='{$username}'>{$username}</option>";
+                                        }
+                                        
+
+                                        ?>
+                                    </select>
+                                </div>
+
+                                <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                    <i class="hs-admin-angle-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+            <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
+                <input class="btn btn-success" type="submit" name="expor_excel" value="Export Raport" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<?php } ?>

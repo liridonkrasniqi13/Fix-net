@@ -15,9 +15,9 @@
         <div class="container g-py-100">
           <div class="row justify-content-center">
             <div class="col-sm-8 col-lg-5">
-              <div class="u-shadow-v24 g-bg-white rounded g-py-40 g-px-30">
+              <div class="u-shadow-v24 g-bg-white rounded g-py-10 g-px-30">
                 <header class="text-center mb-4">
-                  <h2 class="h2 g-color-black g-font-weight-600">WeFix Net Login</h2>
+                  <img src="admin/img/wefixnet1.png" class="img-responsive" alt="Image" style="width:200px ;">
                 </header>
   
                 <!-- Form -->
@@ -42,7 +42,11 @@
                     </div>
                   </div>
                 </form>
+                <header class="text-center mb-4">
+                <img src="admin/img/kujtesalogo.jpg" class="img-responsive" alt="Image" style="width:200px ;">
+                </header>
                 <!-- End Form -->
+                
               </div>
             </div>
           </div>

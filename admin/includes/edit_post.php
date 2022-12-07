@@ -38,7 +38,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
 }
 
 if (isset($_POST['update_post'])) {
-    $post_author = $row['post_author'];
+    $post_author = $_POST['post_author'];
     $post_title = $_POST['post_title'];
     $post_category_id = $_POST['post_category'];
     $post_content = $_POST['post_content'];
@@ -115,7 +115,7 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-
+    <label for="title">Tiket</label>
         <select name="post_category" id="post_category" class="form-control" required="required">
 
             <?php
@@ -129,7 +129,7 @@ if (isset($_POST['update_post'])) {
                 $cat_id = $row['cat_id'];
                 $cat_title = $row['cat_title'];
 
-                echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                echo "<option value='{$cat_title}'>{$cat_title}</option>";
             }
 
             ?>
@@ -140,10 +140,10 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-    <label for="title">Tiket</label>
+    <label for="title">Author</label>
         <select name="post_author" id="post_author" class="form-control" required="required">
         
-            <option value="<?php echo $post_author; ?>"><?php echo $post_author; ?></option>
+            <option value='<?php echo $post_author; ?>' > <?php echo $post_author; ?></option>
 
             <?php
 
@@ -263,7 +263,7 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="tap_4">Tap 4 db</label>
+        <label for="tap_4">Kartela db</label>
         <input type="number" class="form-control" name="tap_4" id=""  value="<?php echo $tap_4; ?>"> 
     </div>
 

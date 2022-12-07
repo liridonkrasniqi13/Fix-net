@@ -210,7 +210,7 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="tap_4">Tap 4 db</label>
+        <label for="tap_4">Kartela db</label>
         <input type="number" class="form-control" name="tap_4" id=""  value="<?php echo $tap_4; ?>"> 
     </div>
 

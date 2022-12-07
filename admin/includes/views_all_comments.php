@@ -4,8 +4,8 @@
             <tr>
                 <th>Id</th>
                 <th>Author</th>
-                <th>Comment</th>
                 <th>Email</th>
+                <th>Comment</th>
                 <th>Status</th>
                 <th>In response to</th>
                 <th>Date</th>
@@ -50,7 +50,7 @@
                     $post_id = $row['post_id'];
                     $post_title = $row['post_title'];
                     
-                    echo "<td><a href='../post.php?p_id=$post_id'> $post_title</a></td>";
+                    echo "<td><a href='post.php?p_id=$post_id'> $post_title</a></td>";
 
                 }
 
