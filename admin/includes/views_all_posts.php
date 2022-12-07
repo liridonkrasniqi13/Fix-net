@@ -383,9 +383,200 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     </tbody>
 </table>
 
+<?php 
 
+if ($_SESSION['user_role'] == "admin") {
 
+$query = "SELECT SUM(post_resiver) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
 
+while($row = mysqli_fetch_assoc($query_result)) {
+    $resiver = $row['sum'];
+}
+
+$query = "SELECT SUM(post_modem) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $modem = $row['sum'];
+}
+
+$query = "SELECT SUM(post_rg6) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $rg6 = $row['sum'];
+}
+
+$query = "SELECT SUM(post_konektor_rg6) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $post_konektor_rg6 = $row['sum'];
+}
+
+$query = "SELECT SUM(post_spliter) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $post_spliter = $row['sum'];
+}
+
+$query = "SELECT SUM(post_konektor_tv) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $post_konektor_tv = $row['sum'];
+}
+
+$query = "SELECT SUM(post_rg11) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $post_rg11 = $row['sum'];
+}
+
+$query = "SELECT SUM(post_t32) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $post_t32 = $row['sum'];
+}
+
+$query = "SELECT SUM(post_kupler_7402) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $post_kupler_7402 = $row['sum'];
+}
+
+$query = "SELECT SUM(post_amp) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $post_amp = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_26) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_26 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_23) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_23 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_20) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_20 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_17) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_17 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_14) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_14 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_11) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_11 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_10) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_10 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_8) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_8 = $row['sum'];
+}
+
+$query = "SELECT SUM(tap_4) AS sum FROM posts";
+$query_result = mysqli_query($connection, $query);
+
+while($row = mysqli_fetch_assoc($query_result)) {
+    $tap_4 = $row['sum'];
+}
+
+?>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+
+            <th></th>
+            <th>Resiver</th>
+            <th>Modem</th>
+            <th>RG6</th>
+            <th>Konektor RG6</th>
+            <th>Spliter</th>
+            <th>Konektor Tv</th>
+            <th>RG11</th>
+            <th>T32</th>
+            <th>Kupler 7402</th>
+            <th>AMP</th>
+            <th>Tap 26</th>
+            <th>Tap 23</th>
+            <th>Tap 20</th>
+            <th>Tap 17</th>
+            <th>Tap 14</th>
+            <th>Tap 11</th>
+            <th>Tap 10</th>
+            <th>Tap 8</th>
+            <th>Kartela</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+
+            echo "<td>TOTAL</td>";
+            echo "<td>$resiver</td>";
+            echo "<td>$modem</td>";
+            echo "<td>$rg6</td>";
+            echo "<td>$post_konektor_rg6</td>";
+            echo "<td>$post_spliter</td>";
+            echo "<td>$post_konektor_tv</td>";
+            echo "<td>$post_rg11</td>";
+            echo "<td>$post_t32</td>";
+            echo "<td>$post_kupler_7402</td>";
+            echo "<td>$post_amp</td>";
+            echo "<td>$tap_26</td>";
+            echo "<td>$tap_23</td>";
+            echo "<td>$tap_20</td>";
+            echo "<td>$tap_17</td>";
+            echo "<td>$tap_14</td>";
+            echo "<td>$tap_11</td>";
+            echo "<td>$tap_10</td>";
+            echo "<td>$tap_8</td>";
+            echo "<td>$tap_4</td>";
+        
+        ?>
+    </tbody>
+</table>
+
+<?php } ?>
 
 <!-- Pagination States -->
 <nav aria-label="...">
