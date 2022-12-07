@@ -191,15 +191,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['post_id']; ?></th>
                         <th><?php echo $row['post_author']; ?></th>
                         <th><?php echo $row['post_title']; ?></th>
-                        <th><?php if ($row['post_category_id'] == "Tiket") {
-                                echo "Ticked";
-                            }
-                            if ($row['post_category_id'] == "16") {
-                                echo "Instalim";
-                            }
-                            if ($row['post_category_id'] == "17") {
-                                echo "Generale";
-                            } ?></th>
+                        <th><?php echo $row['post_category_id']; ?></th>
                         <th><?php echo $row['post_resiver']; ?></th>
                         <th><?php echo $row['post_modem']; ?></th>
                         <th><?php echo $row['post_rg6']; ?></th>
@@ -352,14 +344,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$post_author</td>";
                 echo "<td>$post_title</td>";
 
-                $query = "SELECT * FROM categories WHERE  cat_id = $post_category_id ";
-                $select_categries_id = mysqli_query($connection, $query);
-                while ($row = mysqli_fetch_assoc($select_categries_id)) {
-                    $cat_id = $row['cat_id'];
-                    $cat_title = $row['cat_title'];
-                }
-
-                echo "<td>$cat_title</td>";
+                echo "<td>$post_category_id</td>";
                 echo "<td>$post_resiver</td>";
                 echo "<td>$post_modem</td>";
                 echo "<td>$post_rg6</td>";
