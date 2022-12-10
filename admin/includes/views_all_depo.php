@@ -98,10 +98,6 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 </div>
 
 
-
-
-
-
 <table class="table table-bordered table-hover">
     <thead>
         <tr>

@@ -146,7 +146,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
         <?php
 
-                
+
 
 
         if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
@@ -164,14 +164,14 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                     $date_query = mysqli_query($connection, $query);
                 } else {
 
-                    
+
 
                     $query = "SELECT * FROM posts WHERE post_author = '$username' AND  post_date BETWEEN '$from_date' AND '$to_date' ";
                     $date_query = mysqli_query($connection, $query);
                 }
             } else {
 
-                
+
 
                 $post_author = $_SESSION['username'];
                 $query = "SELECT * FROM posts WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ";
@@ -183,7 +183,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             if (mysqli_num_rows($date_query) > 0) {
 
                 foreach ($date_query as $row) {
-                ?>
+        ?>
                     <tr>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
                             <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $post_id; ?>'></td>
@@ -252,18 +252,17 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             // $per_page = 50;
             if ($_SESSION['user_role'] == "admin") {
 
-                
 
-                if(isset($_GET['page'])) {
+
+                if (isset($_GET['page'])) {
 
                     $page = $_GET['page'];
-
                 } else {
                     $page = "";
                 }
 
-                if($page == "" || $page == 1 ) {
-                    $page_1 = 0 ;
+                if ($page == "" || $page == 1) {
+                    $page_1 = 0;
                 } else {
                     $page_1 = ($page * $per_page) - $per_page;
                 }
@@ -278,16 +277,15 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 $select_posts = mysqli_query($connection, $query);
             } else {
 
-                if(isset($_GET['page'])) {
+                if (isset($_GET['page'])) {
 
                     $page = $_GET['page'];
-
                 } else {
                     $page = "";
                 }
 
-                if($page == "" || $page == 1 ) {
-                    $page_1 = 0 ;
+                if ($page == "" || $page == 1) {
+                    $page_1 = 0;
                 } else {
                     $page_1 = ($page * $per_page) - $per_page;
                 }
@@ -300,7 +298,6 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
                 $query = "SELECT * FROM posts WHERE post_author = '$post_author_post' ORDER BY post_id DESC LIMIT $page_1 , $per_page "; // LIMIT $page_1 , 5
                 $select_posts = mysqli_query($connection, $query);
-
             }
 
             while ($row = mysqli_fetch_assoc($select_posts)) {
@@ -383,236 +380,41 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     </tbody>
 </table>
 
-<?php 
-
-if ($_SESSION['user_role'] == "admin") {
-
-$query = "SELECT SUM(post_resiver) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $resiver = $row['sum'];
-}
-
-$query = "SELECT SUM(post_modem) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $modem = $row['sum'];
-}
-
-$query = "SELECT SUM(post_rg6) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $rg6 = $row['sum'];
-}
-
-$query = "SELECT SUM(post_konektor_rg6) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $post_konektor_rg6 = $row['sum'];
-}
-
-$query = "SELECT SUM(post_spliter) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $post_spliter = $row['sum'];
-}
-
-$query = "SELECT SUM(post_konektor_tv) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $post_konektor_tv = $row['sum'];
-}
-
-$query = "SELECT SUM(post_rg11) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $post_rg11 = $row['sum'];
-}
-
-$query = "SELECT SUM(post_t32) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $post_t32 = $row['sum'];
-}
-
-$query = "SELECT SUM(post_kupler_7402) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $post_kupler_7402 = $row['sum'];
-}
-
-$query = "SELECT SUM(post_amp) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $post_amp = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_26) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_26 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_23) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_23 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_20) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_20 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_17) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_17 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_14) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_14 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_11) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_11 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_10) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_10 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_8) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_8 = $row['sum'];
-}
-
-$query = "SELECT SUM(tap_4) AS sum FROM posts";
-$query_result = mysqli_query($connection, $query);
-
-while($row = mysqli_fetch_assoc($query_result)) {
-    $tap_4 = $row['sum'];
-}
-
-?>
-
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-
-            <th></th>
-            <th>Resiver</th>
-            <th>Modem</th>
-            <th>RG6</th>
-            <th>Konektor RG6</th>
-            <th>Spliter</th>
-            <th>Konektor Tv</th>
-            <th>RG11</th>
-            <th>T32</th>
-            <th>Kupler 7402</th>
-            <th>AMP</th>
-            <th>Tap 26</th>
-            <th>Tap 23</th>
-            <th>Tap 20</th>
-            <th>Tap 17</th>
-            <th>Tap 14</th>
-            <th>Tap 11</th>
-            <th>Tap 10</th>
-            <th>Tap 8</th>
-            <th>Kartela</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-
-            echo "<td>TOTAL</td>";
-            echo "<td>$resiver</td>";
-            echo "<td>$modem</td>";
-            echo "<td>$rg6</td>";
-            echo "<td>$post_konektor_rg6</td>";
-            echo "<td>$post_spliter</td>";
-            echo "<td>$post_konektor_tv</td>";
-            echo "<td>$post_rg11</td>";
-            echo "<td>$post_t32</td>";
-            echo "<td>$post_kupler_7402</td>";
-            echo "<td>$post_amp</td>";
-            echo "<td>$tap_26</td>";
-            echo "<td>$tap_23</td>";
-            echo "<td>$tap_20</td>";
-            echo "<td>$tap_17</td>";
-            echo "<td>$tap_14</td>";
-            echo "<td>$tap_11</td>";
-            echo "<td>$tap_10</td>";
-            echo "<td>$tap_8</td>";
-            echo "<td>$tap_4</td>";
-        
-        ?>
-    </tbody>
-</table>
-
-<?php } ?>
 
 <!-- Pagination States -->
 <nav aria-label="...">
-  <ul class="pagination">
+    <ul class="pagination">
 
 
-    <?php
+        <?php
 
-    for ($i = 1; $i <= $cont; $i++) {
+        for ($i = 1; $i <= $cont; $i++) {
 
-        if ($i == $page) {
+            if ($i == $page) {
 
-            echo "
+                echo "
         <li class='page-item active'>
         <a class='u-pagination-v1__item u-pagination-v1-2 g-bg-secondary--active g-color-white--active g-brd-gray-light-v7 g-brd-secondary--hover g-brd-secondary--active g-rounded-4 g-py-8 g-px-15 active' href='posts.php?page={$i}'>{$i}
         </a>
       </li>";
+            } else {
 
-        } else {
-
-            echo "
+                echo "
         <li class='page-item active'>
         <a class='u-pagination-v1__item u-pagination-v1-2 g-bg-secondary--active g-color-white--active g-brd-gray-light-v7 g-brd-secondary--hover g-brd-secondary--active g-rounded-4 g-py-8 g-px-15' href='posts.php?page={$i}'>{$i}
         </a>
       </li>";
-
+            }
         }
 
-        
-    }
+        ?>
 
-    ?>
-
-  </ul>
+    </ul>
 </nav>
 <!-- End Pagination States -->
+
+<?php include "total_post.php"; ?>
+
 
 <?php
 
@@ -637,79 +439,75 @@ if (isset($_GET['delete'])) {
 
 <?php if ($_SESSION['user_role'] == "admin") { ?>
 
-<form action="../admin/export2.php" method="post">
-<div class="g-pa-20">
-        <div class="row">
-            <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
-                <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
-                    <div class="form-group mb-0 g-max-width-400">
-                        <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
-                            <input  name="from_date" value="<?php echo $from_date; ?>" required="required"
-                            class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" 
-                            type="text" placeholder="From Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
-                            <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
-                                <i class="hs-admin-angle-down"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
-                <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
-                    <div class="form-group mb-0 g-max-width-400">
-                        <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
-                            <input name="to_date" value="<?php echo $to_date; ?>" required="required"
-                            class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" 
-                            type="text" placeholder="To Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
-                            <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
-                                <i class="hs-admin-angle-down"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <?php if ($_SESSION['user_role'] == "admin") { ?>
+    <form action="../admin/export2.php" method="post">
+        <div class="g-pa-20">
+            <div class="row">
                 <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
                     <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
                         <div class="form-group mb-0 g-max-width-400">
-                            <div class="form-group u-select--v3 g-pos-rel g-brd-gray-light-v7 rounded-0 mb-0">
-                                <div class="dropdown bootstrap-select js-select u-select--v3-select u-sibling w-100">
-                                    <select name="post_author" id="post_author" class="js-select u-select--v3-select u-sibling w-100" required="required"  tabindex="-98">
-                                        
-                                        <?php
-
-                                        
-
-                                        $query = "SELECT * FROM users ";
-                                        $select_categries = mysqli_query($connection, $query);
-                                        echo "<option value='{$username}'>{$username}</option>";
-                                        // confirmQuery($select_categries);
-
-                                        while ($row = mysqli_fetch_assoc($select_categries)) {
-                                            $username = $row['username'];
-                                            echo "<option value='{$username}'>{$username}</option>";
-                                        }
-                                        
-
-                                        ?>
-                                    </select>
-                                </div>
-
+                            <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
+                                <input name="from_date" value="<?php echo $from_date; ?>" required="required" class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" type="text" placeholder="From Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
                                 <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                    <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
                                     <i class="hs-admin-angle-down"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php } ?>
-            <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
-                <input class="btn btn-success" type="submit" name="expor_excel" value="Export Raport" />
+                <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
+                    <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
+                        <div class="form-group mb-0 g-max-width-400">
+                            <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
+                                <input name="to_date" value="<?php echo $to_date; ?>" required="required" class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" type="text" placeholder="To Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
+                                <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                    <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
+                                    <i class="hs-admin-angle-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php if ($_SESSION['user_role'] == "admin") { ?>
+                    <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30 d-none">
+                        <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
+                            <div class="form-group mb-0 g-max-width-400">
+                                <div class="form-group u-select--v3 g-pos-rel g-brd-gray-light-v7 rounded-0 mb-0">
+                                    <div class="dropdown bootstrap-select js-select u-select--v3-select u-sibling w-100">
+                                        <select name="post_author" id="post_author" class="js-select u-select--v3-select u-sibling w-100" required="required" tabindex="-98">
+
+                                            <?php
+
+
+
+                                            $query = "SELECT * FROM users ";
+                                            $select_categries = mysqli_query($connection, $query);
+                                            echo "<option value='{$username}'>{$username}</option>";
+                                            // confirmQuery($select_categries);
+
+                                            while ($row = mysqli_fetch_assoc($select_categries)) {
+                                                $username = $row['username'];
+                                                echo "<option value='{$username}'>{$username}</option>";
+                                            }
+
+
+                                            ?>
+                                        </select>
+                                    </div>
+
+                                    <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                        <i class="hs-admin-angle-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
+                <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
+                    <input class="btn btn-success" type="submit" name="expor_excel" value="Export Raport" />
+                </div>
             </div>
         </div>
-    </div>
-</form>
+    </form>
 
 <?php } ?>

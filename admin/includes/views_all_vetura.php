@@ -48,13 +48,13 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
     if ($_SESSION['user_role'] == "admin") {
-        $username = $_GET['post_author'];
+        $post_author = $_GET['post_author'];
     }
 } else {
     $from_date = "";
     $to_date = "";
     if ($_SESSION['user_role'] == "admin") {
-        $username = "";
+        $post_author = "";
     }
 }
 
@@ -152,17 +152,17 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 
             if ($_SESSION['user_role'] == "admin") {
-                $username = $_GET['post_author'];
-                if ($username == "liridonkrasniqi") {
-                    $query = "SELECT * FROM vetura WHERE date_v BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
+                $post_author = $_GET['post_author'];
+                if ($post_author == "liridonkrasniqi") {
+                    $query = "SELECT * FROM vetura WHERE post_date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                     $date_query = mysqli_query($connection, $query);
                 } else {
-                    $query = "SELECT * FROM vetura WHERE username = '$username' AND  date_v BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
+                    $query = "SELECT * FROM vetura WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                     $date_query = mysqli_query($connection, $query);
                 }
             } else {
-                $username = $_SESSION['username'];
-                $query = "SELECT * FROM vetura WHERE username = '$username' AND  date_v BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
+                $post_author = $_SESSION['post_author'];
+                $query = "SELECT * FROM vetura WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                 $date_query = mysqli_query($connection, $query);
             }
 
@@ -178,7 +178,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <?php } ?>
                         <th><?php echo $row['id']; ?></th>
                         <th><?php echo $row['title']; ?></th>
-                        <th><?php echo $row['username']; ?></th>
+                        <th><?php echo $row['post_author']; ?></th>
                         <th><?php echo $row['resiver']; ?></th>
                         <th><?php echo $row['modem']; ?></th>
                         <th><?php echo $row['rg6']; ?></th>
@@ -198,7 +198,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_10']; ?></th>
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
-                        <th><?php echo $row['date_v']; ?></th>
+                        <th><?php echo $row['post_date']; ?></th>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
                             <th>
                                 <a href='../vetura.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
@@ -240,15 +240,15 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 $query = "SELECT * FROM vetura ORDER BY id DESC";
                 $select_vetura = mysqli_query($connection, $query);
             } else {
-                $query = "SELECT * FROM vetura WHERE username = '$username_post' ORDER BY id DESC ";
+                $query = "SELECT * FROM vetura WHERE post_author = '$username_post' ORDER BY id DESC ";
                 $select_vetura = mysqli_query($connection, $query);
             }
 
             while ($row = mysqli_fetch_assoc($select_vetura)) {
                 $id = $row['id'];
                 $title = $row['title'];
-                $username = $row['username'];
-                $date_v = $row['date_v'];
+                $post_author = $row['post_author'];
+                $post_date = $row['post_date'];
                 $content = $row['content'];
                 $resiver = $row['resiver'];
 
@@ -282,7 +282,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
         <?php
                 echo "<td>$id</td>";
                 echo "<td>$title</td>";
-                echo "<td>$username</td>";
+                echo "<td>$post_author</td>";
 
 
                 echo "<td>$resiver</td>";
@@ -304,7 +304,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_10</td>";
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
-                echo "<td>$date_v</td>";
+                echo "<td>$post_date</td>";
                 if ($_SESSION['user_role'] == "admin") {
                     echo "<td><a href='../vetura.php?p_id={$id}'>View Post</a></td>";
                     echo "<td><a href='vetura.php?source=edit_vetura&p_id={$id}'>Edit</a></td>";
@@ -323,9 +323,9 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     </tbody>
 </table>
 
+<?php include "total_post.php"; ?>
+
 <?php
-
-
 
 if (isset($_GET['delete'])) {
 

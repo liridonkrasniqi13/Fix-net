@@ -3,7 +3,7 @@
 if (isset($_POST['create_post'])) {
 
     $title = $_POST['title'];
-    $username = $_POST['username'];
+    $post_author = $_POST['post_author'];
 
     $resiver = $_POST['resiver'];
     $modem = $_POST['modem'];
@@ -25,15 +25,15 @@ if (isset($_POST['create_post'])) {
     $tap_10 = $_POST['tap_10'];
     $tap_8 = $_POST['tap_8'];
     $tap_4 = $_POST['tap_4'];
-    $date_v = date('d-m-y');
+    $post_date = date('d-m-y');
 
 
 
-    $query = "INSERT INTO vetura (title, date_v, username , content, resiver, modem, rg6,
+    $query = "INSERT INTO vetura (title, post_date, post_author , content, resiver, modem, rg6,
     konektor_rg6, spliter, konektor_tv, rg11, t32, kupler_7402, amp,
     tap_26, tap_23, tap_20, tap_17, tap_14, tap_11, tap_10, tap_8, tap_4) ";
 
-    $query .= "VALUE('{$title}',now(), '{$username}' ,'{$content}','{$resiver}', '{$modem}', '{$rg6}',
+    $query .= "VALUE('{$title}',now(), '{$post_author}' ,'{$content}','{$resiver}', '{$modem}', '{$rg6}',
     '{$konektor_rg6}', '{$spliter}', '{$konektor_tv}', '{$rg11}', '{$t32}', '{$kupler_7402}', '{$amp}',
     '{$tap_26}', '{$tap_23}', '{$tap_20}', '{$tap_17}', '{$tap_14}', '{$tap_11}', '{$tap_10}', '{$tap_8}', '{$tap_4}')";
 
@@ -59,7 +59,7 @@ if (isset($_POST['create_post'])) {
 
     <div class="form-group">
         <label for="title">Veturat</label>
-        <select name="username" id="username" class="form-control" required="required">
+        <select name="post_author" id="post_author" class="form-control" required="required">
 
             <?php
 
