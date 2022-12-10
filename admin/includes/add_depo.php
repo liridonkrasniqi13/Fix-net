@@ -43,7 +43,8 @@ if (isset($_POST['create_post'])) {
 
     $the_id = mysqli_insert_id($connection);
 
-    echo "<div class='alert alert-success' role='alert'>Post Created. <a href='posts.php'>View Post</a> or <a href='../depo.php?p_id={$the_id}'>Edit the depo</a></div>";
+    header("Location: ../admin/depo.php ");
+
 }
 
 ?>

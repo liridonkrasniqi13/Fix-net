@@ -5,7 +5,7 @@ if (isset($_GET['p_id'])) {
     $the_id = $_GET['p_id'];
 }
 
-echo $the_id;
+// echo $the_id;
 
 $query = "SELECT * FROM depo WHERE id = $the_id ";
 $select_posts_by_id = mysqli_query($connection, $query);
@@ -60,7 +60,7 @@ if (isset($_POST['update_post'])) {
     $tap_8 = $_POST['tap_8'];
     $tap_4 = $_POST['tap_4'];
 
-    echo $the_id;
+    // echo $the_id;
 
     $query = "UPDATE depo SET 
     title = '{$title}',
@@ -89,7 +89,7 @@ if (isset($_POST['update_post'])) {
     tap_4 =  '{$tap_4}',
     date = now()
     WHERE id = $the_id ";
-    echo $the_id;
+    // echo $the_id;
     // $query .="author = '{$author}', ";
     // $query .="WHERE id = {$the_id}";
 
@@ -97,7 +97,8 @@ if (isset($_POST['update_post'])) {
 
     confirmQuery($update_post);
 
-    echo "<div class='alert alert-success' role='alert'>Post Updated. <a href='posts.php'>View Post</a> or <a href='../post.php?p_id={$the_id}'>View the Post</a></div>";
+    header("Location: ../admin/depo.php ");
+
 }
 
 ?>

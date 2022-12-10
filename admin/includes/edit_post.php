@@ -101,7 +101,6 @@ if (isset($_POST['update_post'])) {
     confirmQuery($update_post);
     header("Location: ../admin/posts.php ");
 
-    echo "<div class='alert alert-success' role='alert'>Post Updated. <a href='posts.php'>View Post</a> or <a href='../post.php?p_id={$the_post_id}'>View the Post</a></div>";
 }
 
 ?>
@@ -118,6 +117,7 @@ if (isset($_POST['update_post'])) {
     <div class="form-group">
     <label for="title">Tiket</label>
         <select name="post_category" id="post_category" class="form-control" required="required">
+            <option value="<?php echo $post_category_id ?>"><?php echo $post_category_id ?></option>
 
             <?php
 
