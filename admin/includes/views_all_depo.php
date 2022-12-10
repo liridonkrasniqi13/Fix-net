@@ -1,109 +1,25 @@
 <?php
 
-if (isset($_POST['checkBoxArray'])) {
-
-    foreach ($_POST['checkBoxArray'] as $postValueID) {
-
-        // echo $checkBoxValue;
-
-        $bulk_options = $_POST['bulk_options'];
-
-        switch ($bulk_options) {
-
-            case 'published':
-
-                $query = "UPDATE depo SET status = '{$bulk_options}' WHERE id = {$postValueID}  ";
-
-                $update_to_published = mysqli_query($connection,  $query);
-
-                confirmQuery($update_to_published);
-
-                break;
-
-            case 'draft':
-
-                $query = "UPDATE depo SET status = '{$bulk_options}' WHERE id = {$postValueID}  ";
-
-                $update_to_draft = mysqli_query($connection,  $query);
-
-                confirmQuery($update_to_draft);
-
-                break;
-
-            case 'delete':
-
-                $query = "DELETE FROM depo WHERE id = {$postValueID}  ";
-
-                $update_to_delete = mysqli_query($connection,  $query);
-
-                confirmQuery($update_to_delete);
-
-                break;
-        };
-    }
-};
-
-
 if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
-    if ($_SESSION['user_role'] == "admin") {
-        $username = $_GET['author'];
-    }
+
 } else {
     $from_date = "";
     $to_date = "";
-    if ($_SESSION['user_role'] == "admin") {
-        $username = "";
-    }
 }
 
 ?>
 
-<form action="" method='GET'>
     <legend>Depo Material</legend>
-    <div class="table-responsive">
-
-        <div id="bulkOptionsContainer">
-
-            <?php if ($_SESSION['user_role'] == "admin") { ?>
-                <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <select name="bulk_options" id="bulk_options" class="form-control">
-                        <option value="">Select Option</option>
-                        <option value="published">Published</option>
-                        <option value="draft">Draft</option>
-                        <option value="delete">Delete</option>
-                    </select>
-                </div>
-
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
-                    <input type="submit" name="submit" class="btn btn-success" value="Apply">
-
-                    <a href="posts.php?source=add_post" class="btn btn-primary">Add new Post</a>
-
-                    <a href="posts.php" class="btn  btn-default">Cancel</a>
-
-
-                </div> -->
-
-            <?php } ?>
-
-
-</form>
-
+    
 
 <?php include "filter.php"; ?>
-
-
-</div>
-
-
+<div class="table-responsive">
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
-            <?php if ($_SESSION['user_role'] == "admin") { ?>
-                <th><input type="checkbox" name="" id="selectAllBoxes"></th>
-            <?php } ?>
+
             <th>Id</th>
             <th>Klienti</th>
             <th>Resiver</th>
@@ -145,21 +61,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             $from_date = $_GET['from_date'];
             $to_date = $_GET['to_date'];
 
-
-            if ($_SESSION['user_role'] == "admin") {
-                $username = $_GET['author'];
-                if ($username == "liridonkrasniqi") {
-                    $query = "SELECT * FROM depo WHERE date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
-                    $date_query = mysqli_query($connection, $query);
-                } else {
-                    $query = "SELECT * FROM depo WHERE author = '$username' AND  date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
-                    $date_query = mysqli_query($connection, $query);
-                }
-            } else {
-                $author = $_SESSION['username'];
-                $query = "SELECT * FROM depo WHERE author = '$author' AND  date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
+                $query = "SELECT * FROM depo WHERE  post_date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
                 $date_query = mysqli_query($connection, $query);
-            }
 
 
 
@@ -168,21 +71,10 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 foreach ($date_query as $row) {
         ?>
                     <tr>
-                        <?php if ($_SESSION['user_role'] == "admin") { ?>
-                            <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $id; ?>'></td>
-                        <?php } ?>
+
                         <th><?php echo $row['id']; ?></th>
-                        <th><?php echo $row['author']; ?></th>
                         <th><?php echo $row['title']; ?></th>
-                        <th><?php if ($row['category_id'] == "Tiket") {
-                                echo "Ticked";
-                            }
-                            if ($row['category_id'] == "16") {
-                                echo "Instalim";
-                            }
-                            if ($row['category_id'] == "17") {
-                                echo "Generale";
-                            } ?></th>
+
                         <th><?php echo $row['resiver']; ?></th>
                         <th><?php echo $row['modem']; ?></th>
                         <th><?php echo $row['rg6']; ?></th>
@@ -202,7 +94,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_10']; ?></th>
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
-                        <th><?php echo $row['date']; ?></th>
+                        <th><?php echo $row['post_date']; ?></th>
                         <?php if ($_SESSION['user_role'] == "admin") { ?>
                             <th>
                                 <a href='../post.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
@@ -239,19 +131,15 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
         if (isset($_GET['from_date']) == "") {
 
 
-            $author_post = $_SESSION['username'];
             if ($_SESSION['user_role'] == "admin") {
                 $query = "SELECT * FROM depo ORDER BY id DESC";
                 $select_depo = mysqli_query($connection, $query);
-            } else {
-                $query = "SELECT * FROM depo WHERE author = '$author_post' ORDER BY id DESC ";
-                $select_depo = mysqli_query($connection, $query);
-            }
+            } 
 
             while ($row = mysqli_fetch_assoc($select_depo)) {
                 $id = $row['id'];
                 $title = $row['title'];
-                $date = $row['date'];
+                $post_date = $row['post_date'];
                 $content = $row['content'];
                 $resiver = $row['resiver'];
 
@@ -278,11 +166,9 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<tr>";
             ?>
 
-                <?php if ($_SESSION['user_role'] == "admin") { ?>
-                    <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $id; ?>'></td>
-                <?php } ?>
 
-        <?php
+
+            <?php
                 echo "<td>$id</td>";
                 echo "<td>$title</td>";
 
@@ -306,7 +192,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_10</td>";
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
-                echo "<td>$date</td>";
+                echo "<td>$post_date</td>";
                 if ($_SESSION['user_role'] == "admin") {
                     echo "<td><a href='../post.php?p_id={$id}'>View Post</a></td>";
                     echo "<td><a href='depo.php?source=edit_depo&p_id={$id}'>Edit</a></td>";
@@ -324,6 +210,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
     </tbody>
 </table>
+
+<?php include "total_depo.php" ; ?>
 
 <?php
 

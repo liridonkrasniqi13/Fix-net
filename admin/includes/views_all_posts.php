@@ -413,7 +413,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 </nav>
 <!-- End Pagination States -->
 
-<?php include "total_post.php"; ?>
+<?php if ($_SESSION['user_role'] == "admin") { include "total_post.php"; } ?>
 
 
 <?php

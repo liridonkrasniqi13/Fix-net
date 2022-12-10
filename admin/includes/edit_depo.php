@@ -12,7 +12,7 @@ $select_posts_by_id = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $id = $row['id'];
     $title = $row['title'];
-    $date = $row['date'];
+    $post_date = $row['post_date'];
     $content = $row['content'];
     $resiver = $row['resiver'];
     $resiver = $row['resiver'];
@@ -39,7 +39,6 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
 if (isset($_POST['update_post'])) {
     $title = $_POST['title'];
     $content = $_POST['content'];
-
     $resiver = $_POST['resiver'];
     $modem = $_POST['modem'];
     $rg6 = $_POST['rg6'];
@@ -65,11 +64,9 @@ if (isset($_POST['update_post'])) {
     $query = "UPDATE depo SET 
     title = '{$title}',
     content = '{$content}',
-    resiver = '{$resiver}',
-    
+    resiver = '{$resiver}',   
     resiver =  '{$resiver}', 
     modem =  '{$modem}', 
-    content =  '{$content}', 
     rg6 =  '{$rg6}', 
     konektor_rg6 =  '{$konektor_rg6}', 
     spliter =  '{$spliter}', 
@@ -87,7 +84,7 @@ if (isset($_POST['update_post'])) {
     tap_10 =  '{$tap_10}', 
     tap_8 =  '{$tap_8}', 
     tap_4 =  '{$tap_4}',
-    date = now()
+    post_date = now()
     WHERE id = $the_id ";
     // echo $the_id;
     // $query .="author = '{$author}', ";
@@ -103,7 +100,6 @@ if (isset($_POST['update_post'])) {
 
 ?>
 
-
 <form action="" method="post" enctype="multipart/form-data">
     <legend>Edit Depo</legend>
 
@@ -111,14 +107,11 @@ if (isset($_POST['update_post'])) {
         <label for="title">Emri Klientit</label>
         <input value="<?php echo $title; ?>" type="text" class="form-control" name="title" id="" placeholder="Emri Klientit">
     </div>
-
-
-    
+   
     <div class="form-group">
         <label for="content">Comment</label>
-        <textarea value="<?php echo $content; ?>" type="text" class="form-control" name="content" id="" placeholder="Comment"></textarea>
+        <textarea value="<?php echo $content; ?>" type="text" class="form-control" name="content" id="" placeholder="Comment"><?php echo $content; ?></textarea>
     </div>
-
 
     <div class="form-group">
         <label for="modem">Modem </label>
