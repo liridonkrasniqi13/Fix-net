@@ -47,7 +47,6 @@ if (isset($_POST['create_post'])) {
     
     header("Location: ../admin ");
 
-    echo "<div class='alert alert-success' role='alert'>Post Created. <a href='posts.php'>View Post</a> or <a href='../post.php?p_id={$the_post_id}'>Edit the Post</a></div>";
 }
 
 ?>

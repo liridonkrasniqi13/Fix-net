@@ -5,15 +5,15 @@ if (isset($_GET['p_id'])) {
     $the_id = $_GET['p_id'];
 }
 
-echo $the_id;
+// echo $the_id;
 
 $query = "SELECT * FROM vetura WHERE id = $the_id ";
 $select_posts_by_id = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $id = $row['id'];
     $title = $row['title'];
-    $username = $row['username'];
-    $date = $row['date'];
+    $post_author = $row['post_author'];
+    $post_date = $row['post_date'];
     $content = $row['content'];
     $resiver = $row['resiver'];
     $resiver = $row['resiver'];
@@ -39,7 +39,7 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
 
 if (isset($_POST['update_post'])) {
     $title = $_POST['title'];
-    $username = $_POST['username'];
+    $post_author = $_POST['post_author'];
     $content = $_POST['content'];
 
     $resiver = $_POST['resiver'];
@@ -62,11 +62,11 @@ if (isset($_POST['update_post'])) {
     $tap_8 = $_POST['tap_8'];
     $tap_4 = $_POST['tap_4'];
 
-    echo $the_id;
+    // echo $the_id;
 
     $query = "UPDATE vetura SET 
     title = '{$title}',
-    username = '{$username}',
+    post_author = '{$post_author}',
     content = '{$content}',
     resiver = '{$resiver}',
     
@@ -90,9 +90,9 @@ if (isset($_POST['update_post'])) {
     tap_10 =  '{$tap_10}', 
     tap_8 =  '{$tap_8}', 
     tap_4 =  '{$tap_4}',
-    date = now()
+    post_date = now()
     WHERE id = $the_id ";
-    echo $the_id;
+    // echo $the_id;
     // $query .="author = '{$author}', ";
     // $query .="WHERE id = {$the_id}";
 
@@ -100,7 +100,8 @@ if (isset($_POST['update_post'])) {
 
     confirmQuery($update_post);
 
-    echo "<div class='alert alert-success' role='alert'>Post Updated. <a href='posts.php'>View Post</a> or <a href='../post.php?p_id={$the_id}'>View the Post</a></div>";
+    header("Location: ../admin/vetura.php ");
+
 }
 
 ?>
@@ -115,8 +116,10 @@ if (isset($_POST['update_post'])) {
     </div>
 
     <div class="form-group">
-        <label for="username">Veturat</label>
-        <select name="username" id="username" class="form-control" required="required">
+        <label for="post_author">Veturat</label>
+        <select name="post_author" id="post_author" class="form-control" required="required">
+
+        <option value="<?php echo $post_author ?>"><?php echo $post_author ?></option>
 
             <?php
 

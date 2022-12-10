@@ -25,11 +25,11 @@ if (isset($_POST['create_post'])) {
     $tap_10 = $_POST['tap_10'];
     $tap_8 = $_POST['tap_8'];
     $tap_4 = $_POST['tap_4'];
-    $date = date('d-m-y');
+    $post_date = date('d-m-y');
 
 
 
-    $query = "INSERT INTO depo(title, date, content, resiver, modem, rg6,
+    $query = "INSERT INTO depo(title, post_date, content, resiver, modem, rg6,
     konektor_rg6, spliter, konektor_tv, rg11, t32, kupler_7402, amp,
     tap_26, tap_23, tap_20, tap_17, tap_14, tap_11, tap_10, tap_8, tap_4) ";
 
@@ -43,7 +43,8 @@ if (isset($_POST['create_post'])) {
 
     $the_id = mysqli_insert_id($connection);
 
-    echo "<div class='alert alert-success' role='alert'>Post Created. <a href='posts.php'>View Post</a> or <a href='../depo.php?p_id={$the_id}'>Edit the depo</a></div>";
+    header("Location: ../admin/depo.php ");
+
 }
 
 ?>
