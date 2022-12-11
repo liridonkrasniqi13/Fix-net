@@ -169,7 +169,7 @@ if (isset($_POST['update_post'])) {
     
     <div class="form-group">
         <label for="post_content">Comment</label>
-        <textarea value="<?php echo $post_content; ?>" type="text" class="form-control" name="post_content" id="" placeholder="Comment"></textarea>
+        <textarea value="<?php echo $post_content; ?>" type="text" class="form-control" name="post_content" id="" placeholder="Comment"><?php echo $post_content; ?></textarea>
     </div>
 
 
