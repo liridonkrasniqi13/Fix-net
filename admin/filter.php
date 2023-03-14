@@ -23,9 +23,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
                     <div class="form-group mb-0 g-max-width-400">
                         <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
-                            <input  name="from_date" value="<?php echo $from_date; ?>" required="required"
-                            class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" 
-                            type="text" placeholder="From Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
+                            <input name="from_date" value="2022-11-01" required="required" class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" type="text" placeholder="From Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
                             <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
                                 <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
                                 <i class="hs-admin-angle-down"></i>
@@ -38,9 +36,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
                     <div class="form-group mb-0 g-max-width-400">
                         <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
-                            <input name="to_date" value="<?php echo $to_date; ?>" required="required"
-                            class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" 
-                            type="text" placeholder="To Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
+                            <input name="to_date" value="<?php echo $to_date; ?>" required="required" class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" type="text" placeholder="To Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
                             <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
                                 <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
                                 <i class="hs-admin-angle-down"></i>
@@ -55,11 +51,11 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <div class="form-group mb-0 g-max-width-400">
                             <div class="form-group u-select--v3 g-pos-rel g-brd-gray-light-v7 rounded-0 mb-0">
                                 <div class="dropdown bootstrap-select js-select u-select--v3-select u-sibling w-100">
-                                    <select name="post_author" id="post_author" class="js-select u-select--v3-select u-sibling w-100" required="required"  tabindex="-98">
-                                        
+                                    <select name="post_author" id="post_author" class="js-select u-select--v3-select u-sibling w-100" required="required" tabindex="-98">
+
                                         <?php
 
-                                        
+
 
                                         $query = "SELECT * FROM users ";
                                         $select_categries = mysqli_query($connection, $query);
@@ -70,7 +66,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                                             $username = $row['username'];
                                             echo "<option value='{$username}'>{$username}</option>";
                                         }
-                                        
+
 
                                         ?>
                                     </select>
