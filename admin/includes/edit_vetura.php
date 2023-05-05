@@ -13,7 +13,6 @@ while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $id = $row['id'];
     $title = $row['title'];
     $post_author = $row['post_author'];
-    $post_date = $row['post_date'];
     $content = $row['content'];
     $resiver = $row['resiver'];
     $resiver = $row['resiver'];
@@ -89,8 +88,7 @@ if (isset($_POST['update_post'])) {
     tap_11 =  '{$tap_11}', 
     tap_10 =  '{$tap_10}', 
     tap_8 =  '{$tap_8}', 
-    tap_4 =  '{$tap_4}',
-    post_date = now()
+    tap_4 =  '{$tap_4}'
     WHERE id = $the_id ";
     // echo $the_id;
     // $query .="author = '{$author}', ";
@@ -144,7 +142,7 @@ if (isset($_POST['update_post'])) {
     
     <div class="form-group">
         <label for="content">Comment</label>
-        <textarea value="<?php echo $content; ?>" type="text" class="form-control" name="content" id="" placeholder="Comment"></textarea>
+        <textarea value="" type="text" class="form-control" name="content" id="" placeholder="Comment"><?php echo $content; ?></textarea>
     </div>
 
 

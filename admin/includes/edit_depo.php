@@ -12,7 +12,6 @@ $select_posts_by_id = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_posts_by_id)) {
     $id = $row['id'];
     $title = $row['title'];
-    $post_date = $row['post_date'];
     $content = $row['content'];
     $resiver = $row['resiver'];
     $resiver = $row['resiver'];
@@ -83,8 +82,7 @@ if (isset($_POST['update_post'])) {
     tap_11 =  '{$tap_11}', 
     tap_10 =  '{$tap_10}', 
     tap_8 =  '{$tap_8}', 
-    tap_4 =  '{$tap_4}',
-    post_date = now()
+    tap_4 =  '{$tap_4}'
     WHERE id = $the_id ";
     // echo $the_id;
     // $query .="author = '{$author}', ";
