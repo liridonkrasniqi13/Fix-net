@@ -48,8 +48,10 @@ if (isset($_POST['checkBoxArray'])) {
 if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
+    
     if ($_SESSION['user_role'] == "admin") {
         $username = $_GET['post_author'];
+        $ticekd = $_GET['ticekd'];
     }
 } else {
     $from_date = "";
@@ -153,20 +155,27 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             $from_date = $_GET['from_date'];
             $to_date = $_GET['to_date'];
 
+           
 
             if ($_SESSION['user_role'] == "admin") {
                 $username = $_GET['post_author'];
+                if ($ticekd == "all") {
+                    $filter_ticked = "" ;
+                } else {
+                    $filter_ticked = " AND post_category_id = '$ticekd' ";
+                }
                 if ($username == "liridonkrasniqi") {
 
+                    
 
-
-                    $query = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date' ";
+                    $query = "SELECT * FROM posts WHERE post_date BETWEEN '$from_date' AND '$to_date'  $filter_ticked ";
                     $date_query = mysqli_query($connection, $query);
+
                 } else {
 
 
 
-                    $query = "SELECT * FROM posts WHERE post_author = '$username' AND  post_date BETWEEN '$from_date' AND '$to_date' ";
+                    $query = "SELECT * FROM posts WHERE post_author = '$username' $filter_ticked AND  post_date BETWEEN '$from_date' AND '$to_date'  ";
                     $date_query = mysqli_query($connection, $query);
                 }
             } else {
