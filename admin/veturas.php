@@ -23,15 +23,13 @@
                 }
 
 
-                $query = "SELECT * FROM depo WHERE id = $the_post_id";
+                $query = "SELECT * FROM vetura WHERE id = $the_post_id";
                 $select_all_post_query = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($select_all_post_query)) {
                     $post_title = $row['title'];
-                    // $post_author = $row['post_author'];
+                    $post_author = $row['post_author'];
                     $post_date = $row['post_date'];
-                    $post_content = $row['content'];
-
                     $post_content = $row['content'];
                     $id12  =  $row['id'];
                     $resiver  =  $row['resiver'];
@@ -57,14 +55,14 @@
                 ?>
 
                     <h1 class="page-header">
-                        <?php echo $post_title ?>
+                        <?php echo $post_author ?>
                         <small class="float-right"><?php
                                                     if ($_SESSION['user_role'] == "admin") {
                                                         $username = "";
 
 
                                                         echo "
-                                <a href='depo.php?source=edit_depo&p_id={$the_post_id}'>Edit post</a>
+                                <a href='vetura.php?source=edit_vetura&p_id={$the_post_id}'>Edit post</a>
                             ";
                                                     }   ?></small>
                     </h1>
@@ -79,13 +77,13 @@
                             <?php echo $post_content ?>
                         </h3>
 
-
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
 
-                                        <th>Klienti</th>
+                                        <th>Spoc</th>
+                                        <th>Veturat</th>
                                         <th>Resiver</th>
                                         <th>Modem</th>
                                         <th>RG6</th>
@@ -111,8 +109,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+
+
+
+
                                     <tr>
                                         <th><?php echo $post_title; ?></th>
+                                        <th><?php echo $post_author; ?></th>
                                         <th><?php echo $resiver; ?></th>
                                         <th><?php echo $modem;  ?></th>
                                         <th><?php echo $rg6; ?></th>
@@ -135,9 +138,12 @@
                                         <th><?php echo $post_date; ?></th>
 
                                     </tr>
+
+
                                 </tbody>
                             </table>
                         </div>
+
 
                     </div>
 
@@ -145,7 +151,11 @@
 
                 <?php } ?>
 
+
+
                 <!-- Blog Comments -->
+
+
 
                 <?php
 
@@ -157,6 +167,11 @@
                     $comment_content = $_POST['comment_content'];
 
                     if (!empty($comment_author) && !empty($comment_content)) {
+
+
+
+
+
 
 
                         $query = "INSERT INTO comments (comment_post_id, comment_author,
@@ -231,7 +246,6 @@
                 <hr>
 
                 <!-- Posted Comments -->
-
 
             </div>
 

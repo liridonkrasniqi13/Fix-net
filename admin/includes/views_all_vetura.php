@@ -306,7 +306,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_4</td>";
                 echo "<td>$post_date</td>";
                 if ($_SESSION['user_role'] == "admin") {
-                    echo "<td><a href='../vetura.php?p_id={$id}'>View Post</a></td>";
+                    echo "<td><a href='veturas.php?p_id={$id}'>View Post</a></td>";
                     echo "<td><a href='vetura.php?source=edit_vetura&p_id={$id}'>Edit</a></td>";
                     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='vetura.php?delete={$id}'>Delete</a></td>";
                 }
