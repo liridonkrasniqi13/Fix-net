@@ -32,6 +32,11 @@
                     $post_date = $row['post_date'];
                     $post_content = $row['post_content'];
 
+
+
+
+
+
                 ?>
 
                     <h1 class="page-header">
@@ -56,6 +61,78 @@
                         <h3 class="h5 g-font-weight-300 g-mb-20">
                             <?php echo $post_content ?>
                         </h3>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+
+                                        <th>Id</th>
+                                        <th>Author</th>
+                                        <th>Klienti</th>
+                                        <th>Tiket</th>
+                                        <th>Resiver</th>
+                                        <th>Modem</th>
+                                        <th>RG6</th>
+                                        <th>Konektor RG6</th>
+                                        <th>Spliter</th>
+                                        <th>Konektor Tv</th>
+                                        <th>RG11</th>
+                                        <th>T32</th>
+                                        <th>Kupler 7402</th>
+                                        <th>AMP</th>
+                                        <th>Tap 26</th>
+                                        <th>Tap 23</th>
+                                        <th>Tap 20</th>
+                                        <th>Tap 17</th>
+                                        <th>Tap 14</th>
+                                        <th>Tap 11</th>
+                                        <th>Tap 10</th>
+                                        <th>Tap 8</th>
+                                        <th>Kartela</th>
+                                        <th>Date</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+
+                                    <tr>
+                                        <th><?php echo $row['post_id']; ?></th>
+                                        <th><?php echo $row['post_author']; ?></th>
+                                        <th><?php echo $row['post_title']; ?></th>
+                                        <th><?php echo $row['post_category_id']; ?></th>
+                                        <th><?php echo $row['post_resiver']; ?></th>
+                                        <th><?php echo $row['post_modem']; ?></th>
+                                        <th><?php echo $row['post_rg6']; ?></th>
+                                        <th><?php echo $row['post_konektor_rg6']; ?></th>
+                                        <th><?php echo $row['post_spliter']; ?></th>
+                                        <th><?php echo $row['post_konektor_tv']; ?></th>
+                                        <th><?php echo $row['post_rg11']; ?></th>
+                                        <th><?php echo $row['post_t32']; ?></th>
+                                        <th><?php echo $row['post_kupler_7402']; ?></th>
+                                        <th><?php echo $row['post_amp']; ?></th>
+                                        <th><?php echo $row['tap_26']; ?></th>
+                                        <th><?php echo $row['tap_23']; ?></th>
+                                        <th><?php echo $row['tap_20']; ?></th>
+                                        <th><?php echo $row['tap_17']; ?></th>
+                                        <th><?php echo $row['tap_14']; ?></th>
+                                        <th><?php echo $row['tap_11']; ?></th>
+                                        <th><?php echo $row['tap_10']; ?></th>
+                                        <th><?php echo $row['tap_8']; ?></th>
+                                        <th><?php echo $row['tap_4']; ?></th>
+                                        <th><?php echo $row['post_date']; ?></th>
+
+                                    </tr>
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                     <hr>
