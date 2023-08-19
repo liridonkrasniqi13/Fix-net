@@ -23,31 +23,48 @@
                 }
 
 
-                $query = "SELECT * FROM posts WHERE post_id = $the_post_id";
+                $query = "SELECT * FROM depo WHERE id = $the_post_id";
                 $select_all_post_query = mysqli_query($connection, $query);
 
                 while ($row = mysqli_fetch_assoc($select_all_post_query)) {
-                    $post_title = $row['post_title'];
-                    $post_author = $row['post_author'];
+                    $post_title = $row['title'];
+                    // $post_author = $row['post_author'];
                     $post_date = $row['post_date'];
-                    $post_content = $row['post_content'];
+                    $post_content = $row['content'];
 
-
-
-
-
+                    $post_content = $row['content'];
+                    $id12  =  $row['id'];
+                    $resiver  =  $row['resiver'];
+                    $modem  =  $row['modem'];
+                    $rg6  =  $row['rg6'];
+                    $konektor_rg6  =  $row['konektor_rg6'];
+                    $spliter  = $row['spliter'];
+                    $konektor_tv  = $row['konektor_tv'];
+                    $rg11  = $row['rg11'];
+                    $t32  = $row['t32'];
+                    $kupler_7402  = $row['kupler_7402'];
+                    $amp  = $row['amp'];
+                    $tap_26  = $row['tap_26'];
+                    $tap_23  = $row['tap_23'];
+                    $tap_20  = $row['tap_20'];
+                    $tap_17  = $row['tap_17'];
+                    $tap_14  = $row['tap_14'];
+                    $tap_11  = $row['tap_11'];
+                    $tap_10  = $row['tap_10'];
+                    $tap_8  = $row['tap_8'];
+                    $tap_4  = $row['tap_4'];
 
                 ?>
 
                     <h1 class="page-header">
-                        <?php echo $post_author ?>
+                        <?php echo $post_title ?>
                         <small class="float-right"><?php
                                                     if ($_SESSION['user_role'] == "admin") {
                                                         $username = "";
 
 
                                                         echo "
-                                <a href='posts.php?source=edit_post&p_id={$the_post_id}'>Edit post</a>
+                                <a href='depo.php?source=edit_depo&p_id={$the_post_id}'>Edit post</a>
                             ";
                                                     }   ?></small>
                     </h1>
@@ -62,15 +79,13 @@
                             <?php echo $post_content ?>
                         </h3>
 
+
                         <div class="table-responsive">
                             <table class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
 
-                                        <th>Id</th>
-                                        <th>Author</th>
                                         <th>Klienti</th>
-                                        <th>Tiket</th>
                                         <th>Resiver</th>
                                         <th>Modem</th>
                                         <th>RG6</th>
@@ -96,39 +111,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-
-
-
                                     <tr>
-                                        <th><?php echo $row['post_id']; ?></th>
-                                        <th><?php echo $row['post_author']; ?></th>
-                                        <th><?php echo $row['post_title']; ?></th>
-                                        <th><?php echo $row['post_category_id']; ?></th>
-                                        <th><?php echo $row['post_resiver']; ?></th>
-                                        <th><?php echo $row['post_modem']; ?></th>
-                                        <th><?php echo $row['post_rg6']; ?></th>
-                                        <th><?php echo $row['post_konektor_rg6']; ?></th>
-                                        <th><?php echo $row['post_spliter']; ?></th>
-                                        <th><?php echo $row['post_konektor_tv']; ?></th>
-                                        <th><?php echo $row['post_rg11']; ?></th>
-                                        <th><?php echo $row['post_t32']; ?></th>
-                                        <th><?php echo $row['post_kupler_7402']; ?></th>
-                                        <th><?php echo $row['post_amp']; ?></th>
-                                        <th><?php echo $row['tap_26']; ?></th>
-                                        <th><?php echo $row['tap_23']; ?></th>
-                                        <th><?php echo $row['tap_20']; ?></th>
-                                        <th><?php echo $row['tap_17']; ?></th>
-                                        <th><?php echo $row['tap_14']; ?></th>
-                                        <th><?php echo $row['tap_11']; ?></th>
-                                        <th><?php echo $row['tap_10']; ?></th>
-                                        <th><?php echo $row['tap_8']; ?></th>
-                                        <th><?php echo $row['tap_4']; ?></th>
-                                        <th><?php echo $row['post_date']; ?></th>
+                                        <th><?php echo $post_title; ?></th>
+                                        <th><?php echo $resiver; ?></th>
+                                        <th><?php echo $modem;  ?></th>
+                                        <th><?php echo $rg6; ?></th>
+                                        <th><?php echo $konektor_rg6; ?></th>
+                                        <th><?php echo $spliter; ?></th>
+                                        <th><?php echo $konektor_tv; ?></th>
+                                        <th><?php echo $rg11; ?></th>
+                                        <th><?php echo $t32; ?></th>
+                                        <th><?php echo $kupler_7402; ?></th>
+                                        <th><?php echo $amp; ?></th>
+                                        <th><?php echo $tap_23; ?></th>
+                                        <th><?php echo $tap_20; ?></th>
+                                        <th><?php echo $tap_26; ?></th>
+                                        <th><?php echo $tap_17; ?></th>
+                                        <th><?php echo $tap_14; ?></th>
+                                        <th><?php echo $tap_11; ?></th>
+                                        <th><?php echo $tap_10; ?></th>
+                                        <th><?php echo $tap_8; ?></th>
+                                        <th><?php echo $tap_4; ?></th>
+                                        <th><?php echo $post_date; ?></th>
 
                                     </tr>
-
-
                                 </tbody>
                             </table>
                         </div>
@@ -137,13 +143,9 @@
 
                     <hr>
 
-
-
                 <?php } ?>
 
                 <!-- Blog Comments -->
-
-
 
                 <?php
 
@@ -155,11 +157,6 @@
                     $comment_content = $_POST['comment_content'];
 
                     if (!empty($comment_author) && !empty($comment_content)) {
-
-
-
-
-
 
 
                         $query = "INSERT INTO comments (comment_post_id, comment_author,
@@ -234,10 +231,6 @@
                 <hr>
 
                 <!-- Posted Comments -->
-
-
-
-
 
 
             </div>

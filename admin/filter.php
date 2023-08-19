@@ -79,6 +79,56 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         </div>
                     </div>
                 </div>
+
+                <?php 
+                
+
+                    $current_url = "http" . (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "s" : "") . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+if (strpos($current_url, 'posts.php') !== false) { ?>
+
+
+
+               
+
+                <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
+                    <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
+                        <div class="form-group mb-0 g-max-width-400">
+                            <div class="form-group u-select--v3 g-pos-rel g-brd-gray-light-v7 rounded-0 mb-0">
+                                <div class="dropdown bootstrap-select js-select u-select--v3-select u-sibling w-100">
+                                    <select name="ticekd" id="ticekd" class="js-select u-select--v3-select u-sibling w-100" required="required" tabindex="-98">
+                                        <option value="all">All </option>
+                                        <?php
+
+                                            $query = "SELECT * FROM categories ";
+                                            $select_categries = mysqli_query($connection, $query);
+
+                                            // confirmQuery($select_categries);
+
+                                            while ($row = mysqli_fetch_assoc($select_categries)) {
+                                                // $cat_id = $row['cat_id'];
+                                                $cat_title = $row['cat_title'];
+
+                                                echo "<option value='{$cat_title}'>{$cat_title}</option>";
+                                            }
+
+                                            ?>
+                                    </select>
+                                </div>
+
+
+                                <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
+                                    <i class="hs-admin-angle-down"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <?php 
+} 
+
+?>
             <?php } ?>
             <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
                 <button type="submit" name="submit" class="btn btn-md u-btn-primary rounded g-py-13 g-px-25">Apply</button>
