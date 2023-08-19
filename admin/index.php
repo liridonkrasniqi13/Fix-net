@@ -2,6 +2,10 @@
 <?php include "includes/navigation.php" ?>
 <?php
 
+if ($_SESSION['user_role'] == "shop") {
+    header("Location: shop.php ");
+}
+
 if ($_SESSION['user_role'] == "admin") {
 
     if (isset($_GET['from_date']) && isset($_GET['to_date'])) {

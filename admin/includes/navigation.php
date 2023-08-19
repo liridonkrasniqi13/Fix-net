@@ -18,14 +18,15 @@
 
         <!-- Messages/Notifications/Top Search Bar/Top User -->
         <div class="col-auto d-flex g-py-12 g-pl-40--lg ml-auto">
+        <?php if (($_SESSION['user_role'] == "subscriber") || ($_SESSION['user_role'] == "admin") ){ ?>
           <a  class="d-block" href="posts.php?source=add_post" style="color: #fff;" >
-
-            <span class="g-pos-rel g-top-2">
+              <span class="g-pos-rel g-top-2">
               <span >Add New</span>
-                      <i class="hs-admin-plus g-pos-rel g-top-2 g-ml-10"></i>
-                      </span>
+                <i class="hs-admin-plus g-pos-rel g-top-2 g-ml-10"></i>
+              </span>
           </a>
 
+          <?php } ?>
           <!-- End Top Notifications -->
 
           <!-- Top User -->

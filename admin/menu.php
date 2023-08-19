@@ -2,6 +2,10 @@
 <div id="sideNav" class="col-auto u-sidebar-navigation-v1 u-sidebar-navigation--dark">
     <ul id="sideNavMenu" class="u-sidebar-navigation-v1-menu u-side-nav--top-level-menu g-min-height-100vh mb-0">
 
+    <?php
+
+            if (($_SESSION['user_role'] == "subscriber") || ($_SESSION['user_role'] == "admin") ){ ?>
+
         <!-- Metrics -->
         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item  has-active">
             <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="index.php">
@@ -52,6 +56,8 @@
             <!-- End Dashboards: Submenu-1 -->
         </li>
         <!-- End Dashboards -->
+        <?php } ?>
+
         <?php
 
             if ($_SESSION['user_role'] == "admin") { ?>
@@ -203,6 +209,57 @@
         </li>
         <!-- End Layouts Settings -->
 
+        
+
+        <?php } ?>
+
+        <?php
+
+            if (($_SESSION['user_role'] == "shop") || ($_SESSION['user_role'] == "admin") )  { ?>
+
+                <!-- Layouts Settings -->
+                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="#" data-hssm-target="#subMenu5">
+                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                    <i class="hs-admin-money"></i>
+                </span>
+                <span class="media-body align-self-center">Shop</span>
+                <span class="d-flex align-self-center u-side-nav--control-icon">
+                    <i class="hs-admin-angle-right"></i>
+                </span>
+                <span class="u-side-nav--has-sub-menu__indicator"></span>
+            </a>
+
+            <!-- Layouts Settings: Submenu-1 -->
+            <ul id="subMenu5" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+
+
+                <!-- Fixed Header & Static Sidebar -->
+                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='shop.php?source=add_shop'>
+                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                            <i class="hs-admin-plus"></i>
+                        </span>
+                        <span class="media-body align-self-center">Add new</span>
+                    </a>
+                </li>
+                <!-- End Fixed Header & Static Sidebar -->
+
+                <!-- Fixed Header & Sidebar -->
+                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='shop.php'>
+                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                            <i class="hs-admin-layout-media-center-alt"></i>
+                        </span>
+                        <span class="media-body align-self-center">View all</span>
+                    </a>
+                </li>
+                <!-- End Fixed Header & Sidebar -->
+
+            </ul>
+            <!-- End Layouts Settings: Submenu-1 -->
+        </li>
+        <!-- End Layouts Settings -->
         <?php } ?>
 
         <!-- Metrics -->
