@@ -4,6 +4,13 @@
 
 <?php
 
+    if((isset($_SESSION['username']) == 'admin')  ) {
+       
+    } else {
+      header("Location: admin ");
+    };
+
+
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $email = $_POST['email'];

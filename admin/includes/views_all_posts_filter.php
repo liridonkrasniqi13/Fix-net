@@ -129,7 +129,7 @@
                     <th>Kartela</th>
                     <th>Date</th>
                     <?php 
-                    if ($_SESSION['user_role'] == "admin") { 
+                    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { 
                         echo "<th>View Post</th>";
                         echo "<th>Edit</th>";
                         echo "<th>Delete</th>";
@@ -143,7 +143,7 @@
                 <?php
 
                 $post_author_post = $_SESSION['username'];
-                if ($_SESSION['user_role'] == "admin") { 
+                if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { 
                     $query = "SELECT * FROM posts ORDER BY post_id DESC";
                     $select_posts = mysqli_query($connection, $query);
                 } else {
@@ -218,7 +218,7 @@
                     echo "<td>$tap_8</td>";
                     echo "<td>$tap_4</td>";
                     echo "<td>$post_date</td>";
-                    if ($_SESSION['user_role'] == "admin") { 
+                    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { 
                     echo "<td><a href='../post.php?p_id={$post_id}'>View Post</a></td>";
                     echo "<td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>";
                     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='posts.php?delete={$post_id}'>Delete</a></td>";

@@ -28,7 +28,7 @@
                                 </li>";
                     }
 
-                    if ($_SESSION['user_role'] == "admin") {
+                    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                         echo "<li>
                         <a href='registration.php'>Register</a>
                         </li>";

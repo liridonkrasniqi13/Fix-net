@@ -44,12 +44,12 @@ if (isset($_POST['edit_user'])) {
         }
 
         $row = mysqli_fetch_array($select_rentSalt_query);
-        $salt = $row['rentSalt']; 
+        $salt = $row['rentSalt'];
         $hashed_password = crypt($user_password, $salt);
 
 
-    $query = "UPDATE users SET 
-    user_firstname = '{$user_firstname}', 
+    $query = "UPDATE users SET
+    user_firstname = '{$user_firstname}',
     user_lastname = '{$user_lastname}',
     user_role = '{$user_role}',
     username = '{$username}',
@@ -68,7 +68,7 @@ if (isset($_POST['edit_user'])) {
 
 
 <form action="" method="post" enctype="multipart/form-data">
-    <legend>Add User</legend>
+    <legend>Edit User</legend>
 
     <div class="form-group">
         <label for="user_firstname">FirstName</label>
@@ -83,18 +83,21 @@ if (isset($_POST['edit_user'])) {
 
     <div class="form-group">
         <select name="user_role" id="user_role" class="form-control" required="required">
-        <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
-            <?php 
-            
+          <option value="<?php echo $user_role; ?>"><?php echo $user_role; ?></option>
+            <?php
+
             if($user_role  == 'admin') {
                 echo" <option value='subscriber'>subscriber</option>";
+                echo " <option value='superadmin'>superadmin</option>";
+                echo " <option value='shop'>shop</option>";
             } else {
                 echo " <option value='admin'>admin</option>";
+                echo " <option value='superadmin'>superadmin</option>";
+                echo " <option value='shop'>shop</option>";
             }
-            
+
             ?>
-           
-            
+
         </select>
     </div>
 

@@ -43,7 +43,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             <th>Kartela</th>
             <th>Date</th>
             <?php
-            if ($_SESSION['user_role'] == "admin") {
+            if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                 echo "<th>View Post</th>";
                 echo "<th>Edit</th>";
                 echo "<th>Delete</th>";
@@ -95,7 +95,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
                         <th><?php echo $row['post_date']; ?></th>
-                        <?php if ($_SESSION['user_role'] == "admin") { ?>
+                        <?php if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { ?>
                             <th>
                                 <a href='../post.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
                             </th>
@@ -131,7 +131,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
         if (isset($_GET['from_date']) == "") {
 
 
-            if ($_SESSION['user_role'] == "admin") {
+            if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                 $query = "SELECT * FROM depo ORDER BY id DESC";
                 $select_depo = mysqli_query($connection, $query);
             } 
@@ -193,7 +193,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
                 echo "<td>$post_date</td>";
-                if ($_SESSION['user_role'] == "admin") {
+                if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                     echo "<td><a href='depos.php?p_id={$id}'>View Post</a></td>";
                     echo "<td><a href='depo.php?source=edit_depo&p_id={$id}'>Edit</a></td>";
                     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='depo.php?delete={$id}'>Delete</a></td>";

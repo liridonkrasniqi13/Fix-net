@@ -11,3 +11,36 @@
     overflow: hidden;
     overflow-x: auto !important;
 }
+
+.subimit {
+    --color: #0077ff;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 6px;
+    position: relative;
+  }
+  
+  .subimit::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 150px;
+    height: 200px;
+    z-index: -1;
+    border-radius: 50%;
+  }
+  
+  .subimit:hover {
+    color: white;
+  }
+  
+  .subimit:before {
+    top: 100%;
+    left: 100%;
+    transition: .3s all;
+  }
+  
+  .subimit:hover::before {
+    top: -30px;
+    left: -30px;
+  }

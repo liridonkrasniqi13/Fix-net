@@ -47,13 +47,13 @@ if (isset($_POST['checkBoxArray'])) {
 if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
-    if ($_SESSION['user_role'] == "admin") {
+    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
         $post_author = $_GET['post_author'];
     }
 } else {
     $from_date = "";
     $to_date = "";
-    if ($_SESSION['user_role'] == "admin") {
+    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
         $post_author = "";
     }
 }
@@ -66,7 +66,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
         <div id="bulkOptionsContainer">
 
-            <?php if ($_SESSION['user_role'] == "admin") { ?>
+            <?php if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { ?>
                 <!-- <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                     <select name="bulk_options" id="bulk_options" class="form-control">
                         <option value="">Select Option</option>
@@ -105,7 +105,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
-            <?php if ($_SESSION['user_role'] == "admin") { ?>
+            <?php if(($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { ?>
                 <th><input type="checkbox" name="" id="selectAllBoxes"></th>
             <?php } ?>
             <th>Id</th>
@@ -132,7 +132,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             <th>Kartela</th>
             <th>Date</th>
             <?php
-            if ($_SESSION['user_role'] == "admin") {
+            if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                 echo "<th>View Post</th>";
                 echo "<th>Edit</th>";
                 echo "<th>Delete</th>";
@@ -151,7 +151,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
             $to_date = $_GET['to_date'];
 
 
-            if ($_SESSION['user_role'] == "admin") {
+            if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                 $post_author = $_GET['post_author'];
                 if ($post_author == "liridonkrasniqi") {
                     $query = "SELECT * FROM vetura WHERE post_date BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
@@ -173,7 +173,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 foreach ($date_query as $row) {
         ?>
                     <tr>
-                        <?php if ($_SESSION['user_role'] == "admin") { ?>
+                        <?php if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { ?>
                             <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $id; ?>'></td>
                         <?php } ?>
                         <th><?php echo $row['id']; ?></th>
@@ -199,7 +199,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <th><?php echo $row['tap_8']; ?></th>
                         <th><?php echo $row['tap_4']; ?></th>
                         <th><?php echo $row['post_date']; ?></th>
-                        <?php if ($_SESSION['user_role'] == "admin") { ?>
+                        <?php if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { ?>
                             <th>
                                 <a href='../vetura.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
                             </th>
@@ -236,7 +236,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 
             $username_post = $_SESSION['username'];
-            if ($_SESSION['user_role'] == "admin") {
+            if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                 $query = "SELECT * FROM vetura ORDER BY id DESC";
                 $select_vetura = mysqli_query($connection, $query);
             } else {
@@ -275,7 +275,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<tr>";
             ?>
 
-                <?php if ($_SESSION['user_role'] == "admin") { ?>
+                <?php if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { ?>
                     <td><input type='checkbox' class='checkBoxes' name='checkBoxArray[]' value='<?php echo $id; ?>'></td>
                 <?php } ?>
 
@@ -305,7 +305,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                 echo "<td>$tap_8</td>";
                 echo "<td>$tap_4</td>";
                 echo "<td>$post_date</td>";
-                if ($_SESSION['user_role'] == "admin") {
+                if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                     echo "<td><a href='veturas.php?p_id={$id}'>View Post</a></td>";
                     echo "<td><a href='vetura.php?source=edit_vetura&p_id={$id}'>Edit</a></td>";
                     echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='vetura.php?delete={$id}'>Delete</a></td>";
