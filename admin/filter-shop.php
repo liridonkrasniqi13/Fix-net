@@ -3,13 +3,13 @@
 if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
-    if ($_SESSION['user_role'] == "admin") {
+    if ($_SESSION['user_role'] == "superadmin") {
         $username = $_GET['post_author'];
     }
 } else {
     $from_date = "";
     $to_date = "";
-    if ($_SESSION['user_role'] == "admin") {
+    if ($_SESSION['user_role'] == "superadmin") {
         $username = "";
     }
 }
@@ -25,8 +25,8 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
                             <input name="from_date" value="2022-11-01" required="required" class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" type="text" placeholder="From Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
                             <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
-                                <i class="hs-admin-angle-down"></i>
+                                <i class="hs-superadmin-calendar g-font-size-18 g-mr-10"></i>
+                                <i class="hs-superadmin-angle-down"></i>
                             </div>
                         </div>
                     </div>
@@ -38,14 +38,14 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                         <div id="datepickerWrapper" class="u-datepicker-right u-datepicker--v3 g-pos-rel w-100 g-cursor-pointer g-brd-around g-brd-gray-light-v7 g-rounded-4">
                             <input name="to_date" value="<?php echo $to_date; ?>" required="required" class="js-range-datepicker w-100 g-bg-transparent g-font-size-12 g-font-size-default--md g-color-gray-dark-v6 g-pr-80 g-pl-15 g-py-9" type="text" placeholder="To Date" data-rp-wrapper="#datepickerWrapper" data-rp-date-format="Y-m-d">
                             <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                <i class="hs-admin-calendar g-font-size-18 g-mr-10"></i>
-                                <i class="hs-admin-angle-down"></i>
+                                <i class="hs-superadmin-calendar g-font-size-18 g-mr-10"></i>
+                                <i class="hs-superadmin-angle-down"></i>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <?php if ($_SESSION['user_role'] == "admin") { ?>
+            <?php if ($_SESSION['user_role'] == "superadmin") { ?>
                 <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
                     <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
                         <div class="form-group mb-0 g-max-width-400">
@@ -74,7 +74,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                                 </div>
 
                                 <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                    <i class="hs-admin-angle-down"></i>
+                                    <i class="hs-superadmin-angle-down"></i>
                                 </div>
                             </div>
                         </div>
@@ -119,7 +119,7 @@ if (strpos($current_url, 'posts.php') !== false) { ?>
 
 
                                 <div class="d-flex align-items-center g-absolute-centered--y g-right-0 g-color-gray-light-v6 g-color-lightblue-v9--sibling-opened g-mr-15">
-                                    <i class="hs-admin-angle-down"></i>
+                                    <i class="hs-superadmin-angle-down"></i>
                                 </div>
                             </div>
                         </div>

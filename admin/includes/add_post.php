@@ -93,7 +93,7 @@ if (isset($_POST['create_post'])) {
             };
             ?></label>
 
-        <?php if ($_SESSION['user_role'] == "admin") {
+        <?php if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
             echo $_SESSION['user_role'];
         } ?>
         <!-- <input type="text" class="form-control" name="author" id="" placeholder="Post Author"> -->

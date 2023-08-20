@@ -4,7 +4,7 @@
 
     <?php
 
-            if (($_SESSION['user_role'] == "subscriber") || ($_SESSION['user_role'] == "admin") ){ ?>
+        if (($_SESSION['user_role'] == "subscriber") || ($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin") ){ ?>
 
         <!-- Metrics -->
         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item  has-active">
@@ -56,11 +56,13 @@
             <!-- End Dashboards: Submenu-1 -->
         </li>
         <!-- End Dashboards -->
-        <?php } ?>
+        <?php }
+        
+        if  ($_SESSION['user_role'] == "superadmin")  { 
 
-        <?php
+        ?>
+        
 
-            if ($_SESSION['user_role'] == "admin") { ?>
         <!-- Metrics -->
         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
             <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href='categories.php'>
@@ -72,58 +74,23 @@
         </li>
         <!-- End Metrics -->
 
+        <?php
+
+         } ;
+
+            if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin") )  { ?>
+        
+
         <!-- Metrics -->
-        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
+        <!-- <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item">
             <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href='comments.php'>
                 <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
                     <i class="hs-admin-comment"></i>
                 </span>
                 <span class="media-body align-self-center">Comment</span>
             </a>
-        </li>
+        </li> -->
         <!-- End Metrics -->
-
-        <!-- Layouts Settings -->
-        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
-            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="#" data-hssm-target="#subMenu2">
-                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
-                    <i class="hs-admin-settings"></i>
-                </span>
-                <span class="media-body align-self-center">Users</span>
-                <span class="d-flex align-self-center u-side-nav--control-icon">
-                    <i class="hs-admin-angle-right"></i>
-                </span>
-                <span class="u-side-nav--has-sub-menu__indicator"></span>
-            </a>
-
-            <!-- Layouts Settings: Submenu-1 -->
-            <ul id="subMenu2" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
-                <!-- Fixed Header & Sidebar -->
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='users.php'>
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-layout-media-center-alt"></i>
-                        </span>
-                        <span class="media-body align-self-center">View all</span>
-                    </a>
-                </li>
-                <!-- End Fixed Header & Sidebar -->
-
-                <!-- Fixed Header & Static Sidebar -->
-                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
-                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='../registration.php'>
-                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-layout-media-center-alt"></i>
-                        </span>
-                        <span class="media-body align-self-center">Add new</span>
-                    </a>
-                </li>
-                <!-- End Fixed Header & Static Sidebar -->
-
-            </ul>
-            <!-- End Layouts Settings: Submenu-1 -->
-        </li>
-        <!-- End Layouts Settings -->
 
         <!-- Layouts Settings -->
         <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
@@ -155,7 +122,7 @@
                 <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
                     <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='depo.php?source=add_depo'>
                         <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-layout-media-center-alt"></i>
+                        <i class="hs-admin-plus"></i>
                         </span>
                         <span class="media-body align-self-center">Add new</span>
                     </a>
@@ -197,7 +164,7 @@
                 <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
                     <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='vetura.php?source=add_vetura'>
                         <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
-                            <i class="hs-admin-layout-media-center-alt"></i>
+                        <i class="hs-admin-plus"></i>
                         </span>
                         <span class="media-body align-self-center">Add new</span>
                     </a>
@@ -215,7 +182,7 @@
 
         <?php
 
-            if (($_SESSION['user_role'] == "shop") || ($_SESSION['user_role'] == "admin") )  { ?>
+            if (($_SESSION['user_role'] == "shop") || ($_SESSION['user_role'] == "superadmin") )  { ?>
 
                 <!-- Layouts Settings -->
                 <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
@@ -260,6 +227,52 @@
             <!-- End Layouts Settings: Submenu-1 -->
         </li>
         <!-- End Layouts Settings -->
+        <?php } ?>
+
+        <?php if ($_SESSION['user_role'] == "superadmin")   { ?>
+
+        <!-- Layouts Settings -->
+        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--has-sub-menu u-side-nav--top-level-menu-item">
+            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="#" data-hssm-target="#subMenu2">
+                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                    <i class="hs-admin-settings"></i>
+                </span>
+                <span class="media-body align-self-center">Users</span>
+                <span class="d-flex align-self-center u-side-nav--control-icon">
+                    <i class="hs-admin-angle-right"></i>
+                </span>
+                <span class="u-side-nav--has-sub-menu__indicator"></span>
+            </a>
+
+            <!-- Layouts Settings: Submenu-1 -->
+            <ul id="subMenu2" class="u-sidebar-navigation-v1-menu u-side-nav--second-level-menu mb-0">
+                <!-- Fixed Header & Sidebar -->
+                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='users.php'>
+                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                            <i class="hs-admin-layout-media-center-alt"></i>
+                        </span>
+                        <span class="media-body align-self-center">View all</span>
+                    </a>
+                </li>
+                <!-- End Fixed Header & Sidebar -->
+
+                <!-- Fixed Header & Static Sidebar -->
+                <li class="u-sidebar-navigation-v1-menu-item u-side-nav--second-level-menu-item">
+                    <a class="media u-side-nav--second-level-menu-link g-px-15 g-py-12" href='../registration.php'>
+                        <span class="d-flex align-self-center g-mr-15 g-mt-minus-1">
+                        <i class="hs-admin-plus"></i>
+                        </span>
+                        <span class="media-body align-self-center">Add new</span>
+                    </a>
+                </li>
+                <!-- End Fixed Header & Static Sidebar -->
+
+            </ul>
+            <!-- End Layouts Settings: Submenu-1 -->
+        </li>
+        <!-- End Layouts Settings -->
+
         <?php } ?>
 
         <!-- Metrics -->

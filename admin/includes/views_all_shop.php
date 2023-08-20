@@ -3,13 +3,13 @@
 if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 	$from_date = $_GET['from_date'];
 	$to_date = $_GET['to_date'];
-	if ($_SESSION['user_role'] == "admin") {
+	if ($_SESSION['user_role'] == "superadmin") {
 		$author = $_GET['post_author'];
 	}
 } else {
 	$from_date = "";
 	$to_date = "";
-	if ($_SESSION['user_role'] == "admin") {
+	if ($_SESSION['user_role'] == "superadmin") {
 		$author = "";
 	}
 }
@@ -31,7 +31,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 				<th>Id</th>
 				<th>Shop</th>
-				<?php if ($_SESSION['user_role'] == "admin") { ?>
+				<?php if ($_SESSION['user_role'] == "superadmin") { ?>
 				<th>Comment</th>
 				<?php } ?>
 				<th>Albi Smart</th>
@@ -41,7 +41,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 
 				<th>Date</th>
 				<?php
-				if ($_SESSION['user_role'] == "admin") {
+				if ($_SESSION['user_role'] == "superadmin") {
 					echo "<th>View Post</th>";
 					echo "<th>Edit</th>";
 					echo "<th>Delete</th>";
@@ -58,7 +58,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 				$from_date = $_GET['from_date'];
 				$to_date = $_GET['to_date'];
 
-				if ($_SESSION['user_role'] == "admin") {
+				if ($_SESSION['user_role'] == "superadmin") {
 					$author = $_GET['post_author'];
 					if ($author == "liridonkrasniqi") {
 						$query = "SELECT * FROM shop WHERE date_now BETWEEN '$from_date' AND '$to_date' ORDER BY id DESC";
@@ -81,15 +81,15 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 						<tr>
 							<th><?php echo $row['id']; ?></th>
 							<th><?php echo $row['author']; ?></th>
-							<?php if ($_SESSION['user_role'] == "admin") { ?>
+							<?php if ($_SESSION['user_role'] == "superadmin") { ?>
 							<th><?php echo $row['comment']; ?></th>
 							<?php } ?>
-							<th><?php echo $row['title']; ?></th>
+							<th><?php echo $row['smart']; ?></th>
 							<th><?php echo $row['cash']; ?></th>
 							<th><?php echo $row['raporti']; ?></th>
 							<th><?php echo $row['anulime']; ?></th>
 							<th><?php echo $row['date_now']; ?></th>
-							<?php if ($_SESSION['user_role'] == "admin") { ?>
+							<?php if ($_SESSION['user_role'] == "superadmin") { ?>
 								<th>
 									<a href='../shop.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
 								</th>
@@ -121,7 +121,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 			if (isset($_GET['from_date']) == "") {
 
 				$username_post = $_SESSION['username'];
-				if ($_SESSION['user_role'] == "admin") {
+				if ($_SESSION['user_role'] == "superadmin") {
 					$query = "SELECT * FROM shop ORDER BY id DESC";
 					$select_vetura = mysqli_query($connection, $query);
 				} else {
@@ -133,7 +133,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 					$id = $row['id'];
 					$author = $row['author'];
 					$comment = $row['comment'];
-					$title = $row['title'];
+					$smart = $row['smart'];
 					$cash = $row['cash'];
 					$raporti = $row['raporti'];
 					$anulime = $row['anulime'];
@@ -147,16 +147,16 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 			<?php
 					echo "<td>$id</td>";
 					echo "<td>$author</td>";
-					if ($_SESSION['user_role'] == "admin") { 
+					if ($_SESSION['user_role'] == "superadmin") { 
 					echo "<td>$comment</td>";
 					};
-					echo "<td>$title</td>";
+					echo "<td>$smart</td>";
 					echo "<td>$cash</td>";
 					echo "<td>$raporti</td>";
 					echo "<td>$anulime</td>";
 					echo "<td>$date_now</td>";
 
-					if ($_SESSION['user_role'] == "admin") {
+					if ($_SESSION['user_role'] == "superadmin") {
 						echo "<td><a href='shops.php?p_id={$id}'>View Post</a></td>";
 						echo "<td><a href='shop.php?source=edit_shop&p_id={$id}'>Edit</a></td>";
 						echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='shop.php?delete={$id}'>Delete</a></td>";

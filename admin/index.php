@@ -6,7 +6,7 @@ if ($_SESSION['user_role'] == "shop") {
     header("Location: shop.php ");
 }
 
-if ($_SESSION['user_role'] == "admin") {
+if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
 
     if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
         $from_date = $_GET['from_date'];
@@ -205,7 +205,7 @@ $categories_count = mysqli_num_rows($select_all_categories);
 
             <?php
 
-            if ($_SESSION['user_role'] == "admin") {
+            if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                 include "icone.php";
             }
 

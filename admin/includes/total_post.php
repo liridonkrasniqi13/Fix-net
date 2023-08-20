@@ -3,7 +3,7 @@
 if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
-    if ($_SESSION['user_role'] == "admin") {
+    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
         $post_author = $_GET['post_author'];
         $filter_date = " WHERE post_author = '$post_author' AND  post_date BETWEEN '$from_date' AND '$to_date' ";
         if ($post_author == "liridonkrasniqi") {

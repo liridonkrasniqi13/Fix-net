@@ -10,7 +10,7 @@ $select_shop = mysqli_query($connection, $query);
 while ($row = mysqli_fetch_assoc($select_shop)) {
     $id = $row['id'];
     $author = $row['author'];
-    $title = $row['title'];
+    $smart = $row['smart'];
     $comment = $row['comment'];
     $cash = $row['cash'];
     $raporti = $row['raporti'];
@@ -20,7 +20,7 @@ while ($row = mysqli_fetch_assoc($select_shop)) {
 }
 
 if (isset($_POST['edit_shop'])) {
-    $title = $_POST['title'];
+    $smart = $_POST['smart'];
     $comment = $_POST['comment'];
     $cash = $_POST['cash'];
     $raporti = $_POST['raporti'];
@@ -28,7 +28,7 @@ if (isset($_POST['edit_shop'])) {
     // $date_now = $_POST['date_now'];
 
     $query = "UPDATE shop SET 
-    title = '{$title}',
+    smart = '{$smart}',
     comment = '{$comment}',
     cash = '{$cash}',
     raporti = '{$raporti}',
@@ -59,18 +59,18 @@ if (isset($_POST['edit_shop'])) {
 	</div>
 
     <div class="form-group">
-		<label for="title">Albi Smart</label>
-		<input type="number" value="<?php echo $title; ?> " class="form-control" name="title" id="" placeholder="Albi Smart" required="required">
+		<label for="smart">Albi Smart </label>
+		<input type="number" value="<?php echo $smart; ?>" class="form-control" name="smart" id="" placeholder="Albi Smart" required="required">
 	</div>
 
 	<div class="form-group">
 		<label for="cash">Shuma Cash </label>
-		<input type="number" value="<?php echo $cash; ?>" class="form-control" name="cash" id="" placeholder="Shuma Cash">
+		<input type="number" value="<?php echo $cash; ?>" class="form-control" name="cash" id="" placeholder="Shuma Cash" required="required">
 	</div>
 
 	<div class="form-group">
 		<label for="raporti">Z Raporti </label>
-		<input type="number" value="<?php echo $raporti; ?>" class="form-control" name="raporti" id="" placeholder="Z Raporti">
+		<input type="number" value="<?php echo $raporti; ?>" class="form-control" name="raporti" id="" placeholder="Z Raporti" required="required">
 	</div>
 
 	<div class="form-group">

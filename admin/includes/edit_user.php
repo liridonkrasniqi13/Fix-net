@@ -88,9 +88,11 @@ if (isset($_POST['edit_user'])) {
 
             if($user_role  == 'admin') {
                 echo" <option value='subscriber'>subscriber</option>";
+                echo " <option value='superadmin'>superadmin</option>";
                 echo " <option value='shop'>shop</option>";
             } else {
                 echo " <option value='admin'>admin</option>";
+                echo " <option value='superadmin'>superadmin</option>";
                 echo " <option value='shop'>shop</option>";
             }
 

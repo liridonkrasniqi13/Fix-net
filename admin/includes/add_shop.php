@@ -2,7 +2,7 @@
 
 if (isset($_POST['create_shop'])) {
 
-	$title  		= $_POST['title'];
+	$smart  		= $_POST['smart'];
 	$author 		= $_SESSION['username'];
 	$comment 		= $_POST['comment'];
 	$cash 			= $_POST['cash'];
@@ -10,9 +10,9 @@ if (isset($_POST['create_shop'])) {
 	$anulime 		= $_POST['anulime'];
 	$date_now 	= date('d-m-y');
 
-	$query = "INSERT INTO shop(title, author, comment, cash, raporti, anulime, date_now ) ";
+	$query = "INSERT INTO shop(smart, author, comment, cash, raporti, anulime, date_now ) ";
 
-	$query .= "VALUE('{$title}' ,'{$author}','{$comment}', '{$cash}', '{$raporti}', '{$anulime}', now())";
+	$query .= "VALUE('{$smart}' ,'{$author}','{$comment}', '{$cash}', '{$raporti}', '{$anulime}', now())";
 
 	$create_shop_query = mysqli_query($connection, $query);
 
@@ -32,8 +32,8 @@ if (isset($_POST['create_shop'])) {
 	</div>
 
 	<div class="form-group">
-		<label for="title">Albi Smart</label>
-		<input type="number" class="form-control" name="title" id="" placeholder="Albi Smart" required="required">
+		<label for="smart">Albi Smart</label>
+		<input type="number" class="form-control" name="smart" id="" placeholder="Albi Smart" required="required">
 	</div>
 
 	<div class="form-group">

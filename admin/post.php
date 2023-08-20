@@ -42,7 +42,7 @@
                     <h1 class="page-header">
                         <?php echo $post_author ?>
                         <small class="float-right"><?php
-                                                    if ($_SESSION['user_role'] == "admin") {
+                                                    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                                                         $username = "";
 
 

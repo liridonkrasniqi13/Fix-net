@@ -3,13 +3,13 @@
 if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
     $from_date = $_GET['from_date'];
     $to_date = $_GET['to_date'];
-    if ($_SESSION['user_role'] == "admin") {
+    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
         $username = $_GET['post_author'];
     }
 } else {
     $from_date = "";
     $to_date = "";
-    if ($_SESSION['user_role'] == "admin") {
+    if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
         $username = "";
     }
 }
@@ -45,7 +45,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
                     </div>
                 </div>
             </div>
-            <?php if ($_SESSION['user_role'] == "admin") { ?>
+            <?php if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) { ?>
                 <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
                     <div class="g-brd-around g-brd-gray-light-v7 g-rounded-4 g-pa-20 g-mb-30">
                         <div class="form-group mb-0 g-max-width-400">
