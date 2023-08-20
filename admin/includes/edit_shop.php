@@ -15,6 +15,7 @@ while ($row = mysqli_fetch_assoc($select_shop)) {
     $cash = $row['cash'];
     $raporti = $row['raporti'];
     $anulime = $row['anulime'];
+    $saldo = $row['saldo'];
     $date_now = $row['date_now'];
     
 }
@@ -25,6 +26,7 @@ if (isset($_POST['edit_shop'])) {
     $cash = $_POST['cash'];
     $raporti = $_POST['raporti'];
     $anulime = $_POST['anulime'];
+    $saldo = $_POST['saldo'];
     // $date_now = $_POST['date_now'];
 
     $query = "UPDATE shop SET 
@@ -32,7 +34,8 @@ if (isset($_POST['edit_shop'])) {
     comment = '{$comment}',
     cash = '{$cash}',
     raporti = '{$raporti}',
-    anulime =  '{$anulime}'
+    anulime =  '{$anulime}' ,
+    saldo =  '{$saldo}'
    
     WHERE id = {$the_post_id}";
     // $query .="post_author = '{$post_author}', ";
@@ -75,7 +78,12 @@ if (isset($_POST['edit_shop'])) {
 
 	<div class="form-group">
 		<label for="anulime">Anulime </label>
-		<input type="number" value="<?php echo $anulime; ?>" class="form-control" name="anulime" id="" placeholder="Anulime">
+		<input type="number" value="<?php echo $anulime; ?>" class="form-control" name="anulime" id="" step="0.01" placeholder="Anulime">
+	</div>
+
+    <div class="form-group">
+		<label for="saldo">Saldo </label>
+		<input type="number" value="<?php echo $saldo; ?>" class="form-control" name="saldo" id="" step="0.01" placeholder="Saldo">
 	</div>
 
 	<button type="submit" name="edit_shop" class="btn btn-primary subimit">Submit</button>

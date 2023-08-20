@@ -30,6 +30,7 @@
                     $cash  = $row['cash'];
                     $raporti  = $row['raporti'];
                     $anulime  = $row['anulime'];
+                    $saldo  = $row['saldo'];
                     $image_name  = $row['image_name'];
                     $date_now  = $row['date_now'];
 
@@ -59,6 +60,7 @@
                                         <th>Shuma Cash</th>
                                         <th>Z Raporti</th>
                                         <th>Anulime</th>
+                                        <th>Saldo</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -70,6 +72,7 @@
                                         <th><?php echo $cash; ?></th>
                                         <th><?php echo $raporti; ?></th>
                                         <th><?php echo $anulime; ?></th>
+                                        <th><?php echo $saldo; ?></th>
 
                                     </tr>
                                 </tbody>

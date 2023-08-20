@@ -38,6 +38,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 				<th>Shuma Cash</th>
 				<th>Z Raporti</th>
 				<th>Anulime</th>
+				<th>Saldo</th>
 
 				<th>Date</th>
 				<?php
@@ -88,6 +89,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 							<th><?php echo $row['cash']; ?></th>
 							<th><?php echo $row['raporti']; ?></th>
 							<th><?php echo $row['anulime']; ?></th>
+							<th><?php echo $row['saldo']; ?></th>
 							<th><?php echo $row['date_now']; ?></th>
 							<?php if ($_SESSION['user_role'] == "superadmin") { ?>
 								<th>
@@ -137,6 +139,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 					$cash = $row['cash'];
 					$raporti = $row['raporti'];
 					$anulime = $row['anulime'];
+					$saldo = $row['saldo'];
 					$date_now = $row['date_now'];
 
 					echo "<tr>";
@@ -154,6 +157,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 					echo "<td>$cash</td>";
 					echo "<td>$raporti</td>";
 					echo "<td>$anulime</td>";
+					echo "<td>$saldo</td>";
 					echo "<td>$date_now</td>";
 
 					if ($_SESSION['user_role'] == "superadmin") {

@@ -27,11 +27,12 @@ if (isset($_POST['create_shop'])) {
 				$cash 			= $_POST['cash'];
 				$raporti 		= $_POST['raporti'];
 				$anulime 		= $_POST['anulime'];
+				$saldo 			= $_POST['saldo'];
 				$date_now 	= date('d-m-y');
 
-				$query = "INSERT INTO shop(smart, author, comment, cash, raporti, anulime, image_name, date_now ) ";
+				$query = "INSERT INTO shop(smart, author, comment, cash, raporti, anulime, image_name, saldo , date_now ) ";
 
-				$query .= "VALUE('{$smart}' ,'{$author}','{$comment}', '{$cash}', '{$raporti}', '{$anulime}', '{$fileName}', now())";
+				$query .= "VALUE('{$smart}' ,'{$author}','{$comment}', '{$cash}', '{$raporti}', '{$anulime}', '{$fileName}','{$saldo}', now())";
 
 				$create_shop_query = mysqli_query($connection, $query);
 
@@ -125,6 +126,11 @@ if (!empty($statusMsg)) {
 	<div class="form-group">
 		<label for="anulime">Anulime </label>
 		<input type="number" class="form-control" name="anulime" id="" placeholder="Anulime" step="0.01" required="required">
+	</div>
+
+	<div class="form-group">
+		<label for="anulime">Saldo </label>
+		<input type="number" class="form-control" name="saldo" id="" placeholder="Saldo" step="0.01" required="required">
 	</div>
 
 	<div class="form-group">
