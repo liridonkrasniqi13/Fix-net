@@ -91,7 +91,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 							<th><?php echo $row['date_now']; ?></th>
 							<?php if ($_SESSION['user_role'] == "superadmin") { ?>
 								<th>
-									<a href='../shop.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
+									<a href='../shop_view.php?p_id=<?php echo $row['id']; ?>'>View Post</a>
 								</th>
 								<th>
 									<a href='shop.php?source=edit_shop&p_id=<?php echo $row['id']; ?>'>Edit</a>
@@ -157,7 +157,7 @@ if (isset($_GET['from_date']) && isset($_GET['to_date'])) {
 					echo "<td>$date_now</td>";
 
 					if ($_SESSION['user_role'] == "superadmin") {
-						echo "<td><a href='shops.php?p_id={$id}'>View Post</a></td>";
+						echo "<td><a href='shop_view.php?p_id={$id}'>View Post</a></td>";
 						echo "<td><a href='shop.php?source=edit_shop&p_id={$id}'>Edit</a></td>";
 						echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='shop.php?delete={$id}'>Delete</a></td>";
 					}
