@@ -60,17 +60,17 @@ if (isset($_POST['edit_shop'])) {
 
     <div class="form-group">
 		<label for="smart">Albi Smart </label>
-		<input type="number" value="<?php echo $smart; ?>" class="form-control" name="smart" id="" placeholder="Albi Smart" required="required">
+		<input type="number" value="<?php echo $smart; ?>" class="form-control" name="smart" id="" placeholder="Albi Smart" step="0.01" required="required">
 	</div>
 
 	<div class="form-group">
 		<label for="cash">Shuma Cash </label>
-		<input type="number" value="<?php echo $cash; ?>" class="form-control" name="cash" id="" placeholder="Shuma Cash" required="required">
+		<input type="number" value="<?php echo $cash; ?>" class="form-control" name="cash" id="" placeholder="Shuma Cash" step="0.01" required="required">
 	</div>
 
 	<div class="form-group">
 		<label for="raporti">Z Raporti </label>
-		<input type="number" value="<?php echo $raporti; ?>" class="form-control" name="raporti" id="" placeholder="Z Raporti" required="required">
+		<input type="number" value="<?php echo $raporti; ?>" class="form-control" name="raporti" id="" placeholder="Z Raporti" step="0.01" required="required">
 	</div>
 
 	<div class="form-group">
