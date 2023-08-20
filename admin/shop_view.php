@@ -30,6 +30,7 @@
                     $cash  = $row['cash'];
                     $raporti  = $row['raporti'];
                     $anulime  = $row['anulime'];
+                    $image_name  = $row['image_name'];
                     $date_now  = $row['date_now'];
 
                 ?>
@@ -75,13 +76,22 @@
                             </table>
                         </div>
 
+                        <a class="js-fancybox d-block" href="javascript:;" data-fancybox="lightbox-gallery--10" data-src="../uploads/<?php echo $image_name ?>" data-caption="Lightbox Gallery" style="width: 50vw;">
+                            <img class="img-fluid" src="../uploads/<?php echo $image_name ?>" alt="Image description" >
+                        </a>
+
                     </div>
 
-                    <hr>
 
-                <?php } ?>
+                <?php }
+                
+                echo " <a class='btn btn-secondary subimit' href='shop.php?source=edit_image&p_id={$the_post_id}'>Edit Image</a> ";
 
+                ?>
+              
             </div>
+
+            
 
         </div>
     </div>

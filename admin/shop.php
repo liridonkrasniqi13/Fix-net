@@ -32,6 +32,9 @@
                         include "includes/edit_shop.php";
                         break;
 
+                    case 'edit_image';
+                        include "includes/edit_image.php";
+                        break;
 
                     default:
                         include "includes/views_all_shop.php";
