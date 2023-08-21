@@ -23,7 +23,11 @@ while ($row = mysqli_fetch_assoc($select_shop)) {
 if (isset($_POST['edit_shop'])) {
 
     if (!empty($_FILES["file"]['name'])) {
-        $fileName = basename($_FILES["file"]['name']);
+
+        $time = date("d-m-Y")."-".time() ;
+
+        $imgName = basename($_FILES["file"]['name']);
+		$fileName = $time."-".$imgName;
         $targetFilePath = $targetDir . $fileName;
         $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
