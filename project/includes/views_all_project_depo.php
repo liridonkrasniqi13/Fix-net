@@ -10,7 +10,7 @@ $cont = "";
             <tr>
                 <th>Id</th>
                 <th>Author</th>
-                <th>Comment</th>
+                <!-- <th>Comment</th> -->
                 <th>FO48-Ads</th>
                 <th>FO24-Adss</th>
                 <th>FO12-Adss</th>
@@ -78,7 +78,7 @@ $cont = "";
 
                     $id                 = $row['id'];
                     $username           = $row['username'];
-                    $comment            = $row['comment'];
+                    // $comment            = $row['comment'];
                     $fo48_ads           = $row['fo48_ads'];
                     $fo24_adss          = $row['fo24_adss'];
                     $fo12_adss          = $row['fo12_adss'];
@@ -108,7 +108,7 @@ $cont = "";
                 <?php
                     echo "<td>$id</td>";
                     echo "<td>$username</td>";
-                    echo "<td>$comment</td>";
+                    // echo "<td>$comment</td>";
                     echo "<td>$fo48_ads</td>";
                     echo "<td>$fo24_adss</td>";
                     echo "<td>$fo12_adss</td>";
@@ -131,7 +131,7 @@ $cont = "";
                     echo "<td>$onu</td>";
                     echo "<td>$instalime</td>";
                     echo "<td>$project_date</td>";
-                    echo "<td><a href='post.php?p_id={$id}'>View Post</a></td>";
+                    echo "<td><a href='project_view_depo.php?p_id={$id}'>View Post</a></td>";
                     if (($_SESSION['user_role'] == "admin") || ($_SESSION['user_role'] == "superadmin")) {
                         echo "<td><a href='project-depo.php?source=edit_project_depo&p_id={$id}'>Edit</a></td>";
                         echo "<td><a onClick=\"javascript: return confirm('Are you sure you want to delete'); \" href='project-depo.php?delete={$id}'>Delete</a></td>";
