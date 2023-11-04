@@ -285,6 +285,16 @@
             </a>
         </li>
         <!-- End Metrics -->
+        <?php if ($_SESSION['user_role'] == "superadmin")   { ?>
+        <li class="u-sidebar-navigation-v1-menu-item u-side-nav--top-level-menu-item  has-active">
+            <a class="media u-side-nav--top-level-menu-link u-side-nav--hide-on-hidden g-px-15 g-py-12" href="../project/index.php">
+                <span class="d-flex align-self-center g-pos-rel g-font-size-18 g-mr-18">
+                    <i class="hs-admin-truck"></i>
+                </span>
+                <span class="media-body align-self-center">Project</span>
+            </a>
+        </li>
+        <?php } ?>
 
     </ul>
 </div>
