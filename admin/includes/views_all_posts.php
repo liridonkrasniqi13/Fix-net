@@ -513,7 +513,7 @@ if (isset($_GET['delete'])) {
                     </div>
                 <?php } ?>
                 <div class="col-sm-6 col-lg-6 col-xl-3 g-mb-30">
-                    <input class="btn btn-success" type="submit" name="expor_excel" value="Export Raport" />
+                    <input class="btn btn-success" type="submit" name="export_excel" value="Export Raport" />
                 </div>
             </div>
         </div>
