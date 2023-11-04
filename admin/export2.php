@@ -30,7 +30,7 @@ if (isset($_POST["export_excel"])) {
 
     if (mysqli_num_rows($result) > 0) {
         // Set response headers for a CSV file download
-        header("Content-Disposition: attachment; filename=test.csv");
+        header("Content-Disposition: attachment; filename=Raporti.csv");
         header("Content-Type: text/csv");
 
         // Open the output stream
