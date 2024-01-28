@@ -82,7 +82,7 @@ if (isset($_POST['create_project'])) {
     </div>
 
     <div class="form-group">
-        <label for="fo24">FO24 </label>
+        <label for="fo24">FDB FO48 </label>
         <input type="number" class="form-control" name="fo24" id="" >
     </div>
 
@@ -102,12 +102,12 @@ if (isset($_POST['create_project'])) {
     </div>
 
     <div class="form-group">
-        <label for="fosc">FOSC(FiberOpticSpliceClosure) </label>
+        <label for="fosc">Sp 1/4</label>
         <input type="number" class="form-control" name="fosc" id=""  >
     </div>
 
     <div class="form-group">
-        <label for="fdt">FDT(FiberDistributionTerminal)</label>
+        <label for="fdt">FDB FO48</label>
         <input type="number" class="form-control" name="fdt" id=""  >
     </div>
 

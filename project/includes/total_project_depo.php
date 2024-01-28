@@ -69,12 +69,12 @@ if ($query_result) {
                 <th>FO48-Ads</th>
                 <th>FO24-Adss</th>
                 <th>FO12-Adss</th>
-                <th>FO24</th>
+                <th>FDB FO48</th>
                 <th>Fo12</th>
                 <th>Fo04</th>
                 <th>Fo2(Drop)</th>
-                <th>FOSC</th>
-                <th>FDT</th>
+                <th>Sp 1/4</th>
+                <th>FDB FO48</th>
                 <th>FDB 1/4</th>
                 <th>FDB 1/8</th>
                 <th>SP 1/16</th>
@@ -201,12 +201,12 @@ if ($query_result) {
                 <th>FO48-Ads</th>
                 <th>FO24-Adss</th>
                 <th>FO12-Adss</th>
-                <th>FO24</th>
+                <th>FDB FO48</th>
                 <th>Fo12</th>
                 <th>Fo04</th>
                 <th>Fo2(Drop)</th>
-                <th>FOSC</th>
-                <th>FDT</th>
+                <th>Sp 1/4</th>
+                <th>Sp 1/2</th>
                 <th>FDB 1/4</th>
                 <th>FDB 1/8</th>
                 <th>SP 1/16</th>
@@ -301,12 +301,12 @@ if ($query_result) {
                 <th>FO48-Ads</th>
                 <th>FO24-Adss</th>
                 <th>FO12-Adss</th>
-                <th>FO24</th>
+                <th>FDB FO48</th>
                 <th>Fo12</th>
                 <th>Fo04</th>
                 <th>Fo2(Drop)</th>
-                <th>FOSC</th>
-                <th>FDT</th>
+                <th>Sp 1/4</th>
+                <th>Sp 1/2</th>
                 <th>FDB 1/4</th>
                 <th>FDB 1/8</th>
                 <th>SP 1/16</th>

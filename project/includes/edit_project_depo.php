@@ -141,7 +141,7 @@ if (isset($_POST['edit_depo_project'])) {
     </div>
 
     <div class="form-group">
-        <label for="fo24">FO24 </label>
+        <label for="fo24">FDB FO48 </label>
         <input type="number" value="<?php echo $fo24; ?>" class="form-control" name="fo24" id="">
     </div>
 
@@ -161,12 +161,12 @@ if (isset($_POST['edit_depo_project'])) {
     </div>
 
     <div class="form-group">
-        <label for="fosc">FOSC(FiberOpticSpliceClosure) </label>
+        <label for="fosc">Sp 1/4</label>
         <input type="number" value="<?php echo $fosc; ?>" class="form-control" name="fosc" id="">
     </div>
 
     <div class="form-group">
-        <label for="fdt">FDT(FiberDistributionTerminal)</label>
+        <label for="fdt">Sp 1/2</label>
         <input type="number" value="<?php echo $fdt; ?>" class="form-control" name="fdt" id="">
     </div>
 
