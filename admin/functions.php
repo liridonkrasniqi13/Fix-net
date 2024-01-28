@@ -1,12 +1,6 @@
 <?php 
 
-function confirmQuery($result) {
-    global $connection;
-    if(!$result) {
-        die("Query Failed" . mysqli_errno($connection));
-    }
 
-}
 
 function insert_categoris() { 
 
